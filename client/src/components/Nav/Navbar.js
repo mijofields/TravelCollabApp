@@ -7,7 +7,7 @@ class Navbar extends Component {
         return (           
                 <nav className="navbar navbar-expand-md">
                  <div className="container" id="topNav">
-                    <Link clLinkssName="navbar-brand" to="/">Name of Website/Logo</Link>
+                    <Link className="navbar-brand" to="/">Name of Website/Logo</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>

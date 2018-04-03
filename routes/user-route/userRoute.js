@@ -10,4 +10,11 @@ router.route('/:id')
     .put(userController.update)
     .delete(userController.remove);
 
+router.route("/signup")
+    .post(userController.signup);
+
+
+router.route("/signin")
+    .post(userController.signin)
+
 module.exports = router;
