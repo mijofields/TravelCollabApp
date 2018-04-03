@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const PORT = process.env.PORT || 8080;
 const app = express();
-const routes = require('./routes/user-route/userInfo');
+const routes = require('./routes/user-route/userRoute');
 const db = 'mongodb://localhost/users';
 
 //Setting up connection to mongoose
@@ -24,10 +24,11 @@ mongoose.connect(db);
 app.use(logger("dev"));
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser());
 // Serve up static assets
 app.use(express.static("client/build"));
 // Add routes, both API and view
-app.use(routes);
+app.use("/", routes);
 // Set mongoose to leverage built in JavaScript ES6 Promises
 
 app.listen(PORT, function(){

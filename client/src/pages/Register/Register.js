@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from "axios"; // HTTP Library
 import './Register.css';
 
 class Register extends Component {
@@ -10,61 +11,94 @@ class Register extends Component {
             email: "",
             password: ""
         };
-    
-        this.handleChange = this.handleChange.bind(this);
+
         this.handleSubmit = this.handleSubmit.bind(this);
-      }
-    
-      handleChange(event) {
-        this.setState({
-            name: event.target.name,
-            username: event.target.username,
-            email: event.target.email,
-            password: event.target.password
+    }
+
+    handleChange = ({ target: { id, value } }) => this.setState({ [id]: value });
+
+    handleSubmit(event) {
+        event.preventDefault(); // stop browser from refreshing
+
+        // send the entire over our Server
+
+        console.log("State Data: ", this.state);
+        
+
+        axios({
+            url: "/signup",
+            method: "POST",
+            data: this.state
+        })
+        .then((response) => {
+            // TODO
+            console.log("Response: ", response.data);
+            
+        })
+        .catch((err) => {
+            // TODO
+            console.log("Error: ", err.response.data);
+            
         });
-      };
-    
-      handleSubmit(event) {
-        this.setState({
-            name: event.target.name,
-            username: event.target.username,
-            email: event.target.email,
-            password: event.target.password
-        });
-      };
-    
+
+
+    };  
+
     render() {
+
+        // console.log("State: ", this.state);
+
         return (
             <div className="container">
-            <div className="text-center">
-              <h1 className="h3 mb-3 font-weight-normal">Register</h1>
+                <div className="text-center">
+                    <h1 className="h3 mb-3 font-weight-normal">Register</h1>
 
-                  <form class="form-signin" onSubmit={this.handleSubmit}>
-                  
-                    <label for="inputName" className="sr-only">Name:</label>
-                        <input type="text" placeholder="Name"  className="form-control" id="inputName"
-                        value={this.state.value} 
-                        onChange={this.handleChange} />                        
+                    <form className="form-signin" onSubmit={this.handleSubmit}>
 
-                    <label for="inputUserName" className="sr-only"> User Name:</label>
-                        <input type="text" placeholder="User Name"  className="form-control" id="inputUserName"
-                        value={this.state.value} 
-                        onChange={this.handleChange} />
+                        <label htmlFor="inputName" className="sr-only">Name:</label>
+                        <input
+                            type="text"
+                            required
+                            placeholder="Name"
+                            className="form-control"
+                            id="name"
+                            value={this.state.value}
+                            onChange={this.handleChange} />
 
-                    <label for="inputEmail" className="sr-only">Email:</label>
-                        <input type="email" placeholder="johndoe@email.com"  className="form-control" id="inputEmail"
-                        value={this.state.value} 
-                        onChange={this.handleChange} />
+                        <label htmlFor="inputUserName" className="sr-only"> User Name:</label>
+                        <input
+                            type="text"
+                            required
+                            placeholder="User Name"
+                            className="form-control"
+                            id="username"
+                            value={this.state.value}
+                            onChange={this.handleChange} />
 
-                    <label for="inputPassword" className="sr-only"> Password:</label>
-                        <input type="password" placeholder="Password"  className="form-control" id="inputPassword"
-                        value={this.state.value} 
-                        onChange={this.handleChange} />               
+                        <label htmlFor="inputEmail" className="sr-only">Email:</label>
+                        <input
+                            type="email"
+                            required
+                            placeholder="johndoe@email.com"
+                            className="form-control"
+                            id="email"
+                            value={this.state.value}
+                            onChange={this.handleChange} />
 
-                  <input class="btn btn-lg btn-primary btn-block" type="submit" value="Register Now" />
-            </form>
-        </div>
-        </div>
+                        <label htmlFor="inputPassword" className="sr-only"> Password:</label>
+                        <input
+                            type="password"
+                            required
+                            placeholder="Password"
+                            className="form-control"
+                            id="password"
+                            value={this.state.value}
+                            onChange={this.handleChange} />
+
+                        <input className="btn btn-lg btn-primary btn-block" type="submit" value="Register Now" />
+                    </form>
+                </div>
+            </div>
         );
     }
 }
