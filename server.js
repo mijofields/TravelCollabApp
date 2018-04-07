@@ -1,24 +1,42 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
-
+const mongoose = require('mongoose');
+const logger = require('morgan');
+const bcrypt = require('bcryptjs');
+const PORT = process.env.PORT || 8080;
 const app = express();
+const routes = require('./routes/user-route/userRoute');
+const db = 'mongodb://localhost/users';
 
-app.set("PORT", process.env.PORT || 3001);
+//Setting up connection to mongoose
+const connection = mongoose.connection;
+//Making sure Mongoose is Connected
+connection.once("open", function(){
+  console.log("Mongoose Connected!");
+}).on("error", function(){
+  console.log("Error loading Mongoose");
+  //Throw Error if any
+});
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(db);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
-
-app.use(bodyParser.json());
+// Use morgan logger for logging requests
+app.use(logger("dev"));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+// Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser());
+// Serve up static assets
+app.use(express.static("client/build"));
+// Add routes, both API and view
+app.use("/", routes);
+// Set mongoose to leverage built in JavaScript ES6 Promises
 
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/build/index.html'));
-})
-
-
-app.listen(app.get("PORT"), () => {
-  console.log(`You are listening on port ${app.get('PORT')}`);
+app.listen(PORT, function(){
+    console.log("Server is Listening on Port: ", PORT);
 })
