@@ -38,15 +38,18 @@ module.exports = {
     },
 
     signup: function (req, res) {
-        const { email, name, password, username } = req.body;
+        console.log("body", req.body);
+        const { email, name, password, username } = req.body;        
 
         const salt = bcrypt.genSaltSync(10);
+        console.log(password);
         const hash = bcrypt.hashSync(password, salt); // encrypted password
 
         db.User
             .create({ email, name, password: hash, username })
             .then(dbModel => res.json({ msg: "User created", _id: dbModel._id }))
-            .catch(err => res.status(422).json(err));
+            .catch(err => res.status(422).json("Error UserController 49: ", err));
+            console.log(email, name, password, username);
     },
 
     signin: function (req, res) {

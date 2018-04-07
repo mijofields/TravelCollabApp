@@ -1,5 +1,12 @@
-.navbar-brand {
-    color: rgba(20, 19, 19, 0.959);
+.navbar {
+    background-color: #3c3d41;
+    color: white;
+    font-weight: bold;
+    padding-top: 0; 
+    height: 75px;
+    position: absolute;
+    top: 0;
+    width: 100%; 
 };
 
 Link {

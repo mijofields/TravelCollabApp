@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios"; // HTTP Library
-import './Register.css';
+import './Signup.css';
 
-class Register extends Component {
+class Signup extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,34 +22,27 @@ class Register extends Component {
 
         // send the entire over our Server
 
-        console.log("State Data: ", this.state);
-        
+        console.log("Handle Submit: ", this.state);        
 
         axios({
-            url: "/signup",
+            url: "http://localhost:8080/signup",
             method: "POST",
             data: this.state
         })
-        .then((response) => {
-            // TODO
-            console.log("Response: ", response.data);
-            
+        .then((response) => {            
+            console.log("Response: ", response.data);            
         })
-        .catch((err) => {
-            // TODO
-            console.log("Error: ", err.response.data);
-            
+        .catch((err) => {           
+            console.log("Error: ", err.response.data);            
         });
-
-
     };  
 
     render() {
 
-        // console.log("State: ", this.state);
+        console.log("State: ", this.state);
 
         return (
-            <div className="container">
+            <div className="register">
                 <div className="text-center">
                     <h1 className="h3 mb-3 font-weight-normal">Register</h1>
 
@@ -95,7 +88,10 @@ class Register extends Component {
                             value={this.state.value}
                             onChange={this.handleChange} />
 
-                        <input className="btn btn-lg btn-primary btn-block" type="submit" value="Register Now" />
+                        <input className="btn btn-lg btn-primary btn-block" type="submit" 
+                        value="Register Now"
+                        onClick={this.handleSubmit}
+                         />
                     </form>
                 </div>
             </div>
@@ -103,4 +99,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default Signup;

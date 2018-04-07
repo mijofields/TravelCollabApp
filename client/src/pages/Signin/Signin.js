@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import './Login.css';
+import './Signin.css';
 import { Redirect } from "react-router-dom";
-class Login extends Component {
+class Signin extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,14 +24,12 @@ class Login extends Component {
               method: "POST",
               data: this.state
           })
-          .then((response) => {
-              // TODO
+          .then((response) => {              
               this.setState({ authenticated: true });
               console.log("Response: ", response.data);
               
           })
           .catch((err) => {
-              // TODO
               this.setState({ authenticated: false });
               console.log("Error: ", err.response.data);
               
@@ -57,10 +55,10 @@ class Login extends Component {
 
                   <form className="form-signin" onSubmit={this.handleSubmit}>
 
-                    <label htmlFor="email" className="sr-only">Email:</label>
+                    <label htmlFor="username" className="sr-only">username:</label>
                         <input 
                             type="text" 
-                            placeholder="johndoe@email.com"  
+                            placeholder="username"  
                             className="form-control" 
                             name="username"
                             value={this.state.value} 
@@ -83,4 +81,4 @@ class Login extends Component {
 }
 
 
-export default Login;
+export default Signin;

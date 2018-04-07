@@ -13,8 +13,7 @@ router.route('/:id')
 router.route("/signup")
     .post(userController.signup);
 
-
 router.route("/signin")
-    .post(userController.signin)
+    .post(userController.signin);
 
 module.exports = router;

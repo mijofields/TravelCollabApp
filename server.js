@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const logger = require('morgan');
+const bcrypt = require('bcryptjs');
 const PORT = process.env.PORT || 8080;
 const app = express();
 const routes = require('./routes/user-route/userRoute');
@@ -22,6 +23,11 @@ mongoose.connect(db);
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser());
