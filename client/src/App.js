@@ -8,13 +8,44 @@ import Nav from './components/Nav/Navbar.js';
 import Footer from './components/Footer/Footer.js';
 import Jumbotron from './components/Jumbotron/Jumbotron.js';
 
-class App extends Component {
+// Redux (Complicated)
+// Session Store / Local Storage
+// props
+
+// isAuthenticated = false / true
+
+// Possible Cases
+  // #1 Display signout button, only when user is logged in
+  // #1 When user signin or signup, set isAuthenticated to true
+  // #2 Set isAuthenticated to false on signout click
+  // #4 isAuthenticated is equal to false on init / onload
+
+
+
+class App extends Component { 
+
+  // constructor() {
+  //   super();
+
+  //   this.state = {
+  //     isAuthenticated: false // on init / onload
+  //   };
+
+  // };
+
+  // componentDidMount 
+
+  signOut = () => {
+    sessionStorage.setItem("isAuthenticated", false);
+    window.location.href = "/"; // on signout, send to home page
+  };
+
   render() {
     return (
     <Router>
  
       <div>
-        <Nav />
+        <Nav signOut = {this.signOut}/>
         <Jumbotron />
         {/* <Signup /> */}
           <Route exact path="/" component={Home} />
