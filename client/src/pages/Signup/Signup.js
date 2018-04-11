@@ -9,11 +9,16 @@ class Signup extends Component {
             name: "",
             username: "",
             email: "",
-            password: ""
+            password: "",
+            isAuthenticated: false
         };
 
         // this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    componentDidMount = () => {
+        sessionStorage.setItem("isAuthenticated", false);
+    };
 
     handleChange = ({ target: { id, value } }) => this.setState({ [id]: value });
 
@@ -22,20 +27,25 @@ class Signup extends Component {
 
         // send the entire over our Server
 
-        console.log("Handle Submit: ", this.state);        
+        console.log("Handle Submit: ", this.state);
 
         axios({
             url: "/signup",
             method: "POST",
             data: this.state
         })
-        .then((response) => {            
-            console.log("Response: ", response.data);            
-        })
-        .catch((err) => {           
-            console.log("Error: ", err.response.data);            
-        });
-    };  
+            .then((response) => {
+                this.setState({ isAuthenticated: true });
+                sessionStorage.setItem("isAuthenticated", true); // logged in
+                window.location.href = "/about" // force reload so localStorage can be updated
+                console.log("Response: ", response.data);
+            })
+            .catch((err) => {
+                this.setState({ isAuthenticated: false });
+                console.log("Error: ", err.response.data);
+                sessionStorage.setItem("isAuthenticated", false); // logged in
+            });
+    };
 
     render() {
 
@@ -88,10 +98,10 @@ class Signup extends Component {
                             value={this.state.value}
                             onChange={this.handleChange} />
 
-                        <input className="btn btn-lg btn-primary btn-block" type="submit" 
-                        value="Register Now"
-                        onClick={this.handleSubmit}
-                         />
+                        <input className="btn btn-lg btn-primary btn-block" type="submit"
+                            value="Register Now"
+                            onClick={this.handleSubmit}
+                        />
                     </form>
                 </div>
             </div>

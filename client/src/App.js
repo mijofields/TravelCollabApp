@@ -12,21 +12,28 @@ import Jumbotron from './components/Jumbotron/Jumbotron.js';
 
 class App extends Component {
 
-  componentDidMount = () => {
-    axios.get("http://localhost:8080/")
-    .then((response) => {
-      // console.log("Axios Response: ", response.data);
-    })
-    .catch((err) => {
-      console.log("Axios Err: ", err.response);
-    })
+  // constructor() {
+  //   super();
+
+  //   this.state = {
+  //     isAuthenticated: false // on init / onload
+  //   };
+
+  // };
+
+  // componentDidMount 
+
+  signOut = () => {
+    sessionStorage.setItem("isAuthenticated", false);
+    window.location.href = "/"; // on signout, send to home page
   };
+
   render() {
     return (
     <Router>
  
       <div>
-        <Nav />
+      <Nav signOut = {this.signOut}/> 
         <Jumbotron />
         {/* <Signup /> */}
           <Route exact path="/" component={Home} />

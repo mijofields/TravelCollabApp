@@ -1,26 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Signin from '../../pages/Signin/Signin';
+// import Signin from '../../pages/Signin/Signin';
 // import Signup from '../../pages/Signup/Signup';
 import './Navbar.css';
 
-function LoginBtn(props) {
-    return (
-        <li className="nav-item">
-            <a className="nav-link" type="btn btn-default" onClick={props.onClick}>Login </a>
-        </li>
-    );
-  };
-  
-  function LogoutBtn(props) {
-    return (
-        <li className="nav-item">
-            <a className="nav-link" type="btn btn-default" onClick={props.onClick}> Logout </a>
-        </li>
-    );
-  };
 
 class Navbar extends Component {  
+    // this.props.signOut
     constructor(props){
         super(props);
         this.state = {
@@ -56,13 +42,8 @@ class Navbar extends Component {
     render() {
         console.log("Navbar State: ", this.state);
 
-        const isLoggedIn = this.state.isLoggedIn;
-    
-        const button = isLoggedIn ? (
-          <LogoutBtn onClick={this.handleLogoutClick} />
-        ) : (
-          <LoginBtn onClick={this.handleLoginClick} />
-        );
+        let isAuthenticated = sessionStorage.getItem("isAuthenticated"); // get value of user state
+               console.log("isAuthenticated", typeof isAuthenticated);
        
         return (           
                 <nav className="navbar navbar-expand-md">
@@ -81,14 +62,23 @@ class Navbar extends Component {
                                         <a className="nav-link" href="/about">About</a>
                                     </li>                                
                                     
-                                    {this.state.showSigninForm ? <Signin isLoggedIn={isLoggedIn} /> : null } 
-                                    {button}
+                                    <li className="nav-item">
+                                        
+                                        
+                                        { isAuthenticated === "true" 
+                                            ? <a className="nav-link" href="/" onClick = {this.props.signOut}>Sign out</a> 
+                                            : 
+                                            <a className="nav-link" href="/signin">Login</a>
+                                        }
+
+                                    </li>
 
                                 </ul>                
                             </div>
-                    </div>
-                </nav>
-           
+                    
+                </div>
+            </nav>
+
 
         );
     }
