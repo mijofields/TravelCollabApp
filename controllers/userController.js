@@ -1,5 +1,5 @@
 const db = require('../models');
-const bcrypt = require("bcrypt"); // encryption
+const bcrypt = require("bcryptjs"); // encryption
 
 // Defining methods for the booksController
 module.exports = {
@@ -48,7 +48,7 @@ module.exports = {
         db.User
             .create({ email, name, password: hash, username })
             .then(dbModel => res.json({ msg: "User created", _id: dbModel._id }))
-            .catch(err => res.status(422).json("Error UserController 49: ", err));
+            .catch(err => res.status(422).json("Error UserController: ", err));
             console.log(email, name, password, username);
     },
 
@@ -65,8 +65,17 @@ module.exports = {
                     res.status(401).json({ status: "Fail to authenticate you!"});
                 }
             })
-            .catch((err) => res.status(500).json({ error: " Internal error " }));
+            .catch((err) => res.status(500).json({ error: "Signin Internal error " }));   
+    },
 
-        
+    signout: function (req, res){
+        const username = req.body;
+
+        db.User
+        .findOne({ username })
+        .then((user) => {
+            req.session.destroy();
+        })
+        .catch((err) => res.status(500).json({ error: "Signout Internal error"}));        
     }
 };

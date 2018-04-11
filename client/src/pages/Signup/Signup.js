@@ -12,12 +12,12 @@ class Signup extends Component {
             password: ""
         };
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = ({ target: { id, value } }) => this.setState({ [id]: value });
 
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault(); // stop browser from refreshing
 
         // send the entire over our Server
@@ -25,7 +25,7 @@ class Signup extends Component {
         console.log("Handle Submit: ", this.state);        
 
         axios({
-            url: "http://localhost:8080/signup",
+            url: "/signup",
             method: "POST",
             data: this.state
         })

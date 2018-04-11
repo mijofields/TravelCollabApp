@@ -1,4 +1,12 @@
+.container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+}
+
 #myFooter {
+  /* position: -webkit-sticky; Safari */
+  /* position: sticky; */
   background-color: #3c3d41;
   color: white;
   padding-top: 30px; 
@@ -15,11 +23,6 @@
 
 #myFooter .row {
   margin-bottom: 60px;
-}
-
-#myFooter .navbar-brand {
-  margin-top: 45px;
-  height: 65px;
 }
 
 #myFooter .footer-copyright p {
@@ -103,9 +106,6 @@
       text-align: center;
   }
 }
-
-
-
 
 #myFooter{
  flex: 0 0 auto;
