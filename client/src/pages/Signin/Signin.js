@@ -2,16 +2,36 @@ import React, { Component } from 'react';
 import axios from "axios";
 import './Signin.css';
 import { Redirect } from "react-router-dom";
+
+
+// Redux (Complicated)
+// Session Storage / Local Storage
+// props
+
+// isAuthenticated = false / true
+
+// Possible Cases
+  // #1 Display signout button, only when user is logged in
+  // #1 When user signin or signup, set isAuthenticated to true
+  // #2 Set isAuthenticated to false on signout click
+  // #4 isAuthenticated is equal to false on init / onload
+
+
+
 class Signin extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: "",
             password: "",
-            authenticated: false
+            isAuthenticated: false
         };
     
       }
+
+      componentDidMount = () => {
+          sessionStorage.setItem("isAuthenticated", false);
+      };
     
       handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
@@ -25,14 +45,16 @@ class Signin extends Component {
               data: this.state
           })
           .then((response) => {              
-              this.setState({ authenticated: true });
+              this.setState({ isAuthenticated: true });
+              sessionStorage.setItem("isAuthenticated", true); // logged in
+              window.location.href = "/about" // force reload so localStorage can be updated
               console.log("Response: ", response.data);
               
           })
           .catch((err) => {
-              this.setState({ authenticated: false });
+              this.setState({ isAuthenticated: false });
               console.log("Error: ", err.response.data);
-              
+              sessionStorage.setItem("isAuthenticated", false); // logged in
           });
         
       };
@@ -42,13 +64,13 @@ class Signin extends Component {
         console.log("State: ", this.state);
         
 
-        if(this.state.authenticated){
-            return <Redirect to = "/about"/>;
-        } else{ 
-            // (<Redirect to = "/"/>)
-            console.log(" Not yet authenticated");
+        // if(this.state.isAuthenticated){
+        //     return <Redirect to = "/about"/>;
+        // } else{ 
+        //     // (<Redirect to = "/"/>)
+        //     console.log(" Not yet authenticated");
             
-        }
+        // }
         return (
             <div className="text-center">
               <h1 className="h3 mb-3 font-weight-normal">Login</h1>
