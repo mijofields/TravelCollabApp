@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Login from './login';
 import NavLogo from './images/navlogo.png'
 import './layout.css';
 
@@ -30,6 +31,7 @@ class Layout extends React.Component {
         <main class="mdl-layout__content main-layout">
           <div class="page-content">
           {/* Your content goes here */}
+            <Login />
           </div>
         </main>
 	  </div>
