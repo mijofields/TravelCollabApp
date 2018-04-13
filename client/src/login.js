@@ -4,6 +4,24 @@
 
 
 class Login extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      username: '',
+      password: ''
+    }
+  }
+
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    })
+    console.log(this.state)
+  }
+
+
   render() {
     return (
       <div className="mdl-grid login-card">
@@ -13,13 +31,25 @@ class Login extends React.Component {
           </div>
           <div className="mdl-card__supporting-text">
             <form action="#">
-              <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="name"/>
-                <label class="mdl-textfield__label" for="name">Username</label>
+              <div className="mdl-textfield mdl-js-textfield">
+                <input className="mdl-textfield__input"
+                       type="text"
+                       name="username"
+                       onChange={this.handleChange}/>
+                     <label className="mdl-textfield__label" htmlfor="username">Username</label>
              </div>
-             <div class="mdl-textfield mdl-js-textfield">
-               <input class="mdl-textfield__input" type="text" name="password"/>
-               <label class="mdl-textfield__label" for="password">Password</label>
+             <div className="mdl-textfield mdl-js-textfield">
+               <input className="mdl-textfield__input"
+                      type="text"
+                      name="password"
+                      onChange={this.handleChange}/>
+                    <label className="mdl-textfield__label" htmlfor="password">Password</label>
+            </div>
+            <div className="mdl-card__actions">
+              <a href="#">Login</a>
+            </div>
+            <div className="mdl-card__actions">
+              <a href="#">SignUp</a>
             </div>
             </form>
           </div>

@@ -28,8 +28,8 @@ class Layout extends React.Component {
             <a className="mdl-navigation__link" href="">Bucket List</a>
           </nav>
         </div>
-        <main class="mdl-layout__content main-layout">
-          <div class="page-content">
+        <main className="mdl-layout__content main-layout">
+          <div className="page-content">
           {/* Your content goes here */}
             <Login />
           </div>
