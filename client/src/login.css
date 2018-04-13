@@ -1,0 +1,11 @@
+.login-card {
+  max-width: 600px;
+  margin: auto;
+}
+
+.login-card-img img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
