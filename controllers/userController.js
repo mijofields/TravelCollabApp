@@ -1,5 +1,6 @@
 const db = require('../models');
 const bcrypt = require("bcryptjs"); // encryption
+const io = require('socket.io');
 
 // Defining methods for the booksController
 module.exports = {
@@ -69,7 +70,7 @@ module.exports = {
     },
 
     signout: function (req, res){
-        const username = req.body;
+        const username = req.body.username;
 
         db.User
         .findOne({ username })

@@ -1,21 +1,18 @@
 import axios from "axios";
 
 export default {
-
-    // Gets all users
-    getUsers: () => {
-        return axios.get("/user-route/userRoute");
-    },
-    // Gets the user with the given id
-    getUser: (id) => {
-        return axios.get("/user-route/userRoute/" + id);
-    },
-    // Deletes the user with the given id
-    deleteUser: (id) => {
-        return axios.delete("/user-route/userRoute/" + id);
-    },
-    // Saves a user to the database
-    saveUser: (userData) => {
-        return axios.post("/user-route/userRoute/", userData);
-    }
+ 
+  // Gets the User with the given id
+  getUser: function(id) {
+    return axios.get("/api/user" + id);
+  },
+  // Deletes the User with the given id
+  deleteUser: function(id) {
+    return axios.delete("/api/user" + id);
+  },
+  // Saves a User to the database
+  saveUser: function(userData) {
+    return axios.post("/api/user", bookData);
+  }
 };
+

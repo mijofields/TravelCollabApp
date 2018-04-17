@@ -4,11 +4,14 @@
   "description": "A travel app that attempts to solve multiple problems with traval applications.",
   "main": "server.js",
   "scripts": {
-    "server": "node server.js",
-    "client": "node scripts/start-client.js",
+    "client": "cd client && yarn start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "start": "concurrently \"nodemon server.js\" \"npm run client\"",
     "build": "node scripts/build.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "node scripts/build.js",
+    "heroku-prebuild": "cd client && yarn install"
   },
   "repository": {
     "type": "git",
@@ -21,14 +24,15 @@
   },
   "homepage": "https://github.com/mijofields/TravelCollabApp#readme",
   "dependencies": {
-    "bcrypt": "^2.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "googleapis": "^28.1.0",
     "mkdirp": "^0.5.1",
     "mongoose": "^5.0.14",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "path": "^0.12.7",
+    "socket.io": "^2.1.0"
   },
   "devDependencies": {
     "concurrently": "^3.5.1",

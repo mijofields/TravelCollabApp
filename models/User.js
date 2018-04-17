@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        ref: 'Member'
     },
     username: {
         type: String,
@@ -18,12 +19,7 @@ const UserSchema = new Schema({
     email: {
         type: String,
         required: true
-    },
-
-    note: {
-        type: Schema.Types.ObjectId,
-        ref: "Note"
-      }
+    }
 });
 
 //export to Controller

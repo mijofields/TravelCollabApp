@@ -12,8 +12,6 @@ class Signup extends Component {
             password: "",
             isAuthenticated: false
         };
-
-        // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount = () => {

@@ -1,22 +1,21 @@
 const router = require('express').Router();
 const userController = require('../../controllers/userController');
-
-router.route('/')
-    .get(userController.findAll)
-    .post(userController.create);
-
-router.route('/:id')
-    .get(userController.findById)
-    .put(userController.update)
-    .delete(userController.remove);
+const path = require("path");
 
 router.route("/signup")
     .post(userController.signup);
 
 router.route("/signin")
-    .post(userController.signin);
+    .get(userController.findById)
+    .post(userController.signin);    
 
 router.route("/signout")
     .get(userController.signout);
+
+router.route("/user/:id")
+    .get(userController.findById)
+    .put(userController.update)
+    .delete(userController.remove);
+
 
 module.exports = router;
