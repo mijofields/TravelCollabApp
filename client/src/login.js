@@ -1,7 +1,10 @@
- import React,{ Component } from 'react';
+//  import React,{ Component } from 'react';
+ import React from 'react';
  import siteLogo from './images/logo.png';
- import './login.css'
- import {OAuth2Client} from 'google-auth-library';
+ import './login.css';
+//  const {google} = require('googleapis');
+
+//  const OAuth2Client = google.auth.OAuth2;
 //  const client = new OAuth2Client("73207592746-ca4ofr6v2ch7i9duka50i062pqseq1qb.apps.googleusercontent.com");
 
 
@@ -10,17 +13,23 @@ class Login extends React.Component {
     super(props)
 
     this.state = {
-      username: '',
-      password: ''
+      logIn: false
     }
   }
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({
-      [name]: value
-    })
-    console.log(this.state)
+  // handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   this.setState({
+  //     [name]: value
+  //   })
+  //   console.log(this.state)
+  // }
+
+ onSignIn = (googleUser) => {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
   }
 
 
@@ -33,6 +42,8 @@ class Login extends React.Component {
           </div>
          
           <div className="g-signin2 align-self-center" data-onsuccess="onSignIn"></div>
+          {/* onChange = {this.onSignIn} */}
+        
           
           {/* <div className="mdl-card__supporting-text">
             <form action="#">
