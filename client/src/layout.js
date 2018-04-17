@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Login from './login';
 import NavLogo from './images/navlogo.png'
 import './layout.css';
+// import signOut from './logout';
 
 
 class Layout extends React.Component {
@@ -11,7 +12,7 @@ class Layout extends React.Component {
           <header className="mdl-layout__header">
               <div className="mdl-layout__header-row">
                 {/* Title */}
-                <img className="navlogo" src={NavLogo}/>
+                <img className="navlogo" src={NavLogo} alt="react"/>
                 {/* Add spacer, to align navigation to the right */}
                 <div className="mdl-layout-spacer"></div>
                 {/* Navigation. We hide it in small screens */}
@@ -26,12 +27,16 @@ class Layout extends React.Component {
             <a className="mdl-navigation__link" href="">Split Expenses</a>
             <a className="mdl-navigation__link" href="">Currency Converter</a>
             <a className="mdl-navigation__link" href="">Bucket List</a>
+            <a className="mdl-navigation__link" href="" id="sign-out">Sign Out</a>
+            
+
           </nav>
         </div>
         <main className="mdl-layout__content main-layout">
           <div className="page-content">
           {/* Your content goes here */}
             <Login />
+
           </div>
         </main>
 	  </div>
