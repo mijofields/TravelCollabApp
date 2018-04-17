@@ -2,7 +2,9 @@ const fs = require('fs');
 const mkdirp = require('mkdirp');
 const readline = require('readline');
 const {google} = require('googleapis');
-
+// const googleAuth = require('google-auth-library');
+// const auth = new googleAuth();
+// const  {OAuth2Client}  = require('google-auth-library');
 const OAuth2Client = google.auth.OAuth2;
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 const TOKEN_PATH = 'credentials.json';
