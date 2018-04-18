@@ -1,42 +1,45 @@
- import React,{ Component } from 'react';
- import axios from 'axios';
- import siteLogo from './images/logo.png';
- import './login.css'
+import React,{ Component } from 'react';
+import siteLogo from './images/logo.png';
+import axios from 'axios';
 
-
-class Login extends React.Component {
+export default class Register extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      name: '',
       username: '',
+      email: '',
       password: ''
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({
-      [name]: value
-    })
-    console.log(this.state)
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(e) {
-    const { username, password } = this.state;
     e.preventDefault();
-    axios.post('/signin', {username, password})
-      .then((res) => {
-        console.log(res)
+    const { name, username , email, password } = this.state;
+    const payload = {
+      name: name,
+      username: username,
+      email: email,
+      password: password
+    }
+    axios.post('/signup', payload)
+      .then((response) => {
+        console.log(response)
       }).catch((err) => {
         console.log(err)
       })
-
   }
 
-
+  handleChange(e) {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  }
   render() {
     return (
       <div className="mdl-grid login-card">
@@ -49,10 +52,24 @@ class Login extends React.Component {
               <div className="mdl-textfield mdl-js-textfield">
                 <input className="mdl-textfield__input"
                        type="text"
-                       name="username"
+                       name="name"
                        onChange={this.handleChange}/>
-                     <label className="mdl-textfield__label" htmlfor="username">Username</label>
+                     <label className="mdl-textfield__label" htmlfor="name">Name</label>
              </div>
+             <div className="mdl-textfield mdl-js-textfield">
+               <input className="mdl-textfield__input"
+                      type="text"
+                      name="username"
+                      onChange={this.handleChange}/>
+                    <label className="mdl-textfield__label" htmlfor="username">Username</label>
+            </div>
+            <div className="mdl-textfield mdl-js-textfield">
+              <input className="mdl-textfield__input"
+                     type="email"
+                     name="email"
+                     onChange={this.handleChange}/>
+                   <label className="mdl-textfield__label" htmlfor="email">Email</label>
+           </div>
              <div className="mdl-textfield mdl-js-textfield">
                <input className="mdl-textfield__input"
                       type="text"
@@ -64,11 +81,11 @@ class Login extends React.Component {
             <div className="mdl-card__actions">
               <button className="mdl-button mdl-js-button mdl-button--raised"
                       type="submit">
-                Submit
+                Register
               </button>
             </div>
             <div className="mdl-card__actions">
-              <a href="#">SignUp</a>
+              <a href="#">Login</a>
             </div>
             </form>
           </div>
@@ -77,5 +94,3 @@ class Login extends React.Component {
     )
   }
 }
-
-export default Login;

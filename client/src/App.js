@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Login from './login';
+import Register from './register';
 import NavLogo from './images/navlogo.png'
-import './layout.css';
+import './App.css';
 
 
-class Layout extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
+    <Router>
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
           <header className="mdl-layout__header">
               <div className="mdl-layout__header-row">
@@ -31,12 +34,12 @@ class Layout extends React.Component {
         <main className="mdl-layout__content main-layout">
           <div className="page-content">
           {/* Your content goes here */}
-            <Login />
+            <Route exact path="/" component={Login} />
+            <Route path="/register" component={Register} />
           </div>
         </main>
 	  </div>
+  </Router>
     )
   }
 }
-
-export default Layout;

@@ -1,5 +1,6 @@
 const db = require('../models');
 const bcrypt = require("bcrypt"); // encryption
+const jwt = require('jsonwebtoken');
 
 // Defining methods for the booksController
 module.exports = {
@@ -16,6 +17,9 @@ module.exports = {
             .find(req.params.id)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+    },
+    getUserInfo: function(req, res) {
+      console.log("Get this route")
     },
     create: function (req, res) {
         db.User
@@ -50,17 +54,25 @@ module.exports = {
             .then(dbModel => res.json({ msg: "User created", _id: dbModel._id }))
             .catch(err => res.status(422).json("Error UserController 49: ", err));
             console.log(email, name, password, username);
-    },
+     },
 
     signin: function (req, res) {
+      console.log(req.body)
         const { username, password } = req.body;
-
         db.User
             .findOne({ username })
             .then((user) => {
                 const isEqual = bcrypt.compareSync(password, user.password); // true
                 if(isEqual){
-                    res.json({status: "Loggedin"})
+                  // Send the token.
+                  const currUser = {id: user._id };
+                  const token = jwt.sign({ user: currUser }, 'my_secret_key') // Put 'my_secret_key' in an enviornment variable
+
+                    res.json({
+                      status: "Loggedin",
+                      token: token
+                    })
+
                 } else{
                     res.status(401).json({ status: "Fail to authenticate you!"});
                 }
@@ -68,5 +80,8 @@ module.exports = {
             .catch((err) => res.status(500).json({ error: " Internal error " }));
 
 
+    },
+    signout: function(req, res) {
+      console.log('This is the signout route')
     }
 };

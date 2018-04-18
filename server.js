@@ -1,14 +1,17 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const logger = require('logger');
+const logger = require('morgan');
 const bcrypt = require('bcrypt');
 const path = require('path');
-const routes = require('./routes/userRoutes');
-const db = 'mongod://localhost/travelcollabapp'
+const routes = require('./routes/user-route/userRoute');
+const db = 'mongodb://localhost/users';
+
 const app = express();
 
-app.set("PORT", process.env.PORT || 3001);
+console.log(routes)
+
+app.set("PORT", process.env.PORT || 5000);
 
 // Setting up connection to mongoose.
 const connection = mongoose.connection;
@@ -40,11 +43,9 @@ if (process.env.NODE_ENV === 'production') {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/', routes);
+app.use(routes);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './client/build/index.html'));
-})
+
 
 
 app.listen(app.get("PORT"), () => {

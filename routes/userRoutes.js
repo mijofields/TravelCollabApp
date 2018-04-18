@@ -1,23 +1,13 @@
-const router = require('express').Router();
-const UserController = require('../controllers/UserController');
+const path = require("path");
+const router = require("express").Router();
+const routes = require("./user-route/index.js");
 
+// API Routes
+router.use("/api", routes);
 
-router.route('/')
-    .get(UserController.findAll)
-    .post(UserController.create);
-
-router.route('/:id')
-    .get(UserController.findById)
-    .put(UserController.update)
-    .delete(UserController.remove);
-
-router.route("/signup")
-    .post(UserController.signup);
-
-router.route("/signin")
-    .post(UserController.signin);
-
-router.route("/signout")
-    .get(UserController.signout);
+// If no routes are hit, send the React app
+router.use(function(req, res) {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
 
 module.exports = router;
