@@ -1,16 +1,26 @@
 {
-  "name": "client",
+  "name": "travelcollabapp",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
+  "proxy": "http://localhost:8080/",
   "dependencies": {
     "axios": "^0.18.0",
+<<<<<<< HEAD
     "google-auth-library": "^1.4.0",
     "googleapis": "^28.1.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "react-scripts": "1.1.2",
     "server-destroy": "^1.0.1"
+=======
+    "materialize-css": "^0.100.2",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.1",
+    "socket.io": "^2.1.0",
+    "socket.io-client": "^2.1.0"
+>>>>>>> auth
   },
   "scripts": {
     "start": "react-scripts start",

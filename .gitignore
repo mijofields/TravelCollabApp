@@ -1,4 +1,13 @@
 node_modules
+<<<<<<< HEAD
 .DS_Store
 credentials.json
 
+=======
+package-lock.json
+.vscode
+client_secret.json
+client_id.json
+credentials.json
+yarn.lock
+>>>>>>> auth

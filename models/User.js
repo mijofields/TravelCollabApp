@@ -4,7 +4,12 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
     name: {
         type: String,
+<<<<<<< HEAD
         required: true
+=======
+        required: true,
+        ref: 'Member'
+>>>>>>> auth
     },
     username: {
         type: String,
@@ -18,6 +23,7 @@ const UserSchema = new Schema({
     email: {
         type: String,
         required: true
+<<<<<<< HEAD
     },
 
     note: {
@@ -28,3 +34,10 @@ const UserSchema = new Schema({
 
 //export to Controller
 module.exports = mongoose.model('User', UserSchema);
+=======
+    }
+});
+
+//export to Controller
+module.exports = mongoose.model('User', UserSchema);
+>>>>>>> auth
