@@ -2,6 +2,8 @@ const db = require('../models');
 const bcrypt = require("bcrypt"); // encryption
 const jwt = require('jsonwebtoken');
 
+
+
 // Defining methods for the booksController
 module.exports = {
     // CRUD
@@ -65,7 +67,7 @@ module.exports = {
                 const isEqual = bcrypt.compareSync(password, user.password); // true
                 if(isEqual){
                   // Send the token.
-                  const currUser = {id: user._id };
+                  const currUser = {id: user._id, email: user.email, username: user.username };
                   const token = jwt.sign({ user: currUser }, 'my_secret_key') // Put 'my_secret_key' in an enviornment variable
 
                     res.json({
