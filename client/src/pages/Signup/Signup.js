@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios"; // HTTP Library
+// import { Redirect } from 'react-router-dom';
 import './Signup.css';
+import siteLogo from '../../images/navlogo.png';
 
 class Signup extends Component {
     constructor(props) {
@@ -43,66 +45,87 @@ class Signup extends Component {
                 console.log("Error: ", err.response.data);
                 sessionStorage.setItem("isAuthenticated", false); // logged in
             });
-    };
+        };
 
     render() {
+        
 
         console.log("State: ", this.state);
 
         return (
-            <div className="register">
-                <div className="text-center">
-                    <h1 className="h3 mb-3 font-weight-normal">Register</h1>
-
-                    <form className="form-signin" onSubmit={this.handleSubmit}>
-
-                        <label htmlFor="inputName" className="sr-only">Name:</label>
-                        <input
+           
+            <div className="mdl-grid login-card">
+            <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+              <div className="mdl-card__media login-card-img">
+                <img src={siteLogo} alt="site-logo" border="0" />
+              </div>      
+              
+               <div className="mdl-card__supporting-text">
+                <form className="form-signin"
+                    onSubmit={this.handleSubmit}>
+                 
+                <div className="mdl-textfield mdl-js-textfield">
+                        <input className="mdl-textfield__input"
                             type="text"
                             required
                             placeholder="Name"
-                            className="form-control"
                             id="name"
                             value={this.state.value}
                             onChange={this.handleChange} />
-
-                        <label htmlFor="inputUserName" className="sr-only"> User Name:</label>
-                        <input
+                            <label className="mdl-textfield__label" htmlFor="name">Your name</label>
+                    </div>
+                    <div className="mdl-textfield mdl-js-textfield">
+                        <input className="mdl-textfield__input"
                             type="text"
                             required
                             placeholder="User Name"
-                            className="form-control"
                             id="username"
                             value={this.state.value}
                             onChange={this.handleChange} />
 
-                        <label htmlFor="inputEmail" className="sr-only">Email:</label>
-                        <input
+                            <label className="mdl-textfield__label" htmlFor="username">Pick a username</label>
+                    </div>
+                    <div className="mdl-textfield mdl-js-textfield">
+                        <input className="mdl-textfield__input"
                             type="email"
                             required
-                            placeholder="johndoe@email.com"
-                            className="form-control"
+                            placeholder="email@email.com"
                             id="email"
                             value={this.state.value}
                             onChange={this.handleChange} />
-
-                        <label htmlFor="inputPassword" className="sr-only"> Password:</label>
-                        <input
-                            type="password"
+                            <label className="mdl-textfield__label" htmlFor="email">Email</label>
+                    </div>
+                    <div className="mdl-textfield mdl-js-textfield">
+                    <input className="mdl-textfield__input"
+                           type="password"
                             required
                             placeholder="Password"
-                            className="form-control"
                             id="password"
                             value={this.state.value}
                             onChange={this.handleChange} />
+                            <label className="mdl-textfield__label" htmlFor="password">Password</label>
+                    </div>
+                            
+               <div>
+               {/* <div className="g-signin2 align-self-center" data-onsuccess="onSignIn"
+                  onClick={this.onSignIn}>            
+               </div> */}
+               <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
+                    value="Register Now"
+                    onClick={this.handleSubmit}> 
+                    Register </button>
+              
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"> 
+                    Signin           
+                </button>
 
-                        <input className="btn btn-lg btn-primary btn-block" type="submit"
-                            value="Register Now"
-                            onClick={this.handleSubmit}
-                        />
-                    </form>
-                </div>
+               
+               </div>
+                 
+                </form>
+              </div>
             </div>
+          </div>
         );
     }
 }

@@ -58,6 +58,7 @@ module.exports = {
       .catch(err => res.status(422).json("Error UserController: ", err));
     console.log(email, name, password, username);
   },
+  
 
   signin: function(req, res) {
     const { username, password } = req.body;

@@ -10,8 +10,8 @@ class Greeting extends Component {
       return <h1>Please sign in</h1>;
     }
 
-    const isLoggedIn = props.isLoggedIn;
-    if (isLoggedIn) {
+    const isAuthenticated = props.isAuthenticated;
+    if (isAuthenticated) {
       return <UserGreeting />;
     }
     return <GuestGreeting />;

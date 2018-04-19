@@ -1,50 +1,34 @@
 import React, { Component } from "react";
-import { Nav, NavItem, Navbar } from "react-bootstrap";
 import "./Navbar.css";
 
 class NavbarComponent extends Component {
-  // this.props.signOut
+      
   render() {
     let isAuthenticated = sessionStorage.getItem("isAuthenticated"); // get value of user state
-    // console.log("isAuthenticated", typeof isAuthenticated);
+    // console.log("isAuthenticated", typeof isAuthenticated);    
 
     return (
-      <Navbar inverse collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="/">Wonder Sum</a>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar>
-          <Nav pullRight>
-            <NavItem eventKey={1} href="/">
-              {" "}
-              Home{" "}
-            </NavItem>
-            <NavItem eventKey={2} href="/about">
-              {" "}
-              About{" "}
-            </NavItem>
-
-            {isAuthenticated === "true" ? (
-              <NavItem
-                eventKey={4}
-                href="/signout"
-                onClick={this.props.signOut}
-              >
-                {" "}
-                Logout{" "}
-              </NavItem>
-            ) : (
-              <NavItem eventKey={5} href="/Signin">
-                {" "}
-                Login{" "}
-              </NavItem>
-            )}
-          </Nav>
-        </Navbar>
-      </Navbar>
+        <div className="mdl-layout__drawer">
+                <span className="mdl-layout-title">Tools</span>
+                <nav className="mdl-navigation">
+                    <a className="mdl-navigation__link" href="">Itinerary</a>
+                    <a className="mdl-navigation__link" href="">Split Expenses</a>
+                    <a className="mdl-navigation__link" href="/currency-converter">Currency Converter</a>
+                    <a className="mdl-navigation__link" href="/chat">Chat</a>
+                        {isAuthenticated === "true" ? 
+                            (
+                                <a className="mdl-navigation__link" 
+                                    href="/" 
+                                    id="sign-out"
+                                    onClick={this.props.signOut}>
+                                    Sign Out</a>                                        
+                            ) : (
+                                <a className="mdl-navigation__link" 
+                                    href="/signin">
+                                    Signin</a>                   
+                            )}  
+                </nav>
+                </div>
     );
   }
 }

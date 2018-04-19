@@ -23,7 +23,7 @@ class Signout extends Component {
         .then((response) => {            
             console.log("Response: ", response.data); 
             this.setState({ isSignedIn: false })
-            return <Redirect to = "/"/>;           
+            return <Redirect to = "/signin"/>           
         })
         .catch((err) => {           
             console.log("Signout Error: ", err.response.data);            

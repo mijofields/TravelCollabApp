@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import './Signin.css';
-// import { Redirect } from "react-router-dom";
+import siteLogo from '../../images/navlogo.png';
+//  const {google} = require('googleapis');
+
+//  const OAuth2Client = google.auth.OAuth2;
+//  const client = new OAuth2Client("73207592746-ca4ofr6v2ch7i9duka50i062pqseq1qb.apps.googleusercontent.com");
+
 
 class Signin extends Component {
     constructor(props) {
@@ -9,7 +14,8 @@ class Signin extends Component {
         this.state = {
             email: "",
             password: "",
-            isAuthenticated: false
+            isAuthenticated: false,
+            googleSignin: false
         };    
       }
 
@@ -31,7 +37,7 @@ class Signin extends Component {
           .then((response) => {              
               this.setState({ isAuthenticated: true });
               sessionStorage.setItem("isAuthenticated", true); // logged in
-              window.location.href = "/about" // force reload so localStorage can be updated
+              window.location.href = "/" // force reload so localStorage can be updated
               console.log("Response: ", response.data);
               
           })
@@ -40,13 +46,19 @@ class Signin extends Component {
               console.log("Error: ", err.response.data);
               sessionStorage.setItem("isAuthenticated", false); // logged in
           });
+
+        //    onSignIn = (googleUser) => {
+        //         var profile = googleUser.getBasicProfile();
+        //         this.setState({ googleSignin: true })
+        //         console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        //         console.log('Name: ' + profile.getName());
+        //         console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        //     }
         
       };
     
     render() {
-
-        console.log("State: ", this.state);
-        
+        console.log("State: ", this.state);        
 
         // if(this.state.isAuthenticated){
         //     return <Redirect to = "/about"/>;
@@ -56,32 +68,47 @@ class Signin extends Component {
             
         // }
         return (
-            <div className="text-center">
-              <h1 className="h3 mb-3 font-weight-normal">Login</h1>
-
-                  <form className="form-signin" onSubmit={this.handleSubmit}>
-
-                    <label htmlFor="username" className="sr-only">username:</label>
-                        <input 
-                            type="text" 
-                            placeholder="username"  
-                            className="form-control" 
-                            name="username"
-                            value={this.state.value} 
-                            onChange={this.handleChange} />
-
-                    <label htmlFor="password" className="sr-only"> Password:</label>
-                        <input 
-                            type="password" 
-                            placeholder="Password"  
-                            className="form-control" 
-                            name="password"
-                            value={this.state.value} 
-                            onChange={this.handleChange} />               
-
-                  <input className="btn btn-lg btn-primary btn-block" type="submit" value="Login Now" />
-            </form>
-        </div>
+            <div className="mdl-grid login-card">
+            <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+              <div className="mdl-card__media login-card-img">
+                <img src={siteLogo} alt="site-logo" border="0" />
+              </div>      
+              
+               <div className="mdl-card__supporting-text">
+               <form className="form-signin" 
+                    onSubmit={this.handleSubmit}>
+                    
+                  <div className="mdl-textfield mdl-js-textfield">
+                    <input className="mdl-textfield__input"
+                           type="text"
+                           name="username"
+                           required
+                           value={this.state.value}
+                           onChange={this.handleChange}/>
+                         <label className="mdl-textfield__label" htmlFor="username">Username</label>
+                 </div>
+                 <div className="mdl-textfield mdl-js-textfield">
+                   <input className="mdl-textfield__input"
+                          type="password"
+                          name="password"
+                          required
+                          value={this.state.value} 
+                          onChange={this.handleChange}/>
+                        <label className="mdl-textfield__label" htmlFor="password">Password</label>
+                </div>
+                            
+               
+               <div className="g-signin2 align-self-center" data-onsuccess="onSignIn"
+                  onClick={this.onSignIn}>            
+               </div>
+               <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                 
+               
+                 
+                </form>
+              </div>
+            </div>
+          </div>
         );
     }
 }
