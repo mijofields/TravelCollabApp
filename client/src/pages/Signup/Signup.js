@@ -37,14 +37,19 @@ class Signup extends Component {
             .then((response) => {
                 this.setState({ isAuthenticated: true });
                 sessionStorage.setItem("isAuthenticated", true); // logged in
-                window.location.href = "/about" // force reload so localStorage can be updated
+                window.location.href = "/" // force reload so localStorage can be updated
                 console.log("Response: ", response.data);
             })
             .catch((err) => {
                 this.setState({ isAuthenticated: false });
                 console.log("Error: ", err.response.data);
                 sessionStorage.setItem("isAuthenticated", false); // logged in
-            });
+            });            
+        };
+
+        goToSignin = (e) => {
+            e.preventDefault();
+            window.location.href='/signin'
         };
 
     render() {
@@ -110,12 +115,13 @@ class Signup extends Component {
                {/* <div className="g-signin2 align-self-center" data-onsuccess="onSignIn"
                   onClick={this.onSignIn}>            
                </div> */}
-               <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
+               <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"
                     value="Register Now"
                     onClick={this.handleSubmit}> 
                     Register </button>
               
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"> 
+                <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                    onClick={this.goToSignin}> 
                     Signin           
                 </button>
 

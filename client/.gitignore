@@ -6,6 +6,12 @@ node_modules
 package-lock.json
 vscode 
 build
+config.json
+oauth2.key1.json
+oauth2.keys.json
+oauth2.keys2.json
+yarn-error.log
+yarn.lock
 
 # testing
 /coverage
