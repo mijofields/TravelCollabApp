@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Home from '../components/Home';
 import Login from '../components/login';
 import Register from '../components/register';
 import ItineraryList from '../components/Itinerary';
@@ -8,6 +9,9 @@ import '../css/App.css';
 
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
     return (
     <Router>
@@ -20,6 +24,7 @@ export default class App extends React.Component {
                 <div className="mdl-layout-spacer"></div>
                 {/* Navigation. We hide it in small screens */}
                 <nav className="mdl-navigation mdl-layout--large-screen-only">
+                  <Link to="/login"><a class="mdl-navigation__link" href="">Login</a></Link>
                 </nav>
               </div>
             </header>
@@ -35,7 +40,8 @@ export default class App extends React.Component {
         <main className="mdl-layout__content main-layout">
           <div className="page-content">
           {/* Your content goes here */}
-            <Route exact path="/" component={Login} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/itinerary" component={ItineraryList} />
           </div>

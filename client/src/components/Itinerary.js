@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ItineraryItem from './ItineraryItem';
+import '../css/Itinerary.css';
 
 
 
@@ -31,7 +32,7 @@ export default class ItineraryList extends React.Component {
                      destination={trip.flight}/>
     )
     return (
-      <div className="mdl-grid">
+      <div className="mdl-grid itinerary-list">
         {letsGo}
       </div>
     )
