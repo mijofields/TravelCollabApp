@@ -101,10 +101,11 @@ class Signin extends Component {
                <div className="g-signin2 align-self-center" data-onsuccess="onSignIn"
                   onClick={this.onSignIn}>            
                </div>
-               <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
-                 
-               
-                 
+
+               <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit" name="action"> 
+                    Signin           
+                </button>
+
                 </form>
               </div>
             </div>
