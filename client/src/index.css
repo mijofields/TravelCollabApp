@@ -1,11 +1,4 @@
 body {
-<<<<<<< HEAD
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background-color: black;
-}
-=======
     margin: 0;
     padding: 0;  
     background: url('./images/background.png');
@@ -14,4 +7,3 @@ body {
     background-repeat: no-repeat;    
   }
   
->>>>>>> auth
