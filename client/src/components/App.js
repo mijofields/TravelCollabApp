@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Login from './login';
-import Register from './register';
-import NavLogo from './images/navlogo.png'
-import './App.css';
+import Login from '../components/login';
+import Register from '../components/register';
+import ItineraryList from '../components/Itinerary';
+import NavLogo from '../images/navlogo.png';
+import '../css/App.css';
 
 
 export default class App extends React.Component {
@@ -25,7 +26,7 @@ export default class App extends React.Component {
         <div className="mdl-layout__drawer">
           <span className="mdl-layout-title">Tools</span>
           <nav className="mdl-navigation">
-            <a className="mdl-navigation__link" href="">Itinerary</a>
+            <Link to="/itinerary"><a className="mdl-navigation__link" href="">Itinerary</a></Link>
             <a className="mdl-navigation__link" href="">Split Expenses</a>
             <a className="mdl-navigation__link" href="">Currency Converter</a>
             <a className="mdl-navigation__link" href="">Bucket List</a>
@@ -35,7 +36,8 @@ export default class App extends React.Component {
           <div className="page-content">
           {/* Your content goes here */}
             <Route exact path="/" component={Login} />
-            <Route path="/register" component={Register} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/itinerary" component={ItineraryList} />
           </div>
         </main>
 	  </div>

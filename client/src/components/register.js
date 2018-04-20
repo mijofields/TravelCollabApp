@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import siteLogo from './images/logo.png';
+import siteLogo from '../images/logo.png';
 import axios from 'axios';
 
 export default class Register extends React.Component {
