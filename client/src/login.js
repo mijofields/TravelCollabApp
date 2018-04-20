@@ -25,12 +25,8 @@ class Login extends React.Component {
   //   console.log(this.state)
   // }
 
- onSignIn = (googleUser) => {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  }
+
+  
 
 
   render() {
@@ -41,7 +37,7 @@ class Login extends React.Component {
             <img src={siteLogo} alt="site-logo" border="0" />
           </div>
          
-          <div className="g-signin2 align-self-center" data-onsuccess="onSignIn"></div>
+        
           {/* onChange = {this.onSignIn} */}
         
           
