@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 // import io from "socket.io-client";
 import Home from "./pages/Home/Home.js";
 import About from "./pages/About/About.js";
@@ -10,24 +10,15 @@ import Nav from "./components/Nav/Navbar.js";
 import Footer from "./components/Footer/Footer.js";
 import Jumbotron from "./components/Jumbotron/Jumbotron.js";
 import Chat from "./components/Chat/Chat";
+import Friend from "./components/Friend/Friend";
 
 class App extends Component {
-  componentDidMount() {
-    // axios({
-    //   url: "http://localhost:3000/",
-    //   method: "GET",
-    //   data: this.state
-    // }).then(response => {
-    //   console.log("Axios App js Response: ", response.data);
-    // });
-    //   .catch(err => console.log("Axios Appjs Err: ", err.response.data));
-  }
-
+  
   signOut = () => {
     sessionStorage.setItem("isAuthenticated", false);
     window.location.href = "/"; // on signout, send to home page
   };
-
+ 
   render() {
     return (
       <Router>
@@ -42,6 +33,7 @@ class App extends Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/chat" component={Chat} />
           <Route exact path="/signin" component={Signin} />
+          <Route exact path="/friend" component={Friend} />
           <Footer />
         </div>
       </Router>

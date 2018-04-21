@@ -16,13 +16,6 @@ class Chat extends Component {
     };
   }
 
-  // client
-  // .on()
-  // .emit()
-  // server
-  // .on()
-  // .emit()
-
   componentDidMount = () => {
     axios({
       url: "/user",
@@ -36,26 +29,11 @@ class Chat extends Component {
     }); // Receiving, NO Sending
   };
 
-  // handleSubmit = event => {
-  //     event.preventDefault();
-  //     const body = event.target.value
-  //     if (event.keyCode === 13 && body) {
-  //         const message = {
-  //             body,
-  //             from: 'Me',
-  //         }
-  //         this.setState({ messages: [message, ...this.state.messages] })
-  //         event.target.value = ''
-  //     }
-  // }
-
   handleChange = event => {
     const name = event.target.name;
     const value = event.target.value;
 
-    this.setState({
-      [name]: value
-    });
+    this.setState({ [name]: value });
   };
 
   handleSubmit = event => {
