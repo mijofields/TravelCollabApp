@@ -1,12 +1,19 @@
+.login-card-img img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
 .login-card {
-    max-width: 600px;
-    margin: auto;
-  }
-  
-  .login-card-img img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
-  }
-  
+  max-width: 600px;
+  margin: auto;
+  background-color: #FFFFFF;
+  /* opacity: 0.5; */
+}
+
+.g-signin2 {
+	background-color: #FFFFFF;
+	opacity: 0.5;
+}
+

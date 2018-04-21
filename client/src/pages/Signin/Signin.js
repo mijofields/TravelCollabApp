@@ -97,15 +97,14 @@ class Signin extends Component {
                         <label className="mdl-textfield__label" htmlFor="password">Password</label>
                 </div>
                             
-               
-               <div className="g-signin2 align-self-center" data-onsuccess="onSignIn"
+               <div>
+               {/* <div className="g-signin2 align-self-center" data-onsuccess="onSignIn"
                   onClick={this.onSignIn}>            
-               </div>
-
-               <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit" name="action"> 
-                    Signin           
-                </button>
-
+               </div> */}
+               <button className="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                 </div>
+               
+                 
                 </form>
               </div>
             </div>
