@@ -17,6 +17,14 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
+  findByName: function(req, res){
+    console.log("running Find Friend")
+    db.User.findOne({username: req.params.username})
+      .select("-password")
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+
   // Get User Information
   getUserInfo: function(req, res) {
     db.User.findOne({ _id: req.cookies.id })
@@ -55,7 +63,7 @@ module.exports = {
         res.cookie("id", dbModel._id);
         res.json({ msg: "User created", _id: dbModel._id });
       })
-      .catch(err => res.status(422).json("Error UserController: ", err));
+      .catch(err => res.status(500).json("Error UserController: ", err));
     console.log(email, name, password, username);
   },
   

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import { Nav, NavItem, Navbar } from "react-bootstrap";
 import "./Navbar.css";
 
 class NavbarComponent extends Component {
@@ -8,12 +9,16 @@ class NavbarComponent extends Component {
     // console.log("isAuthenticated", typeof isAuthenticated);    
 
     return (
+      
         <div className="mdl-layout__drawer">
                 <span className="mdl-layout-title">Tools</span>
                 <nav className="mdl-navigation">
                     <a className="mdl-navigation__link" href="">Itinerary</a>
+                    <br/>
+                    <a className="mdl-navigation__link" href="/friend">Find Friend</a>
+                    <br />
                     <a className="mdl-navigation__link" href="">Split Expenses</a>
-                    <a className="mdl-navigation__link" href="/currency-converter">Currency Converter</a>
+                    <br/>
                     <a className="mdl-navigation__link" href="/chat">Chat</a>
                         {isAuthenticated === "true" ? 
                             (

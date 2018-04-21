@@ -16,6 +16,13 @@ class Chat extends Component {
     };
   }
 
+  // client
+  // .on()
+  // .emit()
+  // server
+  // .on()
+  // .emit()
+
   componentDidMount = () => {
     axios({
       url: "/user",
@@ -31,12 +38,11 @@ class Chat extends Component {
 
   // handleSubmit = event => {
   //     event.preventDefault();
-  //     const value = event.target.value
-
-  //     if (event.keyCode === 13 && value) {
+  //     const body = event.target.value
+  //     if (event.keyCode === 13 && body) {
   //         const message = {
-  //             value,
-  //             username
+  //             body,
+  //             from: 'Me',
   //         }
   //         this.setState({ messages: [message, ...this.state.messages] })
   //         event.target.value = ''
@@ -66,18 +72,17 @@ class Chat extends Component {
     const messages = this.state.messages.map((message, index) => {
       console.log("Message: ", message);
       return (
-        <ul>
         <li key={index}>
           <b>{message.username}: </b>
           <p>{message.message}</p>
         </li>
-        </ul>
       );
     });
-
     return (
-      <div className="chat-container"
-        style={{ height: 800, width: "90%", backgroundColor: "yellow" }}>
+      <div
+        className="chat-container"
+        style={{ height: 800, width: "90%", backgroundColor: "yellow" }}
+      >
         <div className="row">
           <div className="col-10">
             <div className="card">

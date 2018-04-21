@@ -13,9 +13,12 @@ router.route("/user").get(userController.getUserInfo);
 
 router.route("/signout").get(userController.signout);
 
+router.route("/user/:username")
+  .post(userController.findByName);
+
 router
   .route("/user/:id")
-  .get(userController.findById)
+  .get(userController.findById) 
   .put(userController.update)
   .delete(userController.remove);
 

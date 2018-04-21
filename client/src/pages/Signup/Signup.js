@@ -42,7 +42,7 @@ class Signup extends Component {
             })
             .catch((err) => {
                 this.setState({ isAuthenticated: false });
-                console.log("Error: ", err.response.data);
+                console.log("Error: ", err);
                 sessionStorage.setItem("isAuthenticated", false); // logged in
             });            
         };
