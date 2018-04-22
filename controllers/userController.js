@@ -8,12 +8,12 @@ module.exports = {
   findAll: function(req, res) {
     db.User.find(req.query)
       .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
+      .then(user => res.json(user))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
     db.User.find(req.params.id)
-      .then(dbModel => res.json(dbModel))
+      .then(user => res.json(user))
       .catch(err => res.status(422).json(err));
   },
 
@@ -21,7 +21,21 @@ module.exports = {
     console.log("running Find Friend")
     db.User.findOne({username: req.params.username})
       .select("-password")
-      .then(dbModel => res.json(dbModel))
+      .then(user => res.json(user))
+      .catch(err => res.status(422).json(err));
+  },
+
+  allFriends: function(req, res){
+    console.log("ALL FRIEND IS RUNNING")
+    db.User.find({})
+    .then(user => res.json(user))
+    .catch(err => res.status(422).json(err));
+  },
+
+  addFriend: function(req, res) {
+    db.User.create(req.body)
+      .select("-password")
+      .then(user => res.json(user))
       .catch(err => res.status(422).json(err));
   },
 
@@ -35,18 +49,18 @@ module.exports = {
 
   create: function(req, res) {
     db.User.create(req.body)
-      .then(dbModel => res.json(dbModel))
+      .then(user => res.json(user))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
     db.User.findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
+      .then(user => res.json(user))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
     db.User.findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
+      .then(user => user.remove())
+      .then(user => res.json(user))
       .catch(err => res.status(422).json(err));
   },
 
@@ -59,9 +73,9 @@ module.exports = {
     const hash = bcrypt.hashSync(password, salt); // encrypted password
 
     db.User.create({ email, name, password: hash, username })
-      .then(dbModel => {
-        res.cookie("id", dbModel._id);
-        res.json({ msg: "User created", _id: dbModel._id });
+      .then(user => {
+        res.cookie("id", user._id);
+        res.json({ msg: "User created", _id: user._id });
       })
       .catch(err => res.status(500).json("Error UserController: ", err));
     console.log(email, name, password, username);

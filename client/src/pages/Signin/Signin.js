@@ -32,8 +32,7 @@ class Signin extends Component {
               this.setState({ isAuthenticated: true });
               sessionStorage.setItem("isAuthenticated", true); // logged in
               window.location.href = "/about" // force reload so localStorage can be updated
-              console.log("Response: ", response.data);
-              
+              console.log("Response: ", response.data);              
           })
           .catch((err) => {
               this.setState({ isAuthenticated: false });

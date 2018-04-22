@@ -17,9 +17,10 @@ class NavbarComponent extends Component {
                     <br/>
                     <a className="mdl-navigation__link" href="/friend">Find Friend</a>
                     <br />
-                    <a className="mdl-navigation__link" href="">Split Expenses</a>
+                    <a className="mdl-navigation__link" href="">All Friends</a>
                     <br/>
                     <a className="mdl-navigation__link" href="/chat">Chat</a>
+                    <br/>
                         {isAuthenticated === "true" ? 
                             (
                                 <a className="mdl-navigation__link" 

@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:8080");
-// import axios from 'axios';
 
 class Chat extends Component {
   constructor(props) {
@@ -29,11 +28,26 @@ class Chat extends Component {
     }); // Receiving, NO Sending
   };
 
+  // handleSubmit = event => {
+  //     event.preventDefault();
+  //     const body = event.target.value
+  //     if (event.keyCode === 13 && body) {
+  //         const message = {
+  //             body,
+  //             from: 'Me',
+  //         }
+  //         this.setState({ messages: [message, ...this.state.messages] })
+  //         event.target.value = ''
+  //     }
+  // }
+
   handleChange = event => {
     const name = event.target.name;
     const value = event.target.value;
 
-    this.setState({ [name]: value });
+    this.setState({
+      [name]: value
+    });
   };
 
   handleSubmit = event => {
@@ -56,6 +70,7 @@ class Chat extends Component {
         </li>
       );
     });
+
     return (
       <div
         className="chat-container"

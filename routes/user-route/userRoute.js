@@ -9,12 +9,20 @@ router
   .get(userController.findById)
   .post(userController.signin);
 
-router.route("/user").get(userController.getUserInfo);
+router.route("/user")
+  .get(userController.getUserInfo);
 
-router.route("/signout").get(userController.signout);
+router.route("/signout")
+  .get(userController.signout);
 
 router.route("/user/:username")
   .post(userController.findByName);
+
+router.route("user/allfriends")
+  .get(userController.allFriends);
+
+router.route("user/addFriend")
+  .post(userController.addFriend)
 
 router
   .route("/user/:id")
