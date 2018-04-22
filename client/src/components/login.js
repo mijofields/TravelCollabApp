@@ -1,7 +1,6 @@
  import React,{ Component } from 'react';
  import axios from 'axios';
  import siteLogo from '../images/logo.png';
- import auth from '../authService';
  import '../css/login.css'
 
 
@@ -15,7 +14,7 @@ class Login extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.auth = new auth();
+    // this.auth = new auth();
   }
 
   handleChange = (e) => {
@@ -23,28 +22,15 @@ class Login extends React.Component {
     this.setState({
       [name]: value
     })
-    console.log(this.state)
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const { username, password } = this.state;
-    this.auth.login(username, password)
-      .then((res) => {
-        console.log("You are logged in!",res)
-        this.props.history.replace('/itinerary')
-      })
+    this.props.login(username, password);
 
   }
 
-  // axiosRequest() {
-  //   axios.post('/signin', {username, password})
-  //     .then((res) => {
-  //       console.log(res)
-  //     }).catch((err) => {
-  //       console.log(err)
-  //     })
-  // }
 
 
   render() {
