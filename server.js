@@ -9,7 +9,6 @@ const db = 'mongodb://localhost/users';
 
 const app = express();
 
-console.log(routes)
 
 app.set("PORT", process.env.PORT || 5000);
 
