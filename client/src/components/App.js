@@ -6,6 +6,9 @@ import Register from '../components/register';
 import ItineraryList from '../components/Itinerary';
 import NavLogo from '../images/navlogo.png';
 import '../css/App.css';
+import '../css/react-big-calendar.css'
+import AddEvent from '../components/AddEvent';
+import Cal from '../components/Calendar';
 
 
 export default class App extends React.Component {
@@ -44,6 +47,8 @@ export default class App extends React.Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/itinerary" component={ItineraryList} />
+            <Route exact path="/event" component={AddEvent} />
+            <Route exact path="/calendar" component={Cal} />
           </div>
         </main>
 	  </div>
