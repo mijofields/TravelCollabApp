@@ -9,6 +9,8 @@ import ChatComp from '../components/chat';
 import NavLogo from '../images/navlogo.png';
 import Auth from '../authService';
 import '../css/App.css';
+import AddEvent from '../components/AddEvent';
+import Cal from '../components/Calendar';
 
 
 export default class App extends React.Component {
@@ -70,9 +72,14 @@ export default class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/itinerary" component={ItineraryList} />
+<<<<<<< HEAD
             <Route exact path="/splitExp" component={SplitExp} />
             <Route exact path="/currConverter" component={CurrConverter} />
             <Route exact path="/chat" component={ChatComp} />
+=======
+            <Route exact path="/event" component={AddEvent} />
+            <Route exact path="/calendar" component={Cal} />
+>>>>>>> 808a3fae6ffc57c719366095da60ecf8e207ee97
           </div>
         </main>
 	  </div>
