@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios"; // HTTP Library
+// import Signin from '../Signin/Signin';
 import './Signup.css';
 
 class Signup extends Component {
@@ -14,9 +15,9 @@ class Signup extends Component {
         };
     }
 
-    componentDidMount = () => {
-        sessionStorage.setItem("isAuthenticated", false);
-    };
+    // componentDidMount = () => {
+    //     sessionStorage.setItem("isAuthenticated", false);
+    // };
 
     handleChange = ({ target: { id, value } }) => this.setState({ [id]: value });
 
@@ -28,26 +29,27 @@ class Signup extends Component {
         console.log("Handle Submit: ", this.state);
 
         axios({
-            url: "/signup",
+            url: "/api/user/signup",
             method: "POST",
             data: this.state
         })
             .then((response) => {
                 this.setState({ isAuthenticated: true });
-                sessionStorage.setItem("isAuthenticated", true); // logged in
-                window.location.href = "/about" // force reload so localStorage can be updated
+                // sessionStorage.setItem("isAuthenticated", true); // logged in
+                // window.location.href = "/about" // force reload so localStorage can be updated
                 console.log("Response: ", response.data);
             })
             .catch((err) => {
                 this.setState({ isAuthenticated: false });
                 console.log("Error: ", err);
-                sessionStorage.setItem("isAuthenticated", false); // logged in
+                // sessionStorage.setItem("isAuthenticated", false); // logged in
             });
     };
 
     render() {
 
         console.log("State: ", this.state);
+        
 
         return (
             <div className="register">

@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import './Signin.css';
-// import { Redirect } from "react-router-dom";
+import Chat from '../../components/Chat/Chat';
+// import API from '../../utils/API';
 
 class Signin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
+            username: "",
             password: "",
-            isAuthenticated: false
+            isAuthenticated: props.false
         };    
       }
-
-      componentDidMount = () => {
-          sessionStorage.setItem("isAuthenticated", false);
-      };
     
       handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
@@ -24,41 +21,47 @@ class Signin extends Component {
           event.preventDefault();
 
           axios({
-              url: "/signin",
+              url: "/api/user/signin",
               method: "POST",
               data: this.state
           })
           .then((response) => {              
-              this.setState({ isAuthenticated: true });
-              sessionStorage.setItem("isAuthenticated", true); // logged in
-              window.location.href = "/about" // force reload so localStorage can be updated
-              console.log("Response: ", response.data);              
+              this.setState({
+                    username: this.state.username,
+                    password: this.state.password, 
+                    isAuthenticated: true                  
+                });         
+              console.log("Response: ", response.data); 
+                           
           })
           .catch((err) => {
               this.setState({ isAuthenticated: false });
-              console.log("Error: ", err.response.data);
-              sessionStorage.setItem("isAuthenticated", false); // logged in
+              console.log("Error: ", err);
+            //   sessionStorage.setItem("isAuthenticated", false); // logged in
           });
         
       };
-    
+
+      submitMessage = (username) => this.setState({ username });
+      //declared from chat component to get username from here and set state username in chat component
+
+     
+         
     render() {
+        console.log(this.state)
+        const { isAuthenticated } = this.state;
 
-        console.log("State: ", this.state);
-        
-
-        // if(this.state.isAuthenticated){
-        //     return <Redirect to = "/about"/>;
-        // } else{ 
-        //     // (<Redirect to = "/"/>)
-        //     console.log(" Not yet authenticated");
-            
-        // }
+            if (isAuthenticated) {
+                // <ChildComponent {...this.props, update: this.update} />
+                return <Chat username={this.state.username} />;
+                }               
+                 
         return (
             <div className="text-center">
               <h1 className="h3 mb-3 font-weight-normal">Login</h1>
 
-                  <form className="form-signin" onSubmit={this.handleSubmit}>
+                  <form className="form-signin" 
+                        onSubmit={this.handleSubmit}>
 
                     <label htmlFor="username" className="sr-only">username:</label>
                         <input 

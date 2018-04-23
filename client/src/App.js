@@ -14,11 +14,12 @@ import Friend from "./components/Friends/Friends";
 import AddFriend  from "./components/Friends/AddFriend";
 
 class App extends Component {
-  
+  // this.props.signOut
   signOut = () => {
-    sessionStorage.setItem("isAuthenticated", false);
+    // sessionStorage.setItem("isAuthenticated", false);
     window.location.href = "/"; // on signout, send to home page
   };
+
  
   render() {
     return (
@@ -35,7 +36,7 @@ class App extends Component {
               <Route exact path="/chat" component={Chat} />
               <Route exact path="/signin" component={Signin} />
               <Route exact path="/friend" component={Friend} />
-              <Route exact path="/user/addFriend" component={AddFriend} />
+              <Route exact path="/user/createFriend" component={AddFriend} />
             <Footer />
         </div>
       </Router>

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import API from "../../utils/API";
 import AddFriend from './AddFriend.js';
 import { CardForm, InputField } from '../Forms';
 import { Button } from '../Button/Button';
@@ -12,48 +13,82 @@ class Friend extends Component {
             name: '',
             email: '',
             results: false,
-            friends: false
+            friends: [],
+            saveFriends: false
         }
-    }
+    }     
 
     handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
-    handleSubmit = (event) => {
+    handleSubmit = ({event, username}) => {
         event.preventDefault();
-        const username = this.state.username;
-        axios({
-            url: "/user/" + username,
-            method: "POST",
-            data: this.state            
-        })
-        .then((response) => {
-            this.setState({ 
-                email: response.data.email,
-                name: response.data.name,
-                returnUsername: response.data.username,
-                results: true
-            })         
+        // const username = this.state.username;
+        API.getUserByUsername(username)
+        .then ((response) => {
+            this.setState({
+            username: response.data.username,
+            name: response.data.name,
+            email: response.data.email,
+            results: true //Associates results to render the appropriate forms on browser
+            })
             console.log("Response: ", response.data); 
-            // document.getElementById('foo').reset();            
         })
-        .catch((err) => {            
-            console.log("Error Find Friend: ", err);            
-        });      
-    };
+        .catch(err => console.log("GET FRIEND BY NAME ERROR: ", err))
+      };
+    
+
+    // handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     const username = this.state.username;
+    //     axios({
+    //         url: "/user/" + username,
+    //         method: "POST",
+    //         data: this.state            
+    //     })
+    //     .then((response) => {
+    //         this.setState({ 
+    //             email: response.data.email,
+    //             name: response.data.name,
+    //             username: response.data.username,
+    //             results: true //Associates results to render the appropriate forms on browser
+    //         })         
+    //         console.log("Response: ", response.data);           
+    //     })
+    //     .catch((err) => {            
+    //         console.log("Error Find Friend: ", err);            
+    //     });      
+    // };
 
     isFriend = () => { 
-        this.setState({ friends: true }) 
-        console.log("IS FRIEND")
-    };
-        
+        axios({
+            url: "/user/createFriend",
+            method: "GET",
+            data: this.state
+        })
+        .then((response) => {
+            this.state.friends.push(this.state.username);
+            this.setState({ 
+                saveFriends: true,
+                username: this.state.username,
+                name: this.state.name,
+                email: this.state.email,
+                friends: this.state.friends                
+             });            
+            
+            console.log("ADD FRIEND STATE:", this.state)
+            console.log("ADD FRIEND RESPONSE: ", response.data)
+        })      
+        .catch((err) => {
+            console.log("ADD FRIEND ERROR: ", err)
+        })
+    };        
 
     render(){
-        const { name, username, email, results } = this.state;
-        // let friendsResults = this.state.results;
-        
+        const { name, username, email, results } = this.state; 
+        console.log("Friends Array: ", this.state.friends);       
     
         return (         
-        <div className="center">  
+        <div>  
             {results ?          
                 (<AddFriend> 
                     <p className="card-text name-result">Name:{name}</p>

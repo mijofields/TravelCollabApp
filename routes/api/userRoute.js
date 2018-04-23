@@ -1,31 +1,22 @@
 const router = require("express").Router();
 const userController = require("../../controllers/userController");
-const path = require("path");
 
-router.route("/signup").post(userController.signup);
-
+router.route("/signup")
+    .post(userController.signup);
+    
 router
   .route("/signin")
   .get(userController.findById)
   .post(userController.signin);
 
-router.route("/user")
+router.route("/")
   .get(userController.getUserInfo);
 
 router.route("/signout")
   .get(userController.signout);
 
-router.route("/user/:username")
-  .post(userController.findByName);
-
-router.route("user/allfriends")
-  .get(userController.allFriends);
-
-router.route("user/addFriend")
-  .post(userController.addFriend)
-
 router
-  .route("/user/:id")
+  .route("/:id")
   .get(userController.findById) 
   .put(userController.update)
   .delete(userController.remove);

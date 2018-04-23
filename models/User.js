@@ -5,7 +5,6 @@ const UserSchema = new Schema({
     name: {
         type: String,
         required: true,
-        ref: 'Member'
     },
     username: {
         type: String,
@@ -19,9 +18,6 @@ const UserSchema = new Schema({
     email: {
         type: String,
         required: true
-    },
-    friends: {
-        type: Array
     }
 });
 

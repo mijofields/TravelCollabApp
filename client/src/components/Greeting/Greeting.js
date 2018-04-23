@@ -16,9 +16,7 @@ class Greeting extends Component {
     }
     return <GuestGreeting />;
 
-    return (
-
-    );
+   
   }
 }
     

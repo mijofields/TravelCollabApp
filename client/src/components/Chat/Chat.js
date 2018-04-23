@@ -1,56 +1,31 @@
 import React, { Component } from "react";
-// import ReactDOM from 'react-dom';
-import axios from "axios";
+// import axios from "axios";
 import io from "socket.io-client";
+// import API from '../../utils/API';
 const socket = io.connect("http://localhost:8080");
 
 class Chat extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      username: props.username,
       message: "",
-      messages: [],
-      lockedUsername: false
+      messages: []
     };
   }
 
-  componentDidMount = () => {
-    axios({
-      url: "/user",
-      method: "GET"
-    })
-      .then(response => this.setState({ username: response.data.username }))
-      .catch(err => console.log("Ooops, there is an error"));
-
-    socket.on("chat message", data => {
-      this.setState({ messages: [data, ...this.state.messages] });
-    }); // Receiving, NO Sending
+  componentDidMount = () => { 
+    
+        socket.on("chat message", data => {
+        this.setState({ messages: [data, ...this.state.messages] });
+      }); // Receiving, NO Sending  
   };
+  
 
-  // handleSubmit = event => {
-  //     event.preventDefault();
-  //     const body = event.target.value
-  //     if (event.keyCode === 13 && body) {
-  //         const message = {
-  //             body,
-  //             from: 'Me',
-  //         }
-  //         this.setState({ messages: [message, ...this.state.messages] })
-  //         event.target.value = ''
-  //     }
-  // }
+  handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
-  handleChange = event => {
-    const name = event.target.name;
-    const value = event.target.value;
 
-    this.setState({
-      [name]: value
-    });
-  };
-
-  handleSubmit = event => {
+  submitMessage = event => {
     event.preventDefault();
     const username = this.state.username;
     const message = this.state.message;
@@ -60,7 +35,12 @@ class Chat extends Component {
   };
 
   render() {
+
     console.log(this.state);
+        // const username = this.state.username;
+        // const message = this.state.message;
+       
+
     const messages = this.state.messages.map((message, index) => {
       console.log("Message: ", message);
       return (
@@ -81,6 +61,7 @@ class Chat extends Component {
             <div className="card">
               <div className="card-body">
                 <div className="card-title">Group Chat</div>
+                
                 <hr />
                 {/* messages class to loop through all the messages which we will have and 
                         display author’s name and his message */}
@@ -98,11 +79,12 @@ class Chat extends Component {
                 <br />
 
                 <button
-                  onClick={this.handleSubmit}
+                  onClick={this.submitMessage}
                   className="btn btn-primary form-control"
                 >
                   Send
                 </button>
+
               </div>
             </div>
           </div>

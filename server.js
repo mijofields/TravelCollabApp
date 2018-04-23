@@ -8,7 +8,7 @@ const logger = require("morgan");
 const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 8080;
-const routes = require("./routes/user-route/userRoute");
+const routes = require("./routes");
 const db = "mongodb://localhost/users";
 
 app.use(cookieParser()); // configure Cookie Parser
