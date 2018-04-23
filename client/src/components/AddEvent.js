@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-// import Calendar from 'react-calendar';
+
 import axios from 'axios';
-// import EventCalendar from 'react-event-calendar';
-// import moment, { now } from 'moment';
-// import events from './Calendar/events';
+
 import DatePicker from 'react-date-picker';
+import bodyParser from 'body-parser';
 
 
 class AddEvent extends Component {
   state = {
     startdate: new Date(),
     enddate: new Date(),
-    what: ""
+    where: ""
   }
 
   onChangeStart = startdate => this.setState({ startdate })
   onChangeEnd = enddate => this.setState({ enddate })
-  handleWhatChange = event => {
+  handleWhereChange = event => {
     
     const { name, value } = event.target;
 
@@ -27,18 +26,25 @@ class AddEvent extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    alert(`Start Date: ${this.state.startdate}\nEnd Date: ${this.state.enddate}\nWhat: ${this.state.what}`);
-    // axios.post('/user', {
-    //   firstName: 'Fred',
-    //   lastName: 'Flintstone'
-    // })
-    // .then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
-    this.setState({ startdate: new Date(), enddate: new Date(), what: ""  });
+
+    if (this.state.where === "" ) {
+      alert(`Please enter the destination of your upcoming trip`)
+      return
+    };
+    alert(`Start Date: ${this.state.startdate}\nEnd Date: ${this.state.enddate}\nDestination: ${this.state.where}`);
+    
+    axios.post('/newevent', {
+        destination: this.state.where,
+        start: this.state.startdate,
+        end: this.state.enddate    
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    this.setState({ startdate: new Date(), enddate: new Date(), where: ""  });
   };
 
   render() {
@@ -54,13 +60,13 @@ class AddEvent extends Component {
           onChange={this.onChangeEnd}
           value={this.state.enddate}
         />
-       <label>What: </label>
+       <label>Where: </label>
         <input
           type="text"
-          placeholder="What will you be doing?"
-          name="what"
-          value={this.state.what}
-          onChange={this.handleWhatChange}
+          placeholder="Where are you going?"
+          name="where"
+          value={this.state.where}
+          onChange={this.handleWhereChange}
         />
         <button onClick={this.handleSubmit}>Submit</button>
      

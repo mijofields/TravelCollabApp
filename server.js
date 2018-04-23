@@ -4,8 +4,7 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const bcrypt = require('bcrypt');
 const path = require('path');
-const routes = require('./routes/user-route/userRoute');
-const db = 'mongodb://localhost/users';
+const routes = require('./client/src/utils/eventControl.js');
 
 const app = express();
 
@@ -42,7 +41,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(routes);
+app.use('/', routes);
 
 
 

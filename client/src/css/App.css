@@ -39,3 +39,10 @@
   background: #fafafa;
   color: #aaa;
 }
+
+.Day.holiday {
+
+  background: tomato;
+  color: #000;
+
+}

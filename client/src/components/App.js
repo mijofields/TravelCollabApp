@@ -6,7 +6,6 @@ import ItineraryList from '../components/Itinerary';
 import NavLogo from '../images/navlogo.png';
 import Auth from '../authService';
 import '../css/App.css';
-import '../css/react-big-calendar.css'
 import AddEvent from '../components/AddEvent';
 import Cal from '../components/Calendar';
 
