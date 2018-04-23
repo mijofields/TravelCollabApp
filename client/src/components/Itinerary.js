@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ItineraryItem from './ItineraryItem';
 import '../css/Itinerary.css';
+import Auth from '../authService';
 
 
 
@@ -24,6 +25,12 @@ export default class ItineraryList extends React.Component {
         }
       ]
   }
+
+  this.auth = new Auth();
+}
+
+componentWillMount() {
+  console.log("Component is mounting")
 }
 
   render() {

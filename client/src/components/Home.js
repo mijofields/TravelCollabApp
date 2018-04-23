@@ -11,6 +11,11 @@ export default class Home extends React.Component {
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.auth = new Auth();
   }
+  componentWillMount() {
+    if(this.auth.loggedIn()) {
+      this.props.history.replace('/itinerary');
+    }
+  }
 
   handleLoginSubmit(username, password) {
       this.auth.login(username, password)
