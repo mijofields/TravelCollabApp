@@ -9,6 +9,10 @@ const jwt = require('jsonwebtoken');
 router.route("/signup").post(userController.signup);
 
 
+  // stripe.charges.create(req.body, postStripeCharge(res));
+  
+
+
 // This route is for testing only. Remove when ready to deploy
 router.route('/protected').get(auth.ensureToken, (req, res) => {
   jwt.verify(req.token, 'my_secret_key', (err, data) => {

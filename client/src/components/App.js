@@ -4,6 +4,7 @@ import Home from '../components/Home';
 import Login from '../components/login';
 import Register from '../components/register';
 import ItineraryList from '../components/Itinerary';
+import Expenses from '../components/Expenses';
 import NavLogo from '../images/navlogo.png';
 import '../css/App.css';
 
@@ -32,7 +33,7 @@ export default class App extends React.Component {
           <span className="mdl-layout-title">Tools</span>
           <nav className="mdl-navigation">
             <Link to="/itinerary"><a className="mdl-navigation__link" href="">Itinerary</a></Link>
-            <a className="mdl-navigation__link" href="">Split Expenses</a>
+            <Link to="expenses"><a className="mdl-navigation__link" href="">Split Expenses</a></Link>
             <a className="mdl-navigation__link" href="">Currency Converter</a>
             <a className="mdl-navigation__link" href="">Bucket List</a>
           </nav>
@@ -44,6 +45,7 @@ export default class App extends React.Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/itinerary" component={ItineraryList} />
+            <Route exact path="/expenses" component={Expenses} />
           </div>
         </main>
 	  </div>

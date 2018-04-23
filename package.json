@@ -24,11 +24,14 @@
     "bcrypt": "^2.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.2.1",
-    "mongoose": "^5.0.14",
+    "mongoose": "^5.0.15",
     "morgan": "^1.9.0",
-    "react-scripts": "^1.1.4"
+    "react-scripts": "^1.1.4",
+    "react-stripe-checkout": "^2.6.3",
+    "stripe": "^5.8.0"
   },
   "devDependencies": {
     "concurrently": "^3.5.1",

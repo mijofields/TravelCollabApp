@@ -1,12 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const bcrypt = require('bcrypt');
 const path = require('path');
 const routes = require('./routes/user-route/userRoute');
+const paymentApi = require('./payment');
 const db = 'mongodb://localhost/users';
-
 const app = express();
 
 console.log(routes)
@@ -40,10 +41,18 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
+
+const corsOptions = {
+  origin: 'http://localhost:3000'
+};
+
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(routes);
+app.use(paymentApi);
 
 
 
