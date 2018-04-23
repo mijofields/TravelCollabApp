@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Home from '../components/Home';
 import Register from '../components/register';
 import ItineraryList from '../components/Itinerary';
+import SplitExp from '../components/splitExp';
+import CurrConverter from '../components/currConverter';
+import ChatComp from '../components/chat';
 import NavLogo from '../images/navlogo.png';
 import Auth from '../authService';
 import '../css/App.css';
@@ -33,7 +36,7 @@ export default class App extends React.Component {
           <div className="mdl-layout-spacer"></div>
           {/* Navigation. We hide it in small screens */}
           <nav className="mdl-navigation mdl-layout--large-screen-only">
-            <Link to="/home"><a class="mdl-navigation__link" href="">Login</a></Link>
+            <Link to="/"><a class="mdl-navigation__link" href="">Login</a></Link>
           </nav>
         </div>
       </header> : <header className="mdl-layout__header">
@@ -58,9 +61,9 @@ export default class App extends React.Component {
           <span className="mdl-layout-title">Tools</span>
           <nav className="mdl-navigation">
             <Link to="/itinerary"><a className="mdl-navigation__link" href="">Itinerary</a></Link>
-            <a className="mdl-navigation__link" href="">Split Expenses</a>
-            <a className="mdl-navigation__link" href="">Currency Converter</a>
-            <a className="mdl-navigation__link" href="">Bucket List</a>
+            <Link to="/splitExp"><a className="mdl-navigation__link" href="">Split Expenses</a></Link>
+            <Link to="/currConverter"><a className="mdl-navigation__link" href="">Currency Converter</a></Link>
+            <Link to="/chat"><a className="mdl-navigation__link" href="">Chat</a></Link>
           </nav>
         </div>
         <main className="mdl-layout__content main-layout">
@@ -69,8 +72,14 @@ export default class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/itinerary" component={ItineraryList} />
+<<<<<<< HEAD
+            <Route exact path="/splitExp" component={SplitExp} />
+            <Route exact path="/currConverter" component={CurrConverter} />
+            <Route exact path="/chat" component={ChatComp} />
+=======
             <Route exact path="/event" component={AddEvent} />
             <Route exact path="/calendar" component={Cal} />
+>>>>>>> 808a3fae6ffc57c719366095da60ecf8e207ee97
           </div>
         </main>
 	  </div>
