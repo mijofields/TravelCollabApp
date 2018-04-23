@@ -20,49 +20,50 @@ class Friend extends Component {
 
     handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
-    handleSubmit = ({event, username}) => {
-        event.preventDefault();
-        // const username = this.state.username;
-        API.getUserByUsername(username)
-        .then ((response) => {
-            this.setState({
-            username: response.data.username,
-            name: response.data.name,
-            email: response.data.email,
-            results: true //Associates results to render the appropriate forms on browser
-            })
-            console.log("Response: ", response.data); 
-        })
-        .catch(err => console.log("GET FRIEND BY NAME ERROR: ", err))
-      };
-    
-
     // handleSubmit = (event) => {
     //     event.preventDefault();
     //     const username = this.state.username;
-    //     axios({
-    //         url: "/user/" + username,
-    //         method: "POST",
-    //         data: this.state            
+    //     API.getUserByUsername(username)
+    //     .then ((response) => {
+    //         this.setState({
+    //         username: response.data.username,
+    //         name: response.data.name,
+    //         email: response.data.email,
+    //         results: true //Associates results to render the appropriate forms on browser
+    //         })
+    //         console.log("Response: ", response.data); 
     //     })
-    //     .then((response) => {
-    //         this.setState({ 
-    //             email: response.data.email,
-    //             name: response.data.name,
-    //             username: response.data.username,
-    //             results: true //Associates results to render the appropriate forms on browser
-    //         })         
-    //         console.log("Response: ", response.data);           
-    //     })
-    //     .catch((err) => {            
-    //         console.log("Error Find Friend: ", err);            
-    //     });      
-    // };
+    //     .catch(err => console.log("GET FRIEND BY NAME ERROR: ", err))
+    //   };
+    
+
+    findFriendClick = (event) => {
+        event.preventDefault();
+        const username = this.state.username;
+        axios({
+            url: "/api/friends/" + username,
+            method: "POST",
+            data: this.state            
+        })
+        .then((response) => {
+            this.setState({ 
+                email: response.data.email,
+                name: response.data.name,
+                username: response.data.username,
+                results: true //Associates results to render the appropriate forms on browser
+            })         
+            console.log("STATE: ", this.state); 
+            console.log('FRIENDS DATA:  ', response.data)          
+        })
+        .catch((err) => {            
+            console.log("Error Find Friend: ", err);            
+        });      
+    };
 
     isFriend = () => { 
         axios({
-            url: "/user/createFriend",
-            method: "GET",
+            url: "/api/friends/createFriend",
+            method: "POST",
             data: this.state
         })
         .then((response) => {
@@ -85,7 +86,8 @@ class Friend extends Component {
 
     render(){
         const { name, username, email, results } = this.state; 
-        console.log("Friends Array: ", this.state.friends);       
+        console.log("Friends Array: ", this.state.friends);  
+        console.log("State:  ", this.state)     
     
         return (         
         <div>  
@@ -110,7 +112,7 @@ class Friend extends Component {
                     onChange={this.handleChange} 
                 />
                 <Button
-                    onClick={this.handleSubmit} 
+                    onClick={this.findFriendClick} 
                     type="submit" 
                     value="Find Friend"
                 />

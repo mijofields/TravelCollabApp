@@ -18,12 +18,13 @@ module.exports = {
   },
   // Find by Name
   findByName: function(req, res){
-    console.log("DB running Find Friend By ID")
-    db.Friends.findOne({username: req.params.username})
+    console.log("DB running Find Friend By Name")
+    db.User.findOne({username: req.params.username})
       .select("-password")
       .then(friend => res.json(friend))
       .catch(err => res.status(422).json(err));
   },
+
 //   findById: function(req, res) {
 //     db.Friends.find(req.params.id)
 //       .then(friend => res.json(friend))
@@ -32,7 +33,7 @@ module.exports = {
   // Add Friend
   createFriend: function(req, res) {
     console.log("DB ADD FRIEND IS RUNNING")
-    db.Friends.create(res.body)
+    db.Friends.create({username: req.params.username})
       .select("-password")
       .then(friend => res.json(friend))
       .catch(err => res.status(422).json(err));
