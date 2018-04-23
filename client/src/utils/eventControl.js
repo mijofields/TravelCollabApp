@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 const databaseUrl = "mongodb://localhost:27017/Events_db";
 const collections = ["user"];
 
-const Events = require("../models/Event.js");
+const Trip = require("../models/Event.js");
 mongoose.connect(
   process.env.MONGODB_URI || databaseUrl,{});
 

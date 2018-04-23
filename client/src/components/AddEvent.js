@@ -10,7 +10,7 @@ class AddEvent extends Component {
   state = {
     startdate: new Date(),
     enddate: new Date(),
-    where: ""
+    destination: ""
   }
 
   onChangeStart = startdate => this.setState({ startdate })
@@ -31,10 +31,10 @@ class AddEvent extends Component {
       alert(`Please enter the destination of your upcoming trip`)
       return
     };
-    alert(`Start Date: ${this.state.startdate}\nEnd Date: ${this.state.enddate}\nDestination: ${this.state.where}`);
+    alert(`Start Date: ${this.state.startdate}\nEnd Date: ${this.state.enddate}\nDestination: ${this.state.destination}`);
     
     axios.post('/newevent', {
-        destination: this.state.where,
+        destination: this.state.destination,
         start: this.state.startdate,
         end: this.state.enddate    
     })
@@ -44,7 +44,7 @@ class AddEvent extends Component {
     .catch(function (error) {
       console.log(error);
     });
-    this.setState({ startdate: new Date(), enddate: new Date(), where: ""  });
+    this.setState({ startdate: new Date(), enddate: new Date(), destination: ""  });
   };
 
   render() {
@@ -64,8 +64,8 @@ class AddEvent extends Component {
         <input
           type="text"
           placeholder="Where are you going?"
-          name="where"
-          value={this.state.where}
+          name="destination"
+          value={this.state.destination}
           onChange={this.handleWhereChange}
         />
         <button onClick={this.handleSubmit}>Submit</button>

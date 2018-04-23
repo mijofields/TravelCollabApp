@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\mikeh\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add dayz --save
+  C:\Program Files\nodejs\node.exe C:\Users\mikeh\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js start
 
 PATH: 
   C:\Users\mikeh\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\mikeh\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\MySQL\MySQL Utilities 1.6;C:\Program Files\nodejs;C:\Program Files\Java\jdk1.8.0_161\bin;C:\Users\mikeh\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Heroku\bin;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\MongoDB\Server\3.6\bin;C:\Users\mikeh\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
@@ -7730,57 +7730,13 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt: Command failed.
-  Exit code: 1
+  Error: Command failed.
+  Exit code: 3221225786
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c node-pre-gyp install --fallback-to-build
-  Directory: C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt
+  Arguments: /d /s /c concurrently "nodemon server.js" "npm run client"
+  Directory: C:\Users\mikeh\Desktop\CodingBootcamp\project3
   Output:
-  node-pre-gyp info it worked if it ends with ok
-  node-pre-gyp info using node-pre-gyp@0.9.0
-  node-pre-gyp info using node@9.11.1 | win32 | x64
-  node-pre-gyp info check checked for "C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt\lib\binding\bcrypt_lib.node" (not found)
-  node-pre-gyp http GET https://github.com/kelektiv/node.bcrypt.js/releases/download/v2.0.0/bcrypt_lib-v2.0.0-node-v59-win32-x64-unknown.tar.gz
-  node-pre-gyp http 404 https://github.com/kelektiv/node.bcrypt.js/releases/download/v2.0.0/bcrypt_lib-v2.0.0-node-v59-win32-x64-unknown.tar.gz
-  node-pre-gyp ERR! Tried to download(404): https://github.com/kelektiv/node.bcrypt.js/releases/download/v2.0.0/bcrypt_lib-v2.0.0-node-v59-win32-x64-unknown.tar.gz 
-  node-pre-gyp ERR! Pre-built binaries not found for bcrypt@2.0.0 and node@9.11.1 (node-v59 ABI, unknown) (falling back to source compile with node-gyp) 
-  node-pre-gyp http 404 status code downloading tarball https://github.com/kelektiv/node.bcrypt.js/releases/download/v2.0.0/bcrypt_lib-v2.0.0-node-v59-win32-x64-unknown.tar.gz 
   
-  C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt>if not defined npm_config_node_gyp (node "C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin\\..\..\node_modules\node-gyp\bin\node-gyp.js" clean )  else (node "" clean ) 
-  gyp info it worked if it ends with ok
-  gyp info using node-gyp@3.6.2
-  gyp info using node@9.11.1 | win32 | x64
-  gyp info ok 
-  
-  C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt>if not defined npm_config_node_gyp (node "C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin\\..\..\node_modules\node-gyp\bin\node-gyp.js" configure --fallback-to-build --module=C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt\lib\binding\bcrypt_lib.node --module_name=bcrypt_lib --module_path=C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt\lib\binding --napi_version=3 --node_abi_napi=napi )  else (node "" configure --fallback-to-build --module=C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt\lib\binding\bcrypt_lib.node --module_name=bcrypt_lib --module_path=C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt\lib\binding --napi_version=3 --node_abi_napi=napi ) 
-  gyp info it worked if it ends with ok
-  gyp info using node-gyp@3.6.2
-  gyp info using node@9.11.1 | win32 | x64
-  gyp ERR! configure error 
-  gyp ERR! stack Error: Can't find Python executable "python", you can set the PYTHON env variable.
-  gyp ERR! stack     at PythonFinder.failNoPython (C:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\lib\configure.js:483:19)
-  gyp ERR! stack     at PythonFinder.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\lib\configure.js:508:16)
-  gyp ERR! stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\graceful-fs\polyfills.js:284:29
-  gyp ERR! stack     at FSReqWrap.oncomplete (fs.js:170:21)
-  gyp ERR! System Windows_NT 10.0.16299
-  gyp ERR! command "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js" "configure" "--fallback-to-build" "--module=C:\\Users\\mikeh\\Desktop\\CodingBootcamp\\project3\\node_modules\\bcrypt\\lib\\binding\\bcrypt_lib.node" "--module_name=bcrypt_lib" "--module_path=C:\\Users\\mikeh\\Desktop\\CodingBootcamp\\project3\\node_modules\\bcrypt\\lib\\binding" "--napi_version=3" "--node_abi_napi=napi"
-  gyp ERR! cwd C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt
-  gyp ERR! node -v v9.11.1
-  gyp ERR! node-gyp -v v3.6.2
-  gyp ERR! not ok 
-  node-pre-gyp ERR! build error 
-  node-pre-gyp ERR! stack Error: Failed to execute 'node-gyp.cmd configure --fallback-to-build --module=C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt\lib\binding\bcrypt_lib.node --module_name=bcrypt_lib --module_path=C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt\lib\binding --napi_version=3 --node_abi_napi=napi' (1)
-  node-pre-gyp ERR! stack     at ChildProcess.<anonymous> (C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\node-pre-gyp\lib\util\compile.js:83:29)
-  node-pre-gyp ERR! stack     at ChildProcess.emit (events.js:180:13)
-  node-pre-gyp ERR! stack     at maybeClose (internal/child_process.js:936:16)
-  node-pre-gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
-  node-pre-gyp ERR! System Windows_NT 10.0.16299
-  node-pre-gyp ERR! command "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\mikeh\\Desktop\\CodingBootcamp\\project3\\node_modules\\node-pre-gyp\\bin\\node-pre-gyp" "install" "--fallback-to-build"
-  node-pre-gyp ERR! cwd C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt
-  node-pre-gyp ERR! node -v v9.11.1
-  node-pre-gyp ERR! node-pre-gyp -v v0.9.0
-  node-pre-gyp ERR! not ok 
-  Failed to execute 'node-gyp.cmd configure --fallback-to-build --module=C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt\lib\binding\bcrypt_lib.node --module_name=bcrypt_lib --module_path=C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt\lib\binding --napi_version=3 --node_abi_napi=napi' (1)
       at ProcessTermError.MessageError (C:\Users\mikeh\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
       at new ProcessTermError (C:\Users\mikeh\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:226:113)
       at ChildProcess.<anonymous> (C:\Users\mikeh\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:30281:17)

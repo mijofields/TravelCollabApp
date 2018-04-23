@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const Event = new Schema({
+const Trip = new Schema({
 
     destination: {
         type: String,
@@ -21,5 +21,5 @@ const Event = new Schema({
 
 //export to Controller
 
-const Events = mongoose.model('Event', UserSchema);
-module.exports = Events;
+const Trip = mongoose.model('Trip', UserSchema);
+module.exports = Trip;
