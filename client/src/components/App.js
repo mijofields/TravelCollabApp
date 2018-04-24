@@ -1,0 +1,128 @@
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Home from '../components/Home';
+import Register from '../components/register';
+import ItineraryList from '../components/Itinerary';
+import SplitExp from '../components/splitExp';
+import CurrConverter from '../components/currConverter';
+import Chat from '../components/chat';
+import Signin from '../components/login';
+import Friends from '../components/Friends/Friends';
+import NavLogo from '../images/navlogo.png';
+import Auth from '../authService';
+import '../css/App.css';
+import AddEvent from '../components/AddEvent';
+import Cal from '../components/Calendar';
+// import { Calendar } from 'googleapis/build/src/apis/calendar/v3';
+
+
+export default class App extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      isAuthenticated: false,
+      friendsClick: false
+    }
+
+    this.auth = new Auth();
+  }
+
+  signinClick = () => {
+    this.setState({ click: true })
+    return <ItineraryList />    
+  }
+
+  iteneraryClick = () => this.setState({ click: true });
+  splitExpenseClick = () => this.setState({ click: true });
+  calendarClick = () => this.setState({ click: true });
+  chatClick = () => this.setState({ click: true });
+
+  findFriendClick = (event) => {
+    event.preventDefault();
+    this.setState({ friendsClick: true 
+    });
+  }
+  
+
+  
+
+  render() {
+    console.log('CLICK FRIEND COMPONENT: ', this.state.friendsClick)
+
+     const isAuth = !this.state.isAuthenticated ?
+        <header className="mdl-layout__header">
+          <div className="mdl-layout__header-row">
+            {/* Title */}
+            <img className="navlogo" src={NavLogo} alt="logo"/>
+            {/* Add spacer, to align navigation to the right */}
+            <div className="mdl-layout-spacer"></div>
+            {/* Navigation. We hide it in small screens */}
+            <nav className="mdl-navigation mdl-layout--large-screen-only">
+              <a className="mdl-navigation__link" 
+                onClick={this.signinClick} >
+                Login</a>
+            </nav>
+          </div>
+      </header> : <header className="mdl-layout__header">
+          <div className="mdl-layout__header-row">
+            {/* Title */}
+            <img className="navlogo" src={NavLogo} alt="logo"/>
+            {/* Add spacer, to align navigation to the right */}
+            <div className="mdl-layout-spacer"></div>
+            {/* Navigation. We hide it in small screens */}
+            <nav className="mdl-navigation mdl-layout--large-screen-only">
+              <a className="mdl-navigation__link" href="/signout">Logout</a>
+            </nav>
+          </div>
+        </header>
+
+    return (
+
+    <Router>
+      <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        {isAuth}
+
+        <div className="mdl-layout__drawer">
+          <span className="mdl-layout-title">Tools</span>
+          <nav className="mdl-navigation">
+
+            <a className="mdl-navigation__link" 
+                onClick={this.iteneraryClick}>
+                Itinerary</a>
+            <a className="mdl-navigation__link" 
+                onClick={this.splitExpenseClick}>
+                Split Expenses</a>
+            <a className="mdl-navigation__link" 
+                onClick={this.calendarClick}> 
+                Calendar </a>
+            <a className="mdl-navigation__link" 
+                onClick={this.chatClick}>
+                Chat</a>
+            <a className="mdl-navigation__link" 
+                onClick={this.findFriendClick}>
+                Find Friends</a>
+          </nav>
+        </div>
+        <main className="mdl-layout__content main-layout">
+          <div className="page-content">
+          {/* Your content goes here */}
+            <Route exact path="/" component={Home} />
+            <Route exact path="/signin" component={Signin} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/itinerary" component={ItineraryList} />
+            <Route exact path="/splitExp" component={SplitExp} />
+            <Route exact path="/currConverter" component={CurrConverter} />
+            <Route exact path="/chat" component={Chat} />
+            <Route exact path="/event" component={AddEvent} />
+            <Route exact path="/calendar" component={Cal} />
+            <Route exact path="/friends" component={Friends} />
+            
+            
+          </div>
+        </main>
+	  </div>
+  </Router>
+    )
+  }
+}

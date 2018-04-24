@@ -1,10 +1,6 @@
-#root {
-    background-image: url("./images/background.png");
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    height: 100%;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: black;
 }

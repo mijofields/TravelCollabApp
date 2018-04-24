@@ -21,7 +21,7 @@ class Signin extends Component {
           event.preventDefault();
 
           axios({
-              url: "/api/user/signin",
+              url: "/user/signin",
               method: "POST",
               data: this.state
           })
@@ -52,14 +52,13 @@ class Signin extends Component {
         const { isAuthenticated } = this.state;
 
             if (isAuthenticated) {
-                // <ChildComponent {...this.props, update: this.update} />
                 return <Chat username={this.state.username} />;
                 }               
                  
         return (
             <div className="text-center">
               <h1 className="h3 mb-3 font-weight-normal">Login</h1>
-
+              
                   <form className="form-signin" 
                         onSubmit={this.handleSubmit}>
 

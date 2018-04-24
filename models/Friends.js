@@ -15,9 +15,4 @@ const FriendSchema = new Schema({
     }
 });
 
-// _headLineId:{ }
-
-//export to Controller
-var Friend = mongoose.model('Friend', FriendSchema);
-
-module.exports = Friend;
+module.exports = mongoose.model('Friend', FriendSchema);

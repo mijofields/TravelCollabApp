@@ -5,3 +5,5 @@ client_secret.json
 client_id.json
 credentials.json
 yarn.lock
+yarn-error.log
+.DS_Store

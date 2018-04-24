@@ -6,4 +6,5 @@ export const CardForm = ({ children, props }) => (
         
         { children }
     </div>
-)
+);
+

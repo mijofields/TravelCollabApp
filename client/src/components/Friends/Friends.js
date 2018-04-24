@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import API from "../../utils/API";
-import AddFriend from './AddFriend.js';
-import { CardForm, InputField } from '../Forms';
-import { Button } from '../Button/Button';
+import AddFriend from './AddFriend';
+import {Button}  from '../Button';
+import siteLogo from '../../images/logo.png';
 
-class Friend extends Component {
+
+class Friends extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -37,11 +37,11 @@ class Friend extends Component {
     //   };
     
 
-    findFriendClick = (event) => {
+    handleSubmit = (event) => {
         event.preventDefault();
         const username = this.state.username;
         axios({
-            url: "/api/friends/" + username,
+            url: "/friends/" + username,
             method: "POST",
             data: this.state            
         })
@@ -62,7 +62,7 @@ class Friend extends Component {
 
     isFriend = () => { 
         axios({
-            url: "/api/friends/createFriend",
+            url: "/friends/createFriend",
             method: "POST",
             data: this.state
         })
@@ -92,7 +92,7 @@ class Friend extends Component {
         return (         
         <div>  
             {results ?          
-                (<AddFriend> 
+                (<AddFriend>
                     <p className="card-text name-result">Name:{name}</p>
                         <p className="card-text username-result">Username:{username}</p>
                             <p className="card-text email-result">Email:{email}</p>
@@ -100,32 +100,49 @@ class Friend extends Component {
                                     onClick={this.isFriend} 
                                     >Add Friend
                                 </button>
+                                
                 </AddFriend>
                 ) : (
-                    <CardForm title="Is This Your Friend?">
-                     <InputField 
-                    type="text" 
-                    placeholder="username"  
-                    className="form-control" 
-                    name="username"
-                    value={this.state.value} 
-                    onChange={this.handleChange} 
-                />
-                <Button
-                    onClick={this.findFriendClick} 
-                    type="submit" 
-                    value="Find Friend"
-                />
-                </CardForm>
-
+                    <div className="mdl-grid login-card">
+                        <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+                        <div className="mdl-card__media login-card-img">
+                            <img src={siteLogo} alt="site-logo" border="0" />
+                        </div>
+                        <div className="mdl-card__supporting-text">
+                            <form>
+                            <div className="mdl-textfield mdl-js-textfield">
+                                <input className="mdl-textfield__input"
+                                    type="text"
+                                    name="username"
+                                    onChange={this.handleChange}/>
+                                    <label className="mdl-textfield__label" htmlFor="username">Username</label>
+                            </div>
+                            
+                            <div className="mdl-card__actions">
+                            <Button                 
+                                onClick={this.handleSubmit}>
+                                Find Friend 
+                            </Button>
+                            </div>
+                            
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                
                 )}
-        </div>
+                </div>
+
+
+
+
+                                   
 
         );
     }
 }
 
-export default Friend;
+export default Friends;
 
 
 

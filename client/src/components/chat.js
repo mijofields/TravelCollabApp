@@ -1,10 +1,9 @@
-import React, { Component } from "react";
-// import axios from "axios";
+import React from 'react';
 import io from "socket.io-client";
-// import API from '../../utils/API';
-const socket = io.connect("http://localhost:8080");
+import '../css/chat.css';
+const socket = io.connect("http://localhost:5000");
 
-class Chat extends Component {
+export default class ChatComp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +19,6 @@ class Chat extends Component {
         this.setState({ messages: [data, ...this.state.messages] });
       }); // Receiving, NO Sending  
   };
-  
 
   handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
@@ -36,26 +34,27 @@ class Chat extends Component {
 
   render() {
 
-    console.log(this.state);
-        // const username = this.state.username;
-        // const message = this.state.message;
-       
+    console.log(this.state);    
 
     const messages = this.state.messages.map((message, index) => {
       console.log("Message: ", message);
+
       return (
+        <ul>
         <li key={index}>
           <b>{message.username}: </b>
           <p>{message.message}</p>
         </li>
+        </ul>
       );
     });
 
     return (
-      <div
-        className="chat-container"
-        style={{ height: 800, width: "90%", backgroundColor: "yellow" }}
-      >
+      <div className="mdl-grid mdl-card chat-comp"
+          style={{ height: 800, width: "90%" }}>
+        <div className="mdl-cell mdl-cell--12-col">
+          <h2>This will be the chat component</h2>
+{/* ===========bootstrap stuff below... need to update ======== */}
         <div className="row">
           <div className="col-10">
             <div className="card">
@@ -89,9 +88,16 @@ class Chat extends Component {
             </div>
           </div>
         </div>
+  
+
+{/* =================BOOTSTRAP STUFF ======= */}
+
+
+
+
+
+        </div>
       </div>
-    );
+    )
   }
 }
-
-export default Chat;

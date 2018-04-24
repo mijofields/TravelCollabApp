@@ -7,9 +7,10 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
-const PORT = process.env.PORT || 8080;
-const routes = require("./routes");
+const routes = require("./routes/index");
 const db = "mongodb://localhost/users";
+const PORT = process.env.PORT || 5000;
+
 
 app.use(cookieParser()); // configure Cookie Parser
 //Setting up connection to mongoose
@@ -36,7 +37,7 @@ app.use(bodyParser.json());
 // Serve up static assets
 app.use(express.static("client/build"));
 // Add routes, both API and view
-app.use(routes);
+app.use('/', routes);
 // Set mongoose to leverage built in JavaScript ES6 Promises
 
 // Set socket.io listeners.
