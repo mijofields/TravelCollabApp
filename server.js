@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server); //Binding socket
+const cors = require('cors');
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const logger = require("morgan");
@@ -30,6 +31,13 @@ mongoose.Promise = Promise;
 mongoose.connect(db);
 // Use morgan logger for logging requests
 app.use(logger("dev"));
+
+//setting up CORS
+const corsOptions = {
+  origin: 'http://localhost:3000'
+};
+
+app.use(cors(corsOptions));
 
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: false }));

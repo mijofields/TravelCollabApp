@@ -47,32 +47,23 @@ class NavbarComponent extends Component {
     console.log("Nav State Authenticated? : ", this.state.isAuthenticated)
 
     return (
+
+       
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+                    
+                    <img class="center" src="images/long.png" />
+        </div>
+                    
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+                        <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Itinerary</a>
+                        <a href="#fixed-tab-2" class="mdl-layout__tab">Expenses</a>
+                        <a href="#fixed-tab-3" class="mdl-layout__tab">Chat</a>
+                    </div>
+  </header>
+        
       
-        <div className="mdl-layout__drawer">
-                <span className="mdl-layout-title">Tools</span>
-                <nav className="mdl-navigation">
-                    <a className="mdl-navigation__link" href="">Itinerary</a>
-                    <br/>
-                    <a className="mdl-navigation__link" onClick={this.appendFriend} >Find Friend</a>
-                    <br />
-                    <a className="mdl-navigation__link" href="">All Friends</a>
-                    <br/>
-                    <a className="mdl-navigation__link" onClick={this.appendChat} > Chat</a>
-                    <br/>
-                        {isAuthenticated ? 
-                            (
-                                <a className="mdl-navigation__link" 
-                                    href="/" 
-                                    id="sign-out"
-                                    onClick={this.props.signOut}>
-                                    Sign Out</a>                                        
-                            ) : (
-                                <a className="mdl-navigation__link" 
-                                    onClick={this.appendSignin}>
-                                    Signin</a>                   
-                            )}  
-                </nav>
-                </div>
+        
     );
   }
 }
