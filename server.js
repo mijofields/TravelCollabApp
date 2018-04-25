@@ -1,17 +1,4 @@
-<<<<<<< HEAD
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const logger = require('morgan');
-const bcrypt = require('bcrypt');
-const path = require('path');
-const routes = require('./routes/user-route/userRoute');
-const paymentApi = require('./payment');
-const db = 'mongodb://localhost/users';
-=======
 const express = require("express");
->>>>>>> ebb01fcf1580d3e9fa26ce89de028cf9432eb703
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server); //Binding socket
