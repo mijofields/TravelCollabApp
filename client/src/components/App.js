@@ -104,7 +104,9 @@ export default class App extends React.Component {
             <Route exact path="/splitExp" component={SplitExp} />
             <Route exact path="/currConverter" component={CurrConverter} />
             <Route exact path="/chat" component={Chat} />
-            <Route exact path="/event" component={AddEvent} />
+            <Route exact path="/event" render={() => {
+								  <addEvent {...props} user={this.state.user}/>
+								  }} />
             <Route exact path="/calendar" component={Cal} />
             <Route exact path="/friends" component={Friends} />
             

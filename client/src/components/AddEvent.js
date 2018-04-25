@@ -8,7 +8,8 @@ class AddEvent extends Component {
   state = {
     startdate: new Date(),
     enddate: new Date(),
-    destination: ""
+    destination: "",
+    username: this.state.user
   }
 
   onChangeStart = startdate => this.setState({ startdate })
@@ -29,21 +30,22 @@ class AddEvent extends Component {
       alert(`Please enter the destination of your upcoming trip`)
       return
     };
-    alert(`Start Date: ${this.state.startdate}\nEnd Date: ${this.state.enddate}\nDestination: ${this.state.destination}`);
+    alert(`Start Date: ${this.state.startdate}\nEnd Date: ${this.state.enddate}\nDestination: ${this.state.destination}\n User: ${this.state.username}`);
     
     axios.post('/event', {
         destination: this.state.destination,
         start: this.state.startdate,
-        end: this.state.enddate    
+        end: this.state.enddate,
+        user: this.state.user    
     })
     .then(function (response) {
       console.log(response);
-      this.setState({ startdate: new Date(), enddate: new Date(), desintation: ""  });
+      
     })
     .catch(function (error) {
       console.log(error);
     });
-    
+    this.setState({ startdate: new Date(), enddate: new Date(), desintation: ""  });
   };
 
   render() {

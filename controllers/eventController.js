@@ -21,20 +21,11 @@ newTrip: function (req, res) {
             { upsert: true }, function (error, comment) {
       
               if (error) throw error;
-              res.redirect('/calendar');
-      
+              res.redirect('/calendar');    
       
       
             });
 
-
-
-
-
-            
-                // .findOneAndUpdate({ "_id":"5ae0af24c74ec4553c243922"}, {$push: { "trips": req.body}})
-                // .then(dbModel => res.json(dbModel))
-                // .catch(err => res.status(422).json(err));
         }
 
     }

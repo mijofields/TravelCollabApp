@@ -11,7 +11,4 @@ router.route("/event")
 
 
 
-
-
-
 module.exports = router;
