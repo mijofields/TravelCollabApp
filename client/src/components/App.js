@@ -43,9 +43,6 @@ export default class App extends React.Component {
     this.setState({ friendsClick: true 
     });
   }
-  
-
-  
 
   render() {
     console.log('CLICK FRIEND COMPONENT: ', this.state.friendsClick)
@@ -85,10 +82,10 @@ export default class App extends React.Component {
         
           <header className="mdl-layout__header">
             <div className="mdl-layout__header-row">
-              <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-                <a href="/itinerary" class="mdl-layout__tab is-active" onClick={this.iteneraryClick}>Itinerary</a>
-                <a href="/splitExp" class="mdl-layout__tab" onClick={this.splitExpenseClick}>Expenses</a>
-                <a href="/chat" class="mdl-layout__tab" onClick={this.chatClick}>Chat</a>
+              <div className="mdl-layout__tab-bar mdl-js-ripple-effect">
+                <a href="/itinerary" className="mdl-layout__tab is-active" onClick={this.iteneraryClick}>Itinerary</a>
+                <a href="/splitExp" className="mdl-layout__tab" onClick={this.splitExpenseClick}>Expenses</a>
+                <a href="/chat" className="mdl-layout__tab" onClick={this.chatClick}>Chat</a>
               </div>
           </div>
         </header>

@@ -1,22 +1,15 @@
 const db = require('../models');
 
 module.exports = {
-    // Find All Friends
-//   findAll: function(req, res) {
-//       console.log("DB Find All Friends running");
-//         db.Friends.find(req.query)
-//         .select("-password")
-//         .then(friend => res.json(friend))
-//         .catch(err => res.status(422).json(err));
-//   },
-  // GET ALL FRIENDS
+
+  // Get All Friends ==>> NOT TESTED YET
   allFriends: function(req, res){
     console.log("DB ALL FRIEND IS RUNNING")
-    db.Friends.find(req.query)
+    db.User.find(req.query.friends)
     .then(friend => res.json(friend))
     .catch(err => res.status(422).json(err));
   },
-  // Find by Name
+  // Find by Name ==> Tested, Working
   findByName: function(req, res){
     console.log("DB running Find Friend By Name")
     db.User.findOne({username: req.body.username})
@@ -25,12 +18,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-//   findById: function(req, res) {
-//     db.Friends.find(req.params.id)
-//       .then(friend => res.json(friend))
-//       .catch(err => res.status(422).json(err));
-//   },
-  // Add Friend
+  // Add Friend ==> Tested, Working
   create: function(req, res) {
     console.log("DB CREATE FRIEND: ", req.body)
     db.User.findOneAndUpdate({username: req.body.username}, {friends: req.body.username})
@@ -39,9 +27,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-  // Remove Friend by ID
+  // Remove Friend by ID ==> NOT TESTED YET
   removeFriend: function(req, res) {
-    db.Friends.findById({ _id: req.params.id })
+    db.User.findOne({ friends: req.body.friends })
         .then(friend => friend.remove())
         .then(friend => res.json(friend))
         .catch(err => res.status(422).json(err));

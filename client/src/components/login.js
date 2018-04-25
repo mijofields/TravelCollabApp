@@ -2,8 +2,8 @@ import React from 'react';
 import siteLogo from '../images/logo.png';
 import Auth from '../authService';
 import {Button} from './Button';
+import Register from './Signup';
 import '../css/login.css'
-
 
 class Login extends React.Component {
   constructor(props) {
@@ -12,7 +12,8 @@ class Login extends React.Component {
     this.state = {
       username: '',
       password: '',
-      isAuthenticated: false
+      isAuthenticated: false,
+      registerClick: false
     }
     this.auth = new Auth();
   } 
@@ -36,11 +37,24 @@ class Login extends React.Component {
 
   handleLoginSubmit = (username, isAuthenticated) => this.setState({ username, isAuthenticated });
 
+  handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
+
+  goToSignup = () => {
+    this.setState({
+      registerClick: true
+    })
+  }  
+
   render() {
 
     console.log("LOGIN STATE:  ", this.state);
+
+    if (this.state.registerClick === true){
+      return <Register />;
+    }
      
-    return (
+    return (    
+       
       <div className="mdl-grid login-card">
         <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
           <div className="mdl-card__media login-card-img">
@@ -66,14 +80,18 @@ class Login extends React.Component {
               <Button                 
                 onClick={this.handleSubmit}>
                 Login </Button>
-              <Button type="submit"> Register </Button>
-            </div>
-            
+              <Button type="submit" id="signup"
+                onClick={this.goToSignup}> Register </Button>
+            </div>            
             </form>
           </div>
         </div>
       </div>
-    )
+      
+    
+
+
+    );
   }
 }
 

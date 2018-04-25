@@ -27,7 +27,23 @@ const UserSchema = new Schema({
         },
         type: Schema.Types.ObjectId,
         ref: "Friend",
-        }]
+    }],
+    events: [{
+        friends: [{
+            username: {
+                type: String
+            }
+        }],
+        title: {
+            type: String
+        },
+        location: {
+            type: String
+        },
+        type: Schema.Types.ObjectId,
+        ref: "Event",
+    }]
+
 });
 
 //export to Controller
