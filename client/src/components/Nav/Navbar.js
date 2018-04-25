@@ -59,6 +59,7 @@ class NavbarComponent extends Component {
                         <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Itinerary</a>
                         <a href="#fixed-tab-2" class="mdl-layout__tab">Expenses</a>
                         <a href="#fixed-tab-3" class="mdl-layout__tab">Chat</a>
+                        <a href="#fixed-tab-4" class="mdl-layout__tab">Add a Trip</a>
                     </div>
   </header>
         

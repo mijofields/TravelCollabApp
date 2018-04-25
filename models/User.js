@@ -18,6 +18,10 @@ const UserSchema = new Schema({
     email: {
         type: String,
         required: true
+    },
+    trips: {
+        type: Array,
+        required: true
     }
 
     // note: {

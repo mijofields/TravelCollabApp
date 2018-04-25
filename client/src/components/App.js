@@ -37,6 +37,7 @@ export default class App extends React.Component {
   splitExpenseClick = () => this.setState({ click: true });
   calendarClick = () => this.setState({ click: true });
   chatClick = () => this.setState({ click: true });
+  tripClick = () => this.setState({ click: true });
 
   findFriendClick = (event) => {
     event.preventDefault();
@@ -89,6 +90,7 @@ export default class App extends React.Component {
                 <a href="/itinerary" class="mdl-layout__tab is-active" onClick={this.iteneraryClick}>Itinerary</a>
                 <a href="/splitExp" class="mdl-layout__tab" onClick={this.splitExpenseClick}>Expenses</a>
                 <a href="/chat" class="mdl-layout__tab" onClick={this.chatClick}>Chat</a>
+                <a href="/event" class="mdl-layout__tab" onClick={this.tripClick}>New Trip</a>
               </div>
           </div>
         </header>
