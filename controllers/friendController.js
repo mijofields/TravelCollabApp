@@ -19,7 +19,7 @@ module.exports = {
   // Find by Name
   findByName: function(req, res){
     console.log("DB running Find Friend By Name")
-    db.User.findOne({username: req.params.username})
+    db.User.findOne({username: req.body.username})
       .select("-password")
       .then(friend => res.json(friend))
       .catch(err => res.status(422).json(err));
@@ -31,9 +31,9 @@ module.exports = {
 //       .catch(err => res.status(422).json(err));
 //   },
   // Add Friend
-  createFriend: function(req, res) {
-    console.log("DB ADD FRIEND IS RUNNING")
-    db.Friends.create({username: req.params.username})
+  create: function(req, res) {
+    console.log("DB CREATE FRIEND: ", req.body)
+    db.User.findOneAndUpdate({username: req.body.username}, {friends: req.body.username})
       .select("-password")
       .then(friend => res.json(friend))
       .catch(err => res.status(422).json(err));

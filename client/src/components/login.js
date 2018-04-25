@@ -14,8 +14,6 @@ class Login extends React.Component {
       password: '',
       isAuthenticated: false
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.auth = new Auth();
   } 
 
@@ -26,14 +24,14 @@ class Login extends React.Component {
     })
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
-    const { username, password } = this.state;
-    this.props.login(username, password);
-    this.setState({ 
-      isAuthenticated: true,
-      username
-    })
+      const { username, password } = this.state;
+      this.props.login(username, password);
+      this.setState({ 
+        isAuthenticated: true,
+        username
+      })
   }
 
   handleLoginSubmit = (username, isAuthenticated) => this.setState({ username, isAuthenticated });
@@ -68,8 +66,9 @@ class Login extends React.Component {
               <Button                 
                 onClick={this.handleSubmit}>
                 Login </Button>
+              <Button type="submit"> Register </Button>
             </div>
-            <Button type="submit"> Register </Button>
+            
             </form>
           </div>
         </div>

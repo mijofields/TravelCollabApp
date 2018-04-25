@@ -12,36 +12,17 @@ class Friends extends Component {
             username: '',
             name: '',
             email: '',
-            results: false,
-            friends: [],
-            saveFriends: false
+            results: false
         }
     }     
 
     handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
-    // handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     const username = this.state.username;
-    //     API.getUserByUsername(username)
-    //     .then ((response) => {
-    //         this.setState({
-    //         username: response.data.username,
-    //         name: response.data.name,
-    //         email: response.data.email,
-    //         results: true //Associates results to render the appropriate forms on browser
-    //         })
-    //         console.log("Response: ", response.data); 
-    //     })
-    //     .catch(err => console.log("GET FRIEND BY NAME ERROR: ", err))
-    //   };
-    
-
     handleSubmit = (event) => {
         event.preventDefault();
-        const username = this.state.username;
+
         axios({
-            url: "/friends/" + username,
+            url: "/friends/:username",
             method: "POST",
             data: this.state            
         })
@@ -62,18 +43,17 @@ class Friends extends Component {
 
     isFriend = () => { 
         axios({
-            url: "/friends/createFriend",
+            url: "/friends/" + this.state.username,
             method: "POST",
             data: this.state
         })
         .then((response) => {
-            this.state.friends.push(this.state.username);
+            // this.state.friends.push(this.state.username);
             this.setState({ 
-                saveFriends: true,
+                results: true,
                 username: this.state.username,
                 name: this.state.name,
-                email: this.state.email,
-                friends: this.state.friends                
+                email: this.state.email               
              });            
             
             console.log("ADD FRIEND STATE:", this.state)

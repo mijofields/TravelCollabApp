@@ -32,6 +32,7 @@ export default class ChatComp extends React.Component {
     this.setState({ message: "" });
   };
 
+  
   render() {
 
     console.log(this.state);    
@@ -40,64 +41,60 @@ export default class ChatComp extends React.Component {
       console.log("Message: ", message);
 
       return (
-        <ul>
-        <li key={index}>
-          <b>{message.username}: </b>
-          <p>{message.message}</p>
-        </li>
-        </ul>
+        
+        <ul className="demo-list-three mdl-list chatcontent">
+              <li className="mdl-list__item mdl-list__item--three-line" key={index} >
+                <span className="mdl-list__item-primary-content">
+                  <i className="material-icons mdl-list__item-avatar">person</i>
+                    <span>{message.username}</span>
+                      <span className="mdl-list__item-text-body">
+                        {message.message}
+                      </span>
+                    </span>
+            </li>                   
+          </ul>
       );
     });
 
     return (
-      <div className="mdl-grid mdl-card chat-comp"
-          style={{ height: 800, width: "90%" }}>
-        <div className="mdl-cell mdl-cell--12-col">
-          <h2>This will be the chat component</h2>
-{/* ===========bootstrap stuff below... need to update ======== */}
-        <div className="row">
-          <div className="col-10">
-            <div className="card">
-              <div className="card-body">
-                <div className="card-title">Group Chat</div>
-                
-                <hr />
-                {/* messages class to loop through all the messages which we will have and 
-                        display author’s name and his message */}
-                <div className="messages">{messages}</div>
-              </div>
-              <div className="card-footer">
-                <input
-                  type="text"
-                  placeholder="Enter a message"
-                  name="message"
-                  value={this.state.message}
-                  className="form-control"
-                  onChange={this.handleChange}
-                />
-                <br />
-
-                <button
-                  onClick={this.submitMessage}
-                  className="btn btn-primary form-control"
+  <section className="mdl-layout__tab-panel is-active" id="fixed-tab-3">
+      <div className="page-content">
+        <main className="demo-main mdl-layout__content centercontent">
+          <div className="demo-container mdl-grid">
+            <div className="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+            <div className="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+              {/* <!--title--> */}
+              <h1 className="center"><i className="large material-icons">Group Chat</i></h1>
+          {/* <!-- comments--> */}
+              {messages}
+          {/* <!-- Floating Multiline Textfield --> */}
+            <form>
+              <div className="mdl-textfield mdl-js-textfield chattype">
+                <textarea className="mdl-textfield__input" 
+                    rows= "3" 
+                    id="sample5" 
+                    type="text"
+                    placeholder="Enter a message"
+                    name="message"
+                    value={this.state.message}
+                    onChange={this.handleChange}
                 >
-                  Send
-                </button>
-
+                <br />
+                </textarea>
+                  <label className="mdl-textfield__label" for="sample5">Text lines...</label>
+                    <button className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" 
+                      onClick={this.submitMessage}
+                    >
+                    <i className="material-icons">send</i>
+                    </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
-  
-
-{/* =================BOOTSTRAP STUFF ======= */}
-
-
-
-
-
-        </div>
-      </div>
-    )
+      </main>
+    </div>
+    </section>
+    
+    );
   }
-}
+};

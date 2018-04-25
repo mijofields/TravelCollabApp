@@ -2,9 +2,7 @@ const db = require('../models');
 const bcrypt = require("bcryptjs"); // encryption
 const jwt = require('jsonwebtoken');
 
-
-
-// Defining methods for the booksController
+// Defining methods for the User Controller
 module.exports = {
     // CRUD
     findAll: function (req, res) {

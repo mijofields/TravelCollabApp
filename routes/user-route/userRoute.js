@@ -40,22 +40,35 @@ router
 
 //Find Friend By Name
 router.route("/friends/:username")
-  .post(friendController.findByName);
+  .post(friendController.findByName)
+  .put(friendController.create);
 
 //Create Friend ==> Unsuccesful yet
-  router.route("/friends/:username/createFriend")
-  .put(friendController.createFriend);
+  // router.route("/friends/:username/createFriend")
+  // .get(friendController.create);
+
+
+// Matches with "/api/articles/:id"
+// router
+// .route("/:id")
+// .get(articleController.findById)
+// .put(articleController.update)
+// .delete(articleController.remove);
+
+
 
   //Get All Friends ==> Not tested yet
-router.route("/friends/allfriends")
-  .get(friendController.allFriends);
+// router.route("/friends/allfriends")
+  // .get(friendController.allFriends);
 
-router.route("/friends/createFriend")
-  .get(friendController.createFriend)
-  .post(friendController.createFriend)
-  .put(friendController.createFriend);
+// router.route("/friends/createFriend")
+//   .get(friendController.createFriend)
+//   .post(friendController.createFriend)
+//   .put(friendController.createFriend);
 //Remove Friend
-router.route("/friends/deleteFriend")
-  .delete(friendController.removeFriend)
+// router.route("/friends/deleteFriend")
+  // .delete(friendController.removeFriend)
 
 module.exports = router;
+
+

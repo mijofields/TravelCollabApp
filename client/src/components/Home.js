@@ -3,8 +3,6 @@ import Auth from '../authService';
 import Login from './login';
 import Itinerary from './Itinerary';
 
-
-
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -13,13 +11,10 @@ export default class Home extends React.Component {
       isAuthenticated: props.false
     }
 
-    // this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.auth = new Auth();
   }
   componentWillMount() {
-    if(this.auth.loggedIn()) {
-      this.props.history.replace('/itinerary');
-    }
+    this.auth.loggedIn();
   }
 
   handleLoginSubmit = (username, password) => {
@@ -44,6 +39,7 @@ export default class Home extends React.Component {
       <div>
         <Login login={this.handleLoginSubmit}/>
       </div>
+      
     )
   }
 }

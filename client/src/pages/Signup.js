@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios"; // HTTP Library
-// import Signin from '../Signin/Signin';
-import './Signup.css';
+import '../css/Signup.css';
 
 class Signup extends Component {
     constructor(props) {
@@ -29,7 +28,7 @@ class Signup extends Component {
         console.log("Handle Submit: ", this.state);
 
         axios({
-            url: "/api/user/signup",
+            url: "/user/signup",
             method: "POST",
             data: this.state
         })

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
+
     name: {
         type: String,
         required: true
@@ -9,7 +10,8 @@ const UserSchema = new Schema({
     username: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+
     },
     password: {
         type: String,
@@ -18,12 +20,14 @@ const UserSchema = new Schema({
     email: {
         type: String,
         required: true
-    }
-
-    // note: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: "Note"
-    //   }
+    },
+    friends: [{
+        username: {
+            type: String
+        },
+        type: Schema.Types.ObjectId,
+        ref: "Friend",
+        }]
 });
 
 //export to Controller
