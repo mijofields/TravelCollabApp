@@ -8,7 +8,7 @@ import CurrConverter from '../components/currConverter';
 import Chat from '../components/chat';
 import Signin from '../components/login';
 import Friends from '../components/Friends/Friends';
-import NavLogo from '../images/navlogo.png';
+import NavLogo from '../images/long.png';
 import Auth from '../authService';
 import '../css/App.css';
 import AddEvent from '../components/AddEvent';
@@ -54,12 +54,12 @@ export default class App extends React.Component {
         <header className="mdl-layout__header">
           <div className="mdl-layout__header-row">
             {/* Title */}
-            <img className="navlogo" src={NavLogo} alt="logo"/>
+            <img className="center" src={NavLogo} alt="logo"/>
             {/* Add spacer, to align navigation to the right */}
-            <div className="mdl-layout-spacer"></div>
+            {/* <div className="mdl-layout-spacer"></div> */}
             {/* Navigation. We hide it in small screens */}
             <nav className="mdl-navigation mdl-layout--large-screen-only">
-              <a className="mdl-navigation__link" 
+             <a className="mdl-layout__tab" 
                 onClick={this.signinClick} >
                 Login</a>
             </nav>
@@ -69,10 +69,10 @@ export default class App extends React.Component {
             {/* Title */}
             <img className="navlogo" src={NavLogo} alt="logo"/>
             {/* Add spacer, to align navigation to the right */}
-            <div className="mdl-layout-spacer"></div>
+            {/* <div className="mdl-layout-spacer"></div> */}
             {/* Navigation. We hide it in small screens */}
             <nav className="mdl-navigation mdl-layout--large-screen-only">
-              <a className="mdl-navigation__link" href="/signout">Logout</a>
+             <a className="mdl-layout__tab" href="/signout">Logout</a>
             </nav>
           </div>
         </header>
@@ -80,30 +80,18 @@ export default class App extends React.Component {
     return (
 
     <Router>
-      <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
         {isAuth}
-
-        <div className="mdl-layout__drawer">
-          <span className="mdl-layout-title">Tools</span>
-          <nav className="mdl-navigation">
-
-            <a className="mdl-navigation__link" 
-                onClick={this.iteneraryClick}>
-                Itinerary</a>
-            <a className="mdl-navigation__link" 
-                onClick={this.splitExpenseClick}>
-                Split Expenses</a>
-            <a className="mdl-navigation__link" 
-                onClick={this.calendarClick}> 
-                Calendar </a>
-            <a className="mdl-navigation__link" 
-                onClick={this.chatClick}>
-                Chat</a>
-            <a className="mdl-navigation__link" 
-                onClick={this.findFriendClick}>
-                Find Friends</a>
-          </nav>
-        </div>
+        
+          <header className="mdl-layout__header">
+            <div className="mdl-layout__header-row">
+              <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+                <a href="/itinerary" class="mdl-layout__tab is-active" onClick={this.iteneraryClick}>Itinerary</a>
+                <a href="/splitExp" class="mdl-layout__tab" onClick={this.splitExpenseClick}>Expenses</a>
+                <a href="/chat" class="mdl-layout__tab" onClick={this.chatClick}>Chat</a>
+              </div>
+          </div>
+        </header>
         <main className="mdl-layout__content main-layout">
           <div className="page-content">
           {/* Your content goes here */}
