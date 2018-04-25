@@ -1,27 +1,18 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import './Signin.css';
-import siteLogo from '../../images/navlogo.png';
-//  const {google} = require('googleapis');
-
-//  const OAuth2Client = google.auth.OAuth2;
-//  const client = new OAuth2Client("73207592746-ca4ofr6v2ch7i9duka50i062pqseq1qb.apps.googleusercontent.com");
-
+import Chat from '../../components/Chat/Chat';
+// import API from '../../utils/API';
 
 class Signin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
+            username: "",
             password: "",
-            isAuthenticated: false,
-            googleSignin: false
+            isAuthenticated: props.false
         };    
       }
-
-      componentDidMount = () => {
-          sessionStorage.setItem("isAuthenticated", false);
-      };
     
       handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
@@ -30,85 +21,68 @@ class Signin extends Component {
           event.preventDefault();
 
           axios({
-              url: "/signin",
+              url: "/user/signin",
               method: "POST",
               data: this.state
           })
           .then((response) => {              
-              this.setState({ isAuthenticated: true });
-              sessionStorage.setItem("isAuthenticated", true); // logged in
-              window.location.href = "/" // force reload so localStorage can be updated
-              console.log("Response: ", response.data);
-              
+              this.setState({
+                    username: this.state.username,
+                    password: this.state.password, 
+                    isAuthenticated: true                  
+                });         
+              console.log("Response: ", response.data); 
+                           
           })
           .catch((err) => {
               this.setState({ isAuthenticated: false });
-              console.log("Error: ", err.response.data);
-              sessionStorage.setItem("isAuthenticated", false); // logged in
+              console.log("Error: ", err);
+            //   sessionStorage.setItem("isAuthenticated", false); // logged in
           });
-
-        //    onSignIn = (googleUser) => {
-        //         var profile = googleUser.getBasicProfile();
-        //         this.setState({ googleSignin: true })
-        //         console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        //         console.log('Name: ' + profile.getName());
-        //         console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        //     }
         
       };
-    
-    render() {
-        console.log("State: ", this.state);        
 
-        // if(this.state.isAuthenticated){
-        //     return <Redirect to = "/about"/>;
-        // } else{ 
-        //     // (<Redirect to = "/"/>)
-        //     console.log(" Not yet authenticated");
-            
-        // }
+      submitMessage = (username) => this.setState({ username });
+      //declared from chat component to get username from here and set state username in chat component
+
+     
+         
+    render() {
+        console.log(this.state)
+        const { isAuthenticated } = this.state;
+
+            if (isAuthenticated) {
+                return <Chat username={this.state.username} />;
+                }               
+                 
         return (
-            <div className="mdl-grid login-card">
-            <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
-              <div className="mdl-card__media login-card-img">
-                <img src={siteLogo} alt="site-logo" border="0" />
-              </div>      
+            <div className="text-center">
+              <h1 className="h3 mb-3 font-weight-normal">Login</h1>
               
-               <div className="mdl-card__supporting-text">
-               <form className="form-signin" 
-                    onSubmit={this.handleSubmit}>
-                    
-                  <div className="mdl-textfield mdl-js-textfield">
-                    <input className="mdl-textfield__input"
-                           type="text"
-                           name="username"
-                           required
-                           value={this.state.value}
-                           onChange={this.handleChange}/>
-                         <label className="mdl-textfield__label" htmlFor="username">Username</label>
-                 </div>
-                 <div className="mdl-textfield mdl-js-textfield">
-                   <input className="mdl-textfield__input"
-                          type="password"
-                          name="password"
-                          required
-                          value={this.state.value} 
-                          onChange={this.handleChange}/>
-                        <label className="mdl-textfield__label" htmlFor="password">Password</label>
-                </div>
-                            
-               
-               <div className="g-signin2 align-self-center" data-onsuccess="onSignIn"
-                  onClick={this.onSignIn}>            
-               </div>
-               <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
-                 
-               
-                 
-                </form>
-              </div>
-            </div>
-          </div>
+                  <form className="form-signin" 
+                        onSubmit={this.handleSubmit}>
+
+                    <label htmlFor="username" className="sr-only">username:</label>
+                        <input 
+                            type="text" 
+                            placeholder="username"  
+                            className="form-control" 
+                            name="username"
+                            value={this.state.value} 
+                            onChange={this.handleChange} />
+
+                    <label htmlFor="password" className="sr-only"> Password:</label>
+                        <input 
+                            type="password" 
+                            placeholder="Password"  
+                            className="form-control" 
+                            name="password"
+                            value={this.state.value} 
+                            onChange={this.handleChange} />               
+
+                  <input className="btn btn-lg btn-primary btn-block" type="submit" value="Login Now" />
+            </form>
+        </div>
         );
     }
 }

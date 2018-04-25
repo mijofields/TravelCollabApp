@@ -1,58 +1,29 @@
-import React, { Component } from "react";
-// import ReactDOM from 'react-dom';
-import axios from "axios";
+import React from 'react';
 import io from "socket.io-client";
-const socket = io.connect("http://localhost:8080");
-// import axios from 'axios';
+import '../css/chat.css';
+const socket = io.connect("http://localhost:5000");
 
-class Chat extends Component {
+export default class ChatComp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      username: props.username,
       message: "",
-      messages: [],
-      lockedUsername: false
+      messages: []
     };
   }
 
-  componentDidMount = () => {
-    axios({
-      url: "/user",
-      method: "GET"
-    })
-      .then(response => this.setState({ username: response.data.username }))
-      .catch(err => console.log("Ooops, there is an error"));
-
-    socket.on("chat message", data => {
-      this.setState({ messages: [data, ...this.state.messages] });
-    }); // Receiving, NO Sending
+  componentDidMount = () => { 
+    
+        socket.on("chat message", data => {
+        this.setState({ messages: [data, ...this.state.messages] });
+      }); // Receiving, NO Sending  
   };
 
-  // handleSubmit = event => {
-  //     event.preventDefault();
-  //     const value = event.target.value
+  handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
-  //     if (event.keyCode === 13 && value) {
-  //         const message = {
-  //             value,
-  //             username
-  //         }
-  //         this.setState({ messages: [message, ...this.state.messages] })
-  //         event.target.value = ''
-  //     }
-  // }
 
-  handleChange = event => {
-    const name = event.target.name;
-    const value = event.target.value;
-
-    this.setState({
-      [name]: value
-    });
-  };
-
-  handleSubmit = event => {
+  submitMessage = event => {
     event.preventDefault();
     const username = this.state.username;
     const message = this.state.message;
@@ -62,9 +33,12 @@ class Chat extends Component {
   };
 
   render() {
-    console.log(this.state);
+
+    console.log(this.state);    
+
     const messages = this.state.messages.map((message, index) => {
       console.log("Message: ", message);
+
       return (
         <ul>
         <li key={index}>
@@ -76,13 +50,17 @@ class Chat extends Component {
     });
 
     return (
-      <div className="chat-container"
-        style={{ height: 800, width: "90%", backgroundColor: "yellow" }}>
+      <div className="mdl-grid mdl-card chat-comp"
+          style={{ height: 800, width: "90%" }}>
+        <div className="mdl-cell mdl-cell--12-col">
+          <h2>This will be the chat component</h2>
+{/* ===========bootstrap stuff below... need to update ======== */}
         <div className="row">
           <div className="col-10">
             <div className="card">
               <div className="card-body">
                 <div className="card-title">Group Chat</div>
+                
                 <hr />
                 {/* messages class to loop through all the messages which we will have and 
                         display author’s name and his message */}
@@ -100,18 +78,26 @@ class Chat extends Component {
                 <br />
 
                 <button
-                  onClick={this.handleSubmit}
+                  onClick={this.submitMessage}
                   className="btn btn-primary form-control"
                 >
                   Send
                 </button>
+
               </div>
             </div>
           </div>
         </div>
+  
+
+{/* =================BOOTSTRAP STUFF ======= */}
+
+
+
+
+
+        </div>
       </div>
-    );
+    )
   }
 }
-
-export default Chat;
