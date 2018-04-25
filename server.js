@@ -43,33 +43,7 @@ connection
 mongoose.Promise = Promise;
 mongoose.connect(db);
 // Use morgan logger for logging requests
-<<<<<<< HEAD
-app.use(logger('dev'));
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin', 'X-Requested-With, Content-Type, Accept');
-  next();
-})
-
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
-
-
-const corsOptions = {
-  origin: 'http://localhost:3000'
-};
-
-app.use(cors(corsOptions));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.use(routes);
-app.use(paymentApi);
-=======
 app.use(logger("dev"));
->>>>>>> ebb01fcf1580d3e9fa26ce89de028cf9432eb703
 
 //setting up CORS
 const corsOptions = {
