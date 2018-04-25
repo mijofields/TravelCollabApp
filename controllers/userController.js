@@ -71,6 +71,7 @@ module.exports = {
                   const token = jwt.sign({ user: currUser }, 'my_secret_key') // Put 'my_secret_key' in an enviornment variable
 
                     res.json({
+                      user: user.username,
                       status: "Loggedin",
                       token: token
                     })

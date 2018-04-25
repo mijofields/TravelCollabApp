@@ -1,0 +1,8 @@
+.city:hover {
+  border: 3px solid rgba(241, 50, 43, 1.0);
+}
+
+
+.city img {
+  width: 100%;
+}

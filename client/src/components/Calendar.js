@@ -7,12 +7,12 @@ import moment from 'moment';
 {/* <div className={`container${props.fluid ? "-fluid" : ""}`}>
 {props.children}
 </div> */}
- 
+
 class Cal extends Component {
   state = {
     date: moment()
   }
- 
+
   render() {
     return (
         <div>
@@ -21,5 +21,5 @@ class Cal extends Component {
     );
   }
 }
- 
+
 export default Cal

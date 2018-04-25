@@ -31,6 +31,7 @@ export default class ItineraryList extends React.Component {
 
 componentWillMount() {
   console.log("Component is mounting")
+  console.log(this.props)
 }
 
   render() {
