@@ -1,18 +1,22 @@
 const router = require("express").Router();
 const userController = require("../../controllers/userController");
+const friendController = require("../../controllers/friendController")
 const auth = require('../../auth/jwt-auth');
 const path = require("path");
 // Requiring jwt for testing. Remove when ready to deploy
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');;
 
-
+//Sign Up
 router.route("/signup").post(userController.signup);
 
+<<<<<<< HEAD
 
   // stripe.charges.create(req.body, postStripeCharge(res));
   
 
 
+=======
+>>>>>>> ebb01fcf1580d3e9fa26ce89de028cf9432eb703
 // This route is for testing only. Remove when ready to deploy
 router.route('/protected').get(auth.ensureToken, (req, res) => {
   jwt.verify(req.token, 'my_secret_key', (err, data) => {
@@ -26,6 +30,7 @@ router.route('/protected').get(auth.ensureToken, (req, res) => {
     }
   })
 })
+//Sign In
 router
   .route("/signin")
   .get(userController.findById)
@@ -40,5 +45,25 @@ router
   .get(userController.findById)
   .put(userController.update)
   .delete(userController.remove);
+
+//Find Friend By Name
+router.route("/friends/:username")
+  .post(friendController.findByName);
+
+//Create Friend ==> Unsuccesful yet
+  router.route("/friends/:username/createFriend")
+  .put(friendController.createFriend);
+
+  //Get All Friends ==> Not tested yet
+router.route("/friends/allfriends")
+  .get(friendController.allFriends);
+
+router.route("/friends/createFriend")
+  .get(friendController.createFriend)
+  .post(friendController.createFriend)
+  .put(friendController.createFriend);
+//Remove Friend
+router.route("/friends/deleteFriend")
+  .delete(friendController.removeFriend)
 
 module.exports = router;

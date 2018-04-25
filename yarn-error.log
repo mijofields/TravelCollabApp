@@ -1,30 +1,33 @@
 Arguments: 
-  /usr/local/Cellar/node/9.8.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js build
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js dev
 
 PATH: 
-  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Dewi\bin;C:\Program Files\Java\jre1.8.0_161\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Microsoft VS Code;C:\Program Files\Intel\iCLS Client;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.6;C:\Program Files\MySQL\MySQL Server 5.7\bin;C:\Program Files\MongoDB\Server\3.6\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit;C:\Program Files\dotnet;C:\Users\Dewi\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\Dewi\AppData\Local\Programs\Python\Python36-32;C:\Users\Dewi\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\Dewi\AppData\Roaming\npm;C:\Users\Dewi\AppData\Local\Yarn\bin
 
 Yarn version: 
   1.5.1
 
 Node version: 
-  9.8.0
+  9.10.1
 
 Platform: 
-  darwin x64
+  win32 x64
 
 npm manifest: 
   {
     "name": "travelcollabapp",
     "version": "1.0.0",
     "description": "A travel app that attempts to solve multiple problems with traval applications.",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
-      "server": "node server.js",
-      "client": "node scripts/start-client.js",
+      "client": "cd client && yarn start",
+      "server": "nodemon server.js",
+      "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
       "start": "concurrently \"nodemon server.js\" \"npm run client\"",
       "build": "node scripts/build.js",
-      "test": "echo \"Error: no test specified\" && exit 1"
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "heroku-postbuild": "node scripts/build.js",
+      "heroku-prebuild": "cd client && yarn install"
     },
     "repository": {
       "type": "git",
@@ -37,8 +40,26 @@ npm manifest:
     },
     "homepage": "https://github.com/mijofields/TravelCollabApp#readme",
     "dependencies": {
+<<<<<<< HEAD
+      "bcryptjs": "^2.4.3",
       "body-parser": "^1.18.2",
-      "express": "^4.16.3"
+      "express": "^4.16.3",
+      "googleapis": "^28.1.0",
+      "mkdirp": "^0.5.1",
+      "mongoose": "^5.0.14",
+      "morgan": "^1.9.0",
+      "path": "^0.12.7",
+      "socket.io": "^2.1.0"
+=======
+      "bcrypt": "^2.0.0",
+      "bcryptjs": "^2.4.3",
+      "body-parser": "^1.18.2",
+      "express": "^4.16.3",
+      "jsonwebtoken": "^8.2.1",
+      "mongoose": "^5.0.14",
+      "morgan": "^1.9.0",
+      "react-scripts": "^1.1.4"
+>>>>>>> 7521d8a349dcab23e9f98dd1ac246f015e32f97e
     },
     "devDependencies": {
       "concurrently": "^3.5.1",
@@ -50,19 +71,34 @@ yarn manifest:
   No manifest
 
 Lockfile: 
-  No lockfile
+  
 
 Trace: 
-  Error: Command failed.
+  Error: C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt: Command failed.
   Exit code: 1
-  Command: sh
-  Arguments: -c node scripts/build.js
-  Directory: /Users/jacolbygreen/SMU/TravelCollabApp
+  Command: C:\WINDOWS\system32\cmd.exe
+  Arguments: /d /s /c concurrently --kill-others-on-fail "yarn server" "yarn client"
+  Directory: C:\Users\Dewi\Desktop\TravelCollabApp
   Output:
+  node-pre-gyp info it worked if it ends with ok
+  node-pre-gyp info using node-pre-gyp@0.9.0
+  node-pre-gyp info using node@9.11.1 | win32 | x64
+  node-pre-gyp info check checked for "C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt\lib\binding\bcrypt_lib.node" (not found)
+  node-pre-gyp http GET https://github.com/kelektiv/node.bcrypt.js/releases/download/v2.0.0/bcrypt_lib-v2.0.0-node-v59-win32-x64-unknown.tar.gz
+  node-pre-gyp http 404 https://github.com/kelektiv/node.bcrypt.js/releases/download/v2.0.0/bcrypt_lib-v2.0.0-node-v59-win32-x64-unknown.tar.gz
+  node-pre-gyp ERR! Tried to download(404): https://github.com/kelektiv/node.bcrypt.js/releases/download/v2.0.0/bcrypt_lib-v2.0.0-node-v59-win32-x64-unknown.tar.gz 
+  node-pre-gyp ERR! Pre-built binaries not found for bcrypt@2.0.0 and node@9.11.1 (node-v59 ABI, unknown) (falling back to source compile with node-gyp) 
+  node-pre-gyp http 404 status code downloading tarball https://github.com/kelektiv/node.bcrypt.js/releases/download/v2.0.0/bcrypt_lib-v2.0.0-node-v59-win32-x64-unknown.tar.gz 
   
-      at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
-      at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:226:113)
-      at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:30281:17)
+  C:\Users\mikeh\Desktop\CodingBootcamp\project3\node_modules\bcrypt>if not defined npm_config_node_gyp (node "C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin\\..\..\node_modules\node-gyp\bin\node-gyp.js" clean )  else (node "" clean ) 
+  gyp info it worked if it ends with ok
+  gyp info using node-gyp@3.6.2
+  gyp info using node@9.11.1 | win32 | x64
+  gyp info ok 
+  
+      at ProcessTermError.MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)
+      at new ProcessTermError (C:\Program Files (x86)\Yarn\lib\cli.js:226:113)
+      at ChildProcess.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:30281:17)
       at ChildProcess.emit (events.js:180:13)
       at maybeClose (internal/child_process.js:936:16)
       at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)

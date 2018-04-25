@@ -1,4 +1,4 @@
-import React,{ Component } from 'react';
+import React from 'react';
 import siteLogo from '../images/logo.png';
 import axios from 'axios';
 
@@ -72,7 +72,6 @@ export default class Register extends React.Component {
            </div>
              <div className="mdl-textfield mdl-js-textfield">
                <input className="mdl-textfield__input"
-                      type="text"
                       name="password"
                       type="password"
                       onChange={this.handleChange}/>
@@ -85,7 +84,7 @@ export default class Register extends React.Component {
               </button>
             </div>
             <div className="mdl-card__actions">
-              <a href="#">Login</a>
+              <a href="/signin">Login</a>
             </div>
             </form>
           </div>

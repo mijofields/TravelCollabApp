@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ItineraryItem from './ItineraryItem';
 import '../css/Itinerary.css';
-
-
+import Auth from '../authService';
 
 export default class ItineraryList extends React.Component {
   constructor(props) {
@@ -24,6 +23,12 @@ export default class ItineraryList extends React.Component {
         }
       ]
   }
+
+  this.auth = new Auth();
+}
+
+componentWillMount() {
+  console.log("Component is mounting")
 }
 
   render() {
@@ -37,6 +42,5 @@ export default class ItineraryList extends React.Component {
       </div>
     )
   }
-
 
 }

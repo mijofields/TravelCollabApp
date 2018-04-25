@@ -1,5 +1,5 @@
 const db = require('../models');
-const bcrypt = require("bcrypt"); // encryption
+const bcrypt = require("bcryptjs"); // encryption
 const jwt = require('jsonwebtoken');
 
 
@@ -58,6 +58,7 @@ module.exports = {
             console.log(email, name, password, username);
      },
 
+
     signin: function (req, res) {
       console.log(req.body)
         const { username, password } = req.body;
@@ -69,6 +70,7 @@ module.exports = {
                   // Send the token.
                   const currUser = {id: user._id, email: user.email, username: user.username };
                   const token = jwt.sign({ user: currUser }, 'my_secret_key') // Put 'my_secret_key' in an enviornment variable
+
 
                     res.json({
                       status: "Loggedin",

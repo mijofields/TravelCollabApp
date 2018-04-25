@@ -1,8 +1,8 @@
- import React,{ Component } from 'react';
- import axios from 'axios';
- import siteLogo from '../images/logo.png';
- import auth from '../authService';
- import '../css/login.css'
+import React from 'react';
+import siteLogo from '../images/logo.png';
+import Auth from '../authService';
+import {Button} from './Button';
+import '../css/login.css'
 
 
 class Login extends React.Component {
@@ -11,43 +11,37 @@ class Login extends React.Component {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      isAuthenticated: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.auth = new auth();
-  }
+    this.auth = new Auth();
+  } 
 
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
       [name]: value
     })
-    console.log(this.state)
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const { username, password } = this.state;
-    this.auth.login(username, password)
-      .then((res) => {
-        console.log("You are logged in!",res)
-        this.props.history.replace('/itinerary')
-      })
-
+    this.props.login(username, password);
+    this.setState({ 
+      isAuthenticated: true,
+      username
+    })
   }
 
-  // axiosRequest() {
-  //   axios.post('/signin', {username, password})
-  //     .then((res) => {
-  //       console.log(res)
-  //     }).catch((err) => {
-  //       console.log(err)
-  //     })
-  // }
-
+  handleLoginSubmit = (username, isAuthenticated) => this.setState({ username, isAuthenticated });
 
   render() {
+
+    console.log("LOGIN STATE:  ", this.state);
+     
     return (
       <div className="mdl-grid login-card">
         <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
@@ -55,31 +49,27 @@ class Login extends React.Component {
             <img src={siteLogo} alt="site-logo" border="0" />
           </div>
           <div className="mdl-card__supporting-text">
-            <form onSubmit={this.handleSubmit}>
+            <form>
               <div className="mdl-textfield mdl-js-textfield">
                 <input className="mdl-textfield__input"
                        type="text"
                        name="username"
                        onChange={this.handleChange}/>
-                     <label className="mdl-textfield__label" htmlfor="username">Username</label>
+                     <label className="mdl-textfield__label" htmlFor="username">Username</label>
              </div>
              <div className="mdl-textfield mdl-js-textfield">
                <input className="mdl-textfield__input"
-                      type="text"
                       name="password"
                       type="password"
                       onChange={this.handleChange}/>
-                    <label className="mdl-textfield__label" htmlfor="password">Password</label>
+                    <label className="mdl-textfield__label" htmlFor="password">Password</label>
             </div>
             <div className="mdl-card__actions">
-              <button className="mdl-button mdl-js-button mdl-button--raised"
-                      type="submit">
-                Submit
-              </button>
+              <Button                 
+                onClick={this.handleSubmit}>
+                Login </Button>
             </div>
-            <div className="mdl-card__actions">
-              <a href="#">SignUp</a>
-            </div>
+            <Button type="submit"> Register </Button>
             </form>
           </div>
         </div>
