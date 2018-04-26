@@ -27,7 +27,7 @@ export default class WanderSearch extends Component {
     return (
       <div>
         <div className="search-card mdl-card__title">
-          <h2>Where do you want to Wander to?</h2>
+          <h2 className="wander-msg">Lets Wander!</h2>
         </div>
         <div className="mdl-card__actions">
           <form onSubmit={this.handleCitySearch}>
