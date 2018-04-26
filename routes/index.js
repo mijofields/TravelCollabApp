@@ -2,7 +2,7 @@ const path = require("path");
 const router = require("express").Router();
 const userRoute = require("./user-route/userRoute.js");
 const stripeRoute = require("./stripe-route/stripeRoute.js");
-const eventRoute = require("./event-route/eventRoute.js");
+const eventRoute = require("./event-route/eventRoute");
 
 // User routes
 router.use("/", userRoute);

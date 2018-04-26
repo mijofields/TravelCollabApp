@@ -3,7 +3,7 @@ import siteLogo from '../images/logo.png';
 import Auth from '../authService';
 import {Button} from './Button';
 import Register from './Signup';
-import Itinerary from './ItineraryItem';
+import Itinerary from './Itinerary';
 import '../css/login.css'
 
 class Login extends React.Component {

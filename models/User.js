@@ -29,11 +29,6 @@ const UserSchema = new Schema({
         ref: "Friend",
     }],
     events: [{
-        friends: [{
-            username: {
-                type: String
-            }
-        }],
         title: {
             type: String
         },
@@ -41,8 +36,9 @@ const UserSchema = new Schema({
             type: String
         },
         type: Schema.Types.ObjectId,
-        ref: "Event",
-    }]
+        ref: "Events"        
+
+    }]      
 
 });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Register from '../components/register';
-import ItineraryList from '../components/ItineraryItem';
+import Itinerary from '../components/Itinerary';
 import WanderSum from './WanderSum';
 import Home from '../components/Home';
 import Login from '../components/login';
@@ -14,6 +14,13 @@ import '../css/App.css';
 
 
 export default class App extends React.Component {
+
+  // this.props.signOut
+  signOut = () => {
+    // sessionStorage.setItem("isAuthenticated", false);
+    window.location.href = "/"; // on signout, send to home page
+  }
+
   constructor(props) {
     super(props)
 
@@ -31,10 +38,10 @@ export default class App extends React.Component {
       this.auth.login(username, password)
         .then((res) => {
           // console.log(res)
-          console.log(this.props)
+          // console.log(this.props)
           this.setState({user: res.user.user.username, isAuthenticated: true})
-          console.log(res.user.user.username)
-          console.log(this.state)
+          // console.log(res.user.user.username)
+          // console.log(this.state)
         })
   }
 
@@ -68,7 +75,7 @@ export default class App extends React.Component {
             <div className="mdl-layout-spacer"></div>
             {/* Navigation. We hide it in small screens */}
             <nav className="mdl-navigation mdl-layout--large-screen-only">
-              <a className="mdl-navigation__link" href="/signout" onClick={this.logout}>Logout</a>
+              <a className="mdl-navigation__link" href="/signout" onClick={this.signOut}>Logout</a>
             </nav>
           </div>
         </header>
@@ -95,7 +102,7 @@ export default class App extends React.Component {
                   <Route exact path="/" component={Home} />
                   <Route path="/login" render={(props) => <Login {...props} login={this.handleLoginSubmit}/>} />
                   <Route exact path="/register" component={Register} />
-                  <Route exact path="/itinerary" render = {(props) => <ItineraryList {...props} user={this.state.user}/>} />
+                  <Route exact path="/events" render = {(props) => <Itinerary {...props} user={this.state.user}/>} />
                   <Route exact path="/wanderSum" component={WanderSum} />
                   <Route exact path="/splitExp" component={SplitExp} />
                   <Route exact path="/currConverter" component={CurrConverter} />
