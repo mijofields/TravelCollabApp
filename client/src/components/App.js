@@ -22,11 +22,23 @@ export default class App extends React.Component {
 
     this.state = {
       isAuthenticated: false,
-      friendsClick: false
+      user: ""
     }
 
+
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.auth = new Auth();
   }
+
+  handleLoginSubmit(username, password) {
+    this.auth.login(username, password)
+      .then((res) => {
+        console.log(res)
+        console.log(this.props)
+        this.setState({user: res.user, isAuthenticated: true})
+        console.log(this.state)
+      })
+}
 
   signinClick = () => {
     this.setState({ click: true })
@@ -95,10 +107,10 @@ export default class App extends React.Component {
         <main className="mdl-layout__content main-layout">
           <div className="page-content">
           {/* Your content goes here */}
-            <Route exact path="/" component={Home} />
-            <Route exact path="/signin" component={Signin} />
+            {/* <Route exact path="/" component={Home} /> */}
+            <Route exact path="/signin" render = {(props) => <Signin {...props} signin={this.handleLoginSubmit}/>} />
             <Route exact path="/register" component={Register} />
-            <Route exact path="/itinerary" component={ItineraryList} />
+            <Route exact path="/itinerary" render = {(props) => <ItineraryList {...props} user={this.state.user} />} />
             <Route exact path="/splitExp" component={SplitExp} />
             <Route exact path="/currConverter" component={CurrConverter} />
             <Route exact path="/chat" component={Chat} />

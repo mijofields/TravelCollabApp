@@ -21,7 +21,8 @@ export default class ItineraryList extends React.Component {
         {
           flight: "Shreveport to Winnipeg"
         }
-      ]
+      ],
+      user: this.props.user
   }
 
   this.auth = new Auth();
@@ -32,6 +33,7 @@ componentWillMount() {
 }
 
   render() {
+    console.log(this.state)
     const letsGo = this.state.trips.map((trip, i) =>
       <ItineraryItem key={i}
                      destination={trip.flight}/>
