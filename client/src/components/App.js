@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Register from '../components/register';
-import ItineraryList from '../components/Itinerary';
+import ItineraryList from '../components/ItineraryItem';
 import WanderSum from './WanderSum';
 import Home from '../components/Home';
 import Login from '../components/login';

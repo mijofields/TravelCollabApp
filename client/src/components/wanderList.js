@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import WanderItem from './WanderItem';
+import WanderItem from './wanderItem';
 
 
 export default class WanderList extends Component {

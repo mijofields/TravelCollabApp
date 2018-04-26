@@ -54,7 +54,9 @@ class Login extends React.Component {
       return <Register />;
     }
     if (this.state.isAuthenticated === true){
-      return <Itinerary />;
+      return <Itinerary 
+        user={this.state.username}
+      />;
     }
      
     return (    

@@ -7,7 +7,7 @@ export default class ItineraryItem extends React.Component {
   constructor (props){
     super(props)
       this.state = {
-        user: this.props.user,
+        // user: this.props.user,
         title: '',
         location: '',
         friends: '',
@@ -16,11 +16,14 @@ export default class ItineraryItem extends React.Component {
       }
   }
 
-  getInitialState = () => { 
-    return {
-      username: this.props.username
-    }
-  }
+
+componentWillMount() {
+
+  console.log("Mount: ", this.props.user)
+
+ };
+
+
 
   handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
@@ -41,9 +44,9 @@ export default class ItineraryItem extends React.Component {
 
 
   render() {
-    const username = this.state.username;
+    
 
-    console.log("Event State: ", this.state);
+    console.log("Itinerary Item : ", this.props.user);
 
    
 
