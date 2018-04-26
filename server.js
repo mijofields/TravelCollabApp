@@ -1,17 +1,4 @@
-<<<<<<< HEAD
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const logger = require('morgan');
-const bcrypt = require('bcrypt');
-const path = require('path');
-const routes = require('./routes/user-route/userRoute');
-const paymentApi = require('./payment');
-const db = 'mongodb://localhost/users';
-=======
 const express = require("express");
->>>>>>> ebb01fcf1580d3e9fa26ce89de028cf9432eb703
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server); //Binding socket
@@ -43,7 +30,6 @@ connection
 mongoose.Promise = Promise;
 mongoose.connect(db);
 // Use morgan logger for logging requests
-<<<<<<< HEAD
 app.use(logger('dev'));
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -56,20 +42,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-const corsOptions = {
-  origin: 'http://localhost:3000'
-};
-
-app.use(cors(corsOptions));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(routes);
-app.use(paymentApi);
-=======
-app.use(logger("dev"));
->>>>>>> ebb01fcf1580d3e9fa26ce89de028cf9432eb703
 
 //setting up CORS
 const corsOptions = {
