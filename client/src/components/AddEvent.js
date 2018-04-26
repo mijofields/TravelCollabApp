@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-
 import axios from 'axios';
-
 import DatePicker from 'react-date-picker';
-// import bodyParser from 'body-parser';
+import bodyParser from 'body-parser';
 
 
 class AddEvent extends Component {
   state = {
     startdate: new Date(),
     enddate: new Date(),
-    where: ""
+    destination: "",
+    // username: this.state.user
   }
 
   onChangeStart = startdate => this.setState({ startdate })
   onChangeEnd = enddate => this.setState({ enddate })
-  handleWhereChange = event => {
+  handleDestinationChange = event => {
     
     const { name, value } = event.target;
 
@@ -31,20 +30,22 @@ class AddEvent extends Component {
       alert(`Please enter the destination of your upcoming trip`)
       return
     };
-    alert(`Start Date: ${this.state.startdate}\nEnd Date: ${this.state.enddate}\nDestination: ${this.state.where}`);
+    alert(`Start Date: ${this.state.startdate}\nEnd Date: ${this.state.enddate}\nDestination: ${this.state.destination}\n User: ${this.state.username}`);
     
-    axios.post('/newevent', {
-        destination: this.state.where,
+    axios.post('/event', {
+        destination: this.state.destination,
         start: this.state.startdate,
-        end: this.state.enddate    
+        end: this.state.enddate,
+        user: this.state.user    
     })
     .then(function (response) {
       console.log(response);
+      
     })
     .catch(function (error) {
       console.log(error);
     });
-    this.setState({ startdate: new Date(), enddate: new Date(), where: ""  });
+    this.setState({ startdate: new Date(), enddate: new Date(), desintation: ""  });
   };
 
   render() {
@@ -64,9 +65,9 @@ class AddEvent extends Component {
         <input
           type="text"
           placeholder="Where are you going?"
-          name="where"
-          value={this.state.where}
-          onChange={this.handleWhereChange}
+          name="destination"
+          value={this.state.destination}
+          onChange={this.handleDestinationChange}
         />
         <button onClick={this.handleSubmit}>Submit</button>
      
