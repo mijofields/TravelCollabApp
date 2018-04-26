@@ -13,6 +13,7 @@ import Auth from '../authService';
 import '../css/App.css';
 import AddEvent from '../components/AddEvent';
 import Cal from '../components/Calendar';
+import WanderSum from '../components/wanderSum';
 
 
 
@@ -30,9 +31,9 @@ export default class App extends React.Component {
 
   signinClick = () => {
     this.setState({ click: true })
-    return <ItineraryList />    
+    return <ItineraryList />
   }
- 
+
   signOut = () => {
     sessionStorage.setItem("isAuthenticated", false);
     window.location.href = "/"; // on signout, send to home page
@@ -46,12 +47,12 @@ export default class App extends React.Component {
 
   findFriendClick = (event) => {
     event.preventDefault();
-    this.setState({ friendsClick: true 
+    this.setState({ friendsClick: true
     });
   }
-  
 
-  
+
+
 
   render() {
     console.log('CLICK FRIEND COMPONENT: ', this.state.friendsClick)
@@ -65,7 +66,7 @@ export default class App extends React.Component {
             {/* <div className="mdl-layout-spacer"></div> */}
             {/* Navigation. We hide it in small screens */}
             <nav className="mdl-navigation mdl-layout--large-screen-only">
-             <a className="mdl-layout__tab" 
+             <a className="mdl-layout__tab"
                 onClick={this.signinClick} >
                 Login</a>
             </nav>
@@ -88,7 +89,7 @@ export default class App extends React.Component {
     <Router>
         <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
         {isAuth}
-        
+
           <header className="mdl-layout__header">
             <div className="mdl-layout__header-row">
               <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
@@ -96,6 +97,7 @@ export default class App extends React.Component {
                 <a href="/splitExp" class="mdl-layout__tab" onClick={this.splitExpenseClick}>Expenses</a>
                 <a href="/chat" class="mdl-layout__tab" onClick={this.chatClick}>Chat</a>
                 <a href="/event" class="mdl-layout__tab" onClick={this.tripClick}>New Trip</a>
+                <a href='/wanderSum' class="mdl-layout__tab">WanderSum</a>
               </div>
           </div>
         </header>
@@ -110,14 +112,15 @@ export default class App extends React.Component {
             <Route exact path="/currConverter" component={CurrConverter} />
             <Route exact path="/chat" component={Chat} />
             <Route exact path="/event" component={AddEvent} />
+            <Route exact path="/wanderSum" component={WanderSum} />
             {/* render={() => {
 								  <AddEvent {...props} user={this.state.user}/>
 								  }} /> */}
             {/* <Route exact path="/event" component={AddEvent} /> */}
             <Route exact path="/calendar" component={Cal} />
             <Route exact path="/friends" component={Friends} />
-            
-            
+
+
           </div>
         </main>
 	  </div>
