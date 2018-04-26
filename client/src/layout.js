@@ -8,30 +8,23 @@ import './layout.css';
 class Layout extends React.Component {
   render() {
     return (
-      <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <div className="mdl-layout mdl-js-layout mdl-layout--fixed-tabs">
           <header className="mdl-layout__header">
-              <div className="mdl-layout__header-row">
+              <div className="mdl-layout__header">
                 {/* Title */}
-                <img className="navlogo" src={NavLogo} alt="react"/>
-                {/* Add spacer, to align navigation to the right */}
-                <div className="mdl-layout-spacer"></div>
-                {/* Navigation. We hide it in small screens */}
-                <nav className="mdl-navigation mdl-layout--large-screen-only">
-                </nav>
+                <img className="navlogo" src={long} alt="logo"/>
+              </div>
+            {/* Tabs */}
+              <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+                <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Itinerary</a>
+                  <a href="#fixed-tab-2" class="mdl-layout__tab">Expenses</a>
+                    <a href="#fixed-tab-3" class="mdl-layout__tab">Chat</a>
               </div>
             </header>
-        <div className="mdl-layout__drawer">
-          <span className="mdl-layout-title">Tools</span>
-          <nav className="mdl-navigation">
-            <a className="mdl-navigation__link" href="">Itinerary</a>
-            <a className="mdl-navigation__link" href="">Split Expenses</a>
-            <a className="mdl-navigation__link" href="">Currency Converter</a>
-            <a className="mdl-navigation__link" href="">Bucket List</a>
-            <a className="mdl-navigation__link" href="" id="sign-out">Sign Out</a>
-            
-
           </nav>
         </div>
+        
+
         <main className="mdl-layout__content main-layout">
           <div className="page-content">
           {/* Your content goes here */}
