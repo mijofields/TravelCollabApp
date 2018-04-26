@@ -53,28 +53,32 @@ export default class Register extends React.Component {
                 <input className="mdl-textfield__input"
                        type="text"
                        name="name"
-                       onChange={this.handleChange}/>
+                       onChange={this.handleChange}
+                />
                      <label className="mdl-textfield__label" htmlfor="name">Name</label>
              </div>
              <div className="mdl-textfield mdl-js-textfield">
                <input className="mdl-textfield__input"
                       type="text"
                       name="username"
-                      onChange={this.handleChange}/>
+                      onChange={this.handleChange}
+                />
                     <label className="mdl-textfield__label" htmlfor="username">Username</label>
             </div>
             <div className="mdl-textfield mdl-js-textfield">
               <input className="mdl-textfield__input"
                      type="email"
                      name="email"
-                     onChange={this.handleChange}/>
+                     onChange={this.handleChange}
+              />
                    <label className="mdl-textfield__label" htmlfor="email">Email</label>
            </div>
              <div className="mdl-textfield mdl-js-textfield">
                <input className="mdl-textfield__input"
                       name="password"
                       type="password"
-                      onChange={this.handleChange}/>
+                      onChange={this.handleChange}
+                />
                     <label className="mdl-textfield__label" htmlfor="password">Password</label>
             </div>
             <div className="mdl-card__actions">

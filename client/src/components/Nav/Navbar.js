@@ -49,16 +49,16 @@ class NavbarComponent extends Component {
     return (
 
        
-            <header class="mdl-layout__header">
-                <div class="mdl-layout__header-row">
+            <header className="mdl-layout__header">
+                <div className="mdl-layout__header-row">
                     
-                    <img class="center" src="images/long.png" />
+                    <img className="center" src="images/long.png" />
         </div>
                     
-    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-                        <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Itinerary</a>
-                        <a href="#fixed-tab-2" class="mdl-layout__tab">Expenses</a>
-                        <a href="#fixed-tab-3" class="mdl-layout__tab">Chat</a>
+    <div className="mdl-layout__tab-bar mdl-js-ripple-effect">
+                        <a href="#fixed-tab-1" className="mdl-layout__tab is-active">Itinerary</a>
+                        <a href="#fixed-tab-2" className="mdl-layout__tab">Expenses</a>
+                        <a href="#fixed-tab-3" className="mdl-layout__tab">Chat</a>
                     </div>
   </header>
         

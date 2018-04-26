@@ -94,7 +94,8 @@ class Friends extends Component {
                                 <input className="mdl-textfield__input"
                                     type="text"
                                     name="username"
-                                    onChange={this.handleChange}/>
+                                    onChange={this.handleChange}
+                                />
                                     <label className="mdl-textfield__label" htmlFor="username">Username</label>
                             </div>
                             

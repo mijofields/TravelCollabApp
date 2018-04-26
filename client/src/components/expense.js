@@ -1,14 +1,11 @@
-import React, { Component } from 'react';
-
-
+import React from 'react';
 // import '../css/ExpenseItem.css';
 import Checkout from './Checkout';
 
 
 export default class Expense extends React.Component {
+    
     render() {
-
-
 
         return (
             

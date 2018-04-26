@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/ItineraryItem.css';
+import axios from 'axios';
 import { Button } from './Button';
 import '../css/ItineraryItem.css';
 
@@ -7,24 +7,49 @@ export default class ItineraryItem extends React.Component {
   constructor (props){
     super(props)
       this.state = {
-        username: props.username,
+        user: this.props.user,
         title: '',
         location: '',
-        friends: ''
+        friends: '',
+        month: '',
+        eventCreated: false,
       }
+  }
+
+  getInitialState = () => { 
+    return {
+      username: this.props.username
+    }
   }
 
   handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
-  handleSubmit = (e) => {
+  handleLoginSubmit = (e) => {
     e.preventDefault();
-
-
+      axios({
+        url: '/events',
+        methods: 'POST'
+      })
+      .then((res) => {
+        this.setState({ eventCreated: true })
+      })
+      .catch((err) => {
+        console.log('Error Creating Event: ', err.response.data)
+      })
+      console.log("Axios Event State: ", this.state);
   }
 
 
   render() {
+    const username = this.state.username;
+
+    console.log("Event State: ", this.state);
+
+   
+
+
     return (
+
       <div className="card">
         <div className="card-body">
           <h5 className="card-title">Where Will You Wander Next?</h5>
@@ -32,10 +57,11 @@ export default class ItineraryItem extends React.Component {
 
               <div className="form-group">
                 <label htmlFor="exampleInputTripName" className="bmd-label-floating">Give Your Trip a Rad Name!</label>
-                  <input type="tripName" 
+                  <input 
+                      type="text" 
                       className="form-control" 
                       id="exampleInputTripName"
-                      name="textarea" 
+                      name="title" 
                       value={this.state.title}
                       onChange={this.handleChange}
                   />
@@ -43,7 +69,8 @@ export default class ItineraryItem extends React.Component {
 
                 <div className="form-group">
                   <label htmlFor="exampleInputLocation" className="bmd-label-floating">What's the Name of the Awesome Place You're Going?</label>
-                    <input type="location" 
+                    <input 
+                      type="text" 
                       className="form-control" 
                       id="exampleInputLocation"
                       value={this.state.location}
@@ -53,19 +80,24 @@ export default class ItineraryItem extends React.Component {
 
                   <div className="form-group">
                     <label htmlFor="exampleSelect1" className="bmd-label-floating">When are you going?</label>
-                      <select className="form-control" id="exampleSelect1" >
-                        <option>January</option>
-                        <option>February</option>
-                        <option>March</option>
-                        <option>April</option>
-                        <option>May</option>
-                        <option>June</option>
-                        <option>July</option>
-                        <option>August</option>
-                        <option>September</option>
-                        <option>October</option>
-                        <option>November</option>
-                        <option>December</option>
+                      <select 
+                          className="form-control" 
+                          id="exampleSelect1"
+                          value={this.state.month} 
+                          onChange={this.handleChange}
+                          >
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
                       </select>
                   </div>
                     <div className="form-group">
@@ -107,20 +139,20 @@ export default class ItineraryItem extends React.Component {
                     <div className="form-group">
                       <label htmlFor="exampleTextarea" className="bmd-label-floating">Who's Coming On This Adventure?</label>
                         <textarea 
-                          className="form-control" 
-                          id="exampleTextarea" 
-                          rows="3"
-                          value={this.state.friends}
-                          onChange={this.handleChange}
-                        >
+                            className="form-control" 
+                            id="exampleTextarea" 
+                            rows="3"
+                            value={this.state.friends}
+                            onChange={this.handleChange}
+                          />
                         Text Area
-                        </textarea>
+                        
                     </div>
         
                       <Button 
                         type="submit" 
                         className="center btn btn-primary btn-raised"
-                        onClick={this.handleSubmit} >
+                        onClick={this.props.handleLoginSubmit} >
                         Create Trip
                       </Button>
               </form>

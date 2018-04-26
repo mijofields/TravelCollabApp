@@ -3,6 +3,7 @@ import siteLogo from '../images/logo.png';
 import Auth from '../authService';
 import {Button} from './Button';
 import Register from './Signup';
+import Itinerary from './ItineraryItem';
 import '../css/login.css'
 
 class Login extends React.Component {
@@ -52,6 +53,9 @@ class Login extends React.Component {
     if (this.state.registerClick === true){
       return <Register />;
     }
+    if (this.state.isAuthenticated === true){
+      return <Itinerary />;
+    }
      
     return (    
        
@@ -66,23 +70,25 @@ class Login extends React.Component {
                 <input className="mdl-textfield__input"
                        type="text"
                        name="username"
-                       onChange={this.handleChange}/>
+                       onChange={this.handleChange}
+                />
                      <label className="mdl-textfield__label" htmlFor="username">Username</label>
              </div>
              <div className="mdl-textfield mdl-js-textfield">
                <input className="mdl-textfield__input"
                       name="password"
                       type="password"
-                      onChange={this.handleChange}/>
+                      onChange={this.handleChange}
+                />
                     <label className="mdl-textfield__label" htmlFor="password">Password</label>
             </div>
             <div className="mdl-card__actions">
               <Button                 
                 onClick={this.handleSubmit}>
                 Login </Button>
+            </div>  
               <Button type="submit" id="signup"
-                onClick={this.goToSignup}> Register </Button>
-            </div>            
+                  onClick={this.goToSignup}> Register </Button>          
             </form>
           </div>
         </div>

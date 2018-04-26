@@ -8,6 +8,7 @@ export default class ItineraryList extends React.Component {
     super(props)
 
     this.state = {
+      user: this.props.user,
       trips: [
         {
           flight: "Dallas to Maui"
@@ -28,10 +29,12 @@ export default class ItineraryList extends React.Component {
 }
 
 componentWillMount() {
-  console.log("Component is mounting")
-}
+};
+
+
 
   render() {
+    console.log("Itinerary State: ", this.state.user);
     const letsGo = this.state.trips.map((trip, i) =>
       <ItineraryItem key={i}
                      destination={trip.flight}/>

@@ -69,7 +69,8 @@ class Signin extends Component {
                             className="form-control" 
                             name="username"
                             value={this.state.value} 
-                            onChange={this.handleChange} />
+                            onChange={this.handleChange} 
+                        />
 
                     <label htmlFor="password" className="sr-only"> Password:</label>
                         <input 
@@ -78,7 +79,8 @@ class Signin extends Component {
                             className="form-control" 
                             name="password"
                             value={this.state.value} 
-                            onChange={this.handleChange} />               
+                            onChange={this.handleChange} 
+                        />               
 
                   <input className="btn btn-lg btn-primary btn-block" type="submit" value="Login Now" />
             </form>

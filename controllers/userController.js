@@ -72,7 +72,9 @@ module.exports = {
 
                     res.json({
                       status: "Loggedin",
-                      token: token
+                      token: token,
+                      user: { user: currUser }
+
                     })
 
                 } else{

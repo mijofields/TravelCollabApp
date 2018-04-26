@@ -13,8 +13,7 @@ export default class ChatComp extends React.Component {
     };
   }
 
-  componentDidMount = () => { 
-    
+  componentDidMount = () => {    
         socket.on("chat message", data => {
         this.setState({ messages: [data, ...this.state.messages] });
       }); // Receiving, NO Sending  
@@ -22,13 +21,11 @@ export default class ChatComp extends React.Component {
 
   handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
-
   submitMessage = event => {
     event.preventDefault();
     const username = this.state.username;
     const message = this.state.message;
     socket.emit("chat message", { username, message }); // sending the messages
-
     this.setState({ message: "" });
   };
 
@@ -78,10 +75,11 @@ export default class ChatComp extends React.Component {
                     name="message"
                     value={this.state.message}
                     onChange={this.handleChange}
-                >
+                />
                 <br />
-                </textarea>
-                  <label className="mdl-textfield__label" for="sample5">Text lines...</label>
+
+                
+                  <label className="mdl-textfield__label" htmlFor="sample5">Text lines...</label>
                     <button className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" 
                       onClick={this.submitMessage}
                     >
