@@ -52,8 +52,7 @@ export default class ChatComp extends React.Component {
     return (
       <div className="mdl-grid mdl-card chat-comp"
           style={{ height: 800, width: "90%" }}>
-        <div className="mdl-cell mdl-cell--12-col">
-          <h2>This will be the chat component</h2>
+        <div className="mdl-cell mdl-cell--12-col chat-comp">
 {/* ===========bootstrap stuff below... need to update ======== */}
         <div className="row">
           <div className="col-10">

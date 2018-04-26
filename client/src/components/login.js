@@ -61,8 +61,8 @@ class Login extends React.Component {
    
    return (    
      
-     <div className="mdl-grid login-card">
-       <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+     <div className="card">
+      <div className="card-body">
          <div className="mdl-card__media login-card-img">
            <img src={siteLogo} alt="site-logo" border="0" />
          </div>
