@@ -32,6 +32,11 @@ export default class App extends React.Component {
     this.setState({ click: true })
     return <ItineraryList />    
   }
+ 
+  signOut = () => {
+    sessionStorage.setItem("isAuthenticated", false);
+    window.location.href = "/"; // on signout, send to home page
+  }
 
   iteneraryClick = () => this.setState({ click: true });
   splitExpenseClick = () => this.setState({ click: true });
