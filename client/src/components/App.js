@@ -22,23 +22,11 @@ export default class App extends React.Component {
 
     this.state = {
       isAuthenticated: false,
-      user: ""
+      friendsClick: false
     }
 
-
-    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.auth = new Auth();
   }
-
-  handleLoginSubmit(username, password) {
-    this.auth.login(username, password)
-      .then((res) => {
-        console.log(res)
-        console.log(this.props)
-        this.setState({user: res.user, isAuthenticated: true})
-        console.log(this.state)
-      })
-}
 
   signinClick = () => {
     this.setState({ click: true })
@@ -49,6 +37,7 @@ export default class App extends React.Component {
   splitExpenseClick = () => this.setState({ click: true });
   calendarClick = () => this.setState({ click: true });
   chatClick = () => this.setState({ click: true });
+  tripClick = () => this.setState({ click: true });
 
   findFriendClick = (event) => {
     event.preventDefault();
@@ -101,16 +90,17 @@ export default class App extends React.Component {
                 <a href="/itinerary" class="mdl-layout__tab is-active" onClick={this.iteneraryClick}>Itinerary</a>
                 <a href="/splitExp" class="mdl-layout__tab" onClick={this.splitExpenseClick}>Expenses</a>
                 <a href="/chat" class="mdl-layout__tab" onClick={this.chatClick}>Chat</a>
+                <a href="/event" class="mdl-layout__tab" onClick={this.tripClick}>New Trip</a>
               </div>
           </div>
         </header>
         <main className="mdl-layout__content main-layout">
           <div className="page-content">
           {/* Your content goes here */}
-            {/* <Route exact path="/" component={Home} /> */}
-            <Route exact path="/signin" render = {(props) => <Signin {...props} signin={this.handleLoginSubmit}/>} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/signin" component={Signin} />
             <Route exact path="/register" component={Register} />
-            <Route exact path="/itinerary" render = {(props) => <ItineraryList {...props} user={this.state.user} />} />
+            <Route exact path="/itinerary" component={ItineraryList} />
             <Route exact path="/splitExp" component={SplitExp} />
             <Route exact path="/currConverter" component={CurrConverter} />
             <Route exact path="/chat" component={Chat} />
