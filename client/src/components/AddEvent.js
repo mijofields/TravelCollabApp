@@ -9,7 +9,7 @@ class AddEvent extends Component {
     startdate: new Date(),
     enddate: new Date(),
     destination: "",
-    // username: this.state.user
+    username: ""
   }
 
   onChangeStart = startdate => this.setState({ startdate })
@@ -47,6 +47,12 @@ class AddEvent extends Component {
     });
     this.setState({ startdate: new Date(), enddate: new Date(), desintation: ""  });
   };
+
+  // componentWillMount(
+
+  // setState()
+
+  // )
 
   render() {
     return (

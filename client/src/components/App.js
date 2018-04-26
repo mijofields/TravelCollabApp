@@ -22,7 +22,7 @@ export default class App extends React.Component {
 
     this.state = {
       isAuthenticated: false,
-      friendsClick: false
+      user: this.props.user
     }
 
     this.auth = new Auth();
@@ -110,6 +110,10 @@ export default class App extends React.Component {
             <Route exact path="/currConverter" component={CurrConverter} />
             <Route exact path="/chat" component={Chat} />
             <Route exact path="/event" component={AddEvent} />
+            {/* render={() => {
+								  <AddEvent {...props} user={this.state.user}/>
+								  }} /> */}
+            {/* <Route exact path="/event" component={AddEvent} /> */}
             <Route exact path="/calendar" component={Cal} />
             <Route exact path="/friends" component={Friends} />
             
