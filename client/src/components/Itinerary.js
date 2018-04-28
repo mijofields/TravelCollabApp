@@ -6,52 +6,54 @@ import '../css/ItineraryItem.css';
 export default class Itinerary extends React.Component {
   constructor (props){
     super(props)
-      this.state = {
-        // user: this.props.user,
-        title: '',
-        location: '',
-        // friends: '',
-        // month: '',
-        eventCreated: false
-      }
+
+    this.state = {
+      trips: [
+        {
+          flight: "Dallas to Maui",
+          total: '$2500',
+          flightNumber: 3340,
+          airline: "American Airlies",
+          hotel: "Sufer's Cove Hotel"
+        },
+        {
+          flight: "Houston to Brazil",
+          total: '$1500',
+          flightNumber: 3564,
+          airline: "American Airlies",
+          hotel: "DoubleTree"
+        },
+        {
+          flight: "New Orleans to Morroco",
+          total: '$2500',
+          flightNumber: 32340,
+          airline: "Sun Fligh International",
+          hotel: "MoonSun Hotel"
+        },
+        {
+          flight: "Shreveport to Winnipeg",
+          total: '$2500',
+          flightNumber: 67340,
+          airline: "American Airlies",
+          hotel: "Marriot"
+        }
+      ],
+      user: this.props.user
   }
 
 
 componentWillMount() {
 
-  console.log("Mount: ", this.props.user)
-
- };
-
-  handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
-
-  handleSubmitItinerary = (e) => {
-    e.preventDefault();
-      axios({
-        url: '/user/:id/events',
-        method: 'PUT',
-        data: this.state
-      })
-      .then((res) => {
-        this.setState({ 
-          eventCreated: true,
-          title: this.state.title,
-          location: this.state.location
-        })
-        console.log("Axios Event State: ", this.state);
-      })
-      .catch((err) => {
-        console.log('Error Creating Event: ', err.response.data.message)
-      })
-      
-  }
-
-
-  render() {    
-
-    console.log("Itinerary username : ", this.props.user);   
-
-
+  render() {
+    console.log(this.state)
+    const letsGo = this.state.trips.map((trip, i) =>
+      <ItineraryItem key={i}
+                     destination={trip.flight}
+                     total={trip.total}
+                     flightNumber={trip.flightNumber}
+                     airline={trip.airline}
+                     hotel={trip.hotel}/>
+    )
     return (
 
       <div className="card">

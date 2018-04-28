@@ -70,5 +70,3 @@ router.route("/friends/:username")
   // .delete(friendController.removeFriend)
 
 module.exports = router;
-
-

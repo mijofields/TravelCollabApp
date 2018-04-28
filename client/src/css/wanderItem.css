@@ -1,4 +1,5 @@
 .city:hover {
+<<<<<<< HEAD
     border: 3px solid rgba(241, 50, 43, 1.0);
   }
   
@@ -6,3 +7,12 @@
   .city img {
     width: 100%;
   }
+=======
+  border: 3px solid rgba(241, 50, 43, 1.0);
+}
+
+
+.city img {
+  width: 100%;
+}
+>>>>>>> fb254dd52b74a7173696a48f285dec8daf8a7d36

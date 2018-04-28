@@ -8,6 +8,7 @@ import STRIPE_PUBLISHABLE from './constants/stripe';
 const CURRENCY = 'USD';
 
 const successPayment = data => {
+    console.log(data);
     alert('Payment Successful');
 };
 

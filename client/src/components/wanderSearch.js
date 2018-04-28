@@ -1,4 +1,6 @@
 import React,{ Component } from 'react';
+import '../css/wanderSearch.css';
+import GlobePicture from '../images/jumbotron-image.jpg';
 
 export default class WanderSearch extends Component {
   constructor(props) {
@@ -24,8 +26,8 @@ export default class WanderSearch extends Component {
   render() {
     return (
       <div>
-        <div className="mdl-card__title">
-          <h2>Where do you want to Wander to?</h2>
+        <div className="search-card mdl-card__title">
+          <h2 className="wander-msg">Lets Wander!</h2>
         </div>
         <div className="mdl-card__actions">
           <form onSubmit={this.handleCitySearch}>
@@ -37,7 +39,7 @@ export default class WanderSearch extends Component {
                      onChange={this.handleInputChange}/>
               <label className="mdl-textfield__label" htmlfor="city">What city?...</label>
             </div>
-            <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+            <button className="submit-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
               Submit
             </button>
           </form>

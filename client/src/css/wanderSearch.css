@@ -1,0 +1,12 @@
+.search-card {
+  background: url('../images/jumbotron-image.jpg') center / cover;
+  height: 300px;
+}
+
+.submit-button {
+  margin-left: 40px;
+}
+
+.wander-msg {
+  color: rgba(241, 50, 43, 1.0);
+}
