@@ -96,10 +96,6 @@ export default class App extends React.Component {
 
           return (
             
-          <Router>
-            <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-              {isAuth}
-
     <Router>
         <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
         {isAuth}
