@@ -17,13 +17,14 @@ module.exports = {
       .then(friend => res.json(friend))
       .catch(err => res.status(422).json(err));
   },
+  
 
   // Add Friend ==> Tested, Working
   create: function(req, res) {
-    console.log("DB CREATE FRIEND: ", req.body)
-    db.User.findOneAndUpdate({username: req.body.username}, {friends: req.body.username})
-      .select("-password")
-      .then(friend => res.json(friend))
+    console.log("DB CREATE FRIEND: ", req.params.username)
+    db.Friend.findOneAndUpdate({_id: req.params.id}, {username: req.body.username})
+      // .select("-password")
+      .then(event => res.json(event))
       .catch(err => res.status(422).json(err));
   },
 

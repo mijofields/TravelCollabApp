@@ -56,9 +56,8 @@ module.exports = {
             console.log(email, name, password, username);
      },
 
-
     signin: function (req, res) {
-      console.log(req.body)
+      console.log("Signin DB Console.log: ", req.body)
         const { username, password } = req.body;
         db.User
             .findOne({ username })
@@ -69,13 +68,16 @@ module.exports = {
                   const currUser = {id: user._id, email: user.email, username: user.username };
                   const token = jwt.sign({ user: currUser }, 'my_secret_key') // Put 'my_secret_key' in an enviornment variable
 
-
                     res.json({
                       status: "Loggedin",
                       token: token,
                       user: { user: currUser }
 
                     })
+                    console.log(currUser);
+                    // { id: 5ae18cf1a9ea9aa6c83a3634,
+                    //        email: 'dewi@gmail.com',
+                    //        username: 'dewi' }
 
                 } else{
                     res.status(401).json({ status: "Fail to authenticate you!"});

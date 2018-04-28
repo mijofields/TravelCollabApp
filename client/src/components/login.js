@@ -5,6 +5,7 @@ import {Button} from './Button';
 import Register from './Signup';
 import Itinerary from './Itinerary';
 import '../css/login.css'
+import Friends from './Friends/Friends';
 
 class Login extends React.Component {
   constructor(props) {
@@ -34,9 +35,10 @@ class Login extends React.Component {
         isAuthenticated: true,
         username
       })
+      console.log("Login submit: ", this.state)
   }
 
-  handleLoginSubmit = (username, isAuthenticated) => this.setState({ username, isAuthenticated });
+  // handleLoginSubmit = (username, isAuthenticated) => this.setState({ username, isAuthenticated });
 
   handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
@@ -54,10 +56,11 @@ class Login extends React.Component {
       return <Register />;
     }
     if (this.state.isAuthenticated === true){
-      return <Itinerary 
+      return <Friends 
         user={this.state.username}
-      />;
+      />
     }
+    
      
     return (    
        

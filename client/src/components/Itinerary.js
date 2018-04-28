@@ -23,15 +23,13 @@ componentWillMount() {
 
  };
 
-
-
   handleChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
   handleSubmitItinerary = (e) => {
     e.preventDefault();
       axios({
-        url: '/events',
-        method: 'POST',
+        url: '/user/:id/events',
+        method: 'PUT',
         data: this.state
       })
       .then((res) => {
@@ -43,7 +41,7 @@ componentWillMount() {
         console.log("Axios Event State: ", this.state);
       })
       .catch((err) => {
-        console.log('Error Creating Event: ', err.response.data)
+        console.log('Error Creating Event: ', err.response.data.message)
       })
       
   }

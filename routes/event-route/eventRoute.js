@@ -4,8 +4,20 @@ const eventController = require("../../controllers/eventController");
 // NOT TESTED YET
 
 //CREATE
-router.route("/events")
-    .post(eventController.create);
+
+// http://localhost:3000/users/34/books/8989.
+//  We can extract this information as shown below, with the userId and bookId path parameters:
+
+// app.get('/users/:userId/books/:bookId', function (req, res) {
+    // Access userId via: req.params.userId
+    // Access bookId via: req.params.bookId
+    // res.send(req.params);
+//   })
+
+// /friends/:username
+
+router.route("/:id/events")
+    .put(eventController.create);
 
 //List All Events
 // router.route("/events")

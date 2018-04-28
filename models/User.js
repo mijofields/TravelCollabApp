@@ -21,24 +21,17 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    friends: [{
-        username: {
-            type: String
-        },
+    friends: [
+        {username: {type: String},
         type: Schema.Types.ObjectId,
-        ref: "Friend",
+        ref: "Friend"
     }],
     events: [{
-        title: {
-            type: String
-        },
-        location: {
-            type: String
-        },
         type: Schema.Types.ObjectId,
-        ref: "Events"        
-
-    }]      
+        title: { type: String},
+        location: {type: String},
+        ref: "Event"
+    }]
 
 });
 

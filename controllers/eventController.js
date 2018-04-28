@@ -38,13 +38,28 @@ module.exports = {
 
   // Create Event
   create: function(req, res) {
-    console.log("DB CREATE Event: ", req.body)
+    // console.log("DB CREATE Event: ", req.body)
 
-    
-    db.User.findOneAndUpdate({username: req.params.username}, req.body)
-      .then(event => res.json(event))
-      .catch(err => res.status(422).json(err));
-  }
+    const { title, location } = req.body;
+    // people: {
+    //     name: String, 
+    //     friends: [{firstName: String, lastName: String}]
+    //    }
+    // var people = { firstname: 'Harry', lastname: 'Potter' };
+    // PersonModel.update(
+    //     { _id: person._id }, 
+    //     { $push: { friends: friend } },
+    //     done
+    // );
+
+    console.log("Event DB: ", req.params.id)
+    console.log("Event DB: ", req.body)
+    // create: function(req, res) {
+        // console.log("DB CREATE FRIEND: ", req.body)
+        db.User.findOneAndUpdate({username: req.body.username},  {$push: {events: req.body }} )
+          .then(event => res.send(event))
+          .catch(err => res.status(422).json(err));
+      }
 
 
 

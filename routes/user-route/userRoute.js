@@ -43,9 +43,9 @@ router.route("/friends/:username")
   .post(friendController.findByName)
   .put(friendController.create);
 
-//Create Friend ==> Unsuccesful yet
-  // router.route("/friends/:username/createFriend")
-  // .get(friendController.create);
+// Create Friend ==> Unsuccesful yet
+  router.route("/friends/:username/")
+  .put(friendController.create);
 
 
 // Matches with "/api/articles/:id"

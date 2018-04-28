@@ -10,6 +10,7 @@ import CurrConverter from '../components/currConverter';
 import ChatComp from '../components/chat';
 import NavLogo from '../images/navlogo.png';
 import Auth from '../authService';
+import Friends from '../components/Friends/Friends'
 import '../css/App.css';
 
 
@@ -37,7 +38,7 @@ export default class App extends React.Component {
   handleLoginSubmit(username, password) {
       this.auth.login(username, password)
         .then((res) => {
-          // console.log(res)
+          console.log(res)
           // console.log(this.props)
           this.setState({user: res.user.user.username, isAuthenticated: true})
           // console.log(res.user.user.username)
@@ -92,7 +93,7 @@ export default class App extends React.Component {
                   <Link to="/wanderSum"><a className="mdl-navigation__link" href="">WanderSum</a></Link>
                   <Link to="/itinerary"><a className="mdl-navigation__link" href="">Itinerary</a></Link>
                   <Link to="/splitExp"><a className="mdl-navigation__link" href="">Split Expenses</a></Link>
-                  <Link to="/currConverter"><a className="mdl-navigation__link" href="">Currency Converter</a></Link>
+                  <Link to="/friends"><a className="mdl-navigation__link" href="">Find Friend</a></Link>
                   <Link to="/chat"><a className="mdl-navigation__link" href="">Chat</a></Link>
                 </nav>
               </div>
@@ -101,11 +102,11 @@ export default class App extends React.Component {
                 {/* Your content goes here */}
                   <Route exact path="/" component={Home} />
                   <Route path="/login" render={(props) => <Login {...props} login={this.handleLoginSubmit}/>} />
-                  <Route exact path="/register" component={Register} />
+                  <Route exact path="/register" render={(props) => <Register {...props} login={this.handleLoginSubmit}/>} />
                   <Route exact path="/events" render = {(props) => <Itinerary {...props} user={this.state.user}/>} />
                   <Route exact path="/wanderSum" component={WanderSum} />
                   <Route exact path="/splitExp" component={SplitExp} />
-                  <Route exact path="/currConverter" component={CurrConverter} />
+                  <Route exact path="/friends" render = {(props) => <Friends {...props} user={this.state.user}/>}/>
                   <Route exact path="/chat" component={ChatComp} />
                 </div>
               </main>

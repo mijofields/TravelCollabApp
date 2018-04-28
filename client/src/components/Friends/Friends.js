@@ -44,7 +44,7 @@ class Friends extends Component {
     isFriend = () => { 
         axios({
             url: "/friends/" + this.state.username,
-            method: "POST",
+            method: "PUT",
             data: this.state
         })
         .then((response) => {
@@ -82,6 +82,7 @@ class Friends extends Component {
                                 </button>
                                 
                 </AddFriend>
+                
                 ) : (
                     <div className="mdl-grid login-card">
                         <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
