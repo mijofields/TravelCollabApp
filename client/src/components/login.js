@@ -2,16 +2,9 @@ import React from 'react';
 import siteLogo from '../images/logo.png';
 import Auth from '../authService';
 import {Button} from './Button';
-<<<<<<< HEAD
-import Register from './Signup';
-import Itinerary from './Itinerary';
-import '../css/login.css'
-import Friends from './Friends/Friends';
-=======
 import Register from './register';
 import Itinerary from './Itinerary';
 import '../css/login.css'
->>>>>>> fb254dd52b74a7173696a48f285dec8daf8a7d36
 
 class Login extends React.Component {
  constructor(props) {
