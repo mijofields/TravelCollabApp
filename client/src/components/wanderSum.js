@@ -16,6 +16,7 @@ export default class WanderSum extends Component {
     this.searchCities = this.searchCities.bind(this)
   }
 
+  
   searchCities(city) {
     axios({
       method: 'get',
