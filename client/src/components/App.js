@@ -1,16 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Register from '../components/register';
-import Itinerary from '../components/Itinerary';
-import WanderSum from './WanderSum';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from '../components/Home';
-import Login from '../components/login';
+import Register from '../components/register';
+import ItineraryList from '../components/Itinerary';
 import SplitExp from '../components/splitExp';
 import CurrConverter from '../components/currConverter';
-import ChatComp from '../components/chat';
-import NavLogo from '../images/navlogo.png';
+import Chat from '../components/chat';
+import Signin from '../components/login';
+import Friends from '../components/Friends/Friends';
+import NavLogo from '../images/long.png';
 import Auth from '../authService';
-import Friends from '../components/Friends/Friends'
 import '../css/App.css';
 import AddEvent from '../components/AddEvent';
 import Cal from '../components/Calendar';
@@ -19,13 +18,6 @@ import WanderSum from '../components/wanderSum';
 
 
 export default class App extends React.Component {
-
-  // this.props.signOut
-  signOut = () => {
-    // sessionStorage.setItem("isAuthenticated", false);
-    window.location.href = "/"; // on signout, send to home page
-  }
-
   constructor(props) {
     super(props)
 
@@ -34,9 +26,7 @@ export default class App extends React.Component {
       user: this.props.user
     }
 
-    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.auth = new Auth();
-    this.logout = this.logout.bind(this);
   }
 
   signinClick = () => {
@@ -84,18 +74,18 @@ export default class App extends React.Component {
       </header> : <header className="mdl-layout__header">
           <div className="mdl-layout__header-row">
             {/* Title */}
-            <img className="navlogo" src={NavLogo} alt="logo" />
+            <img className="navlogo" src={NavLogo} alt="logo"/>
             {/* Add spacer, to align navigation to the right */}
-            <div className="mdl-layout-spacer"></div>
+            {/* <div className="mdl-layout-spacer"></div> */}
             {/* Navigation. We hide it in small screens */}
             <nav className="mdl-navigation mdl-layout--large-screen-only">
-              <a className="mdl-navigation__link" href="/signout" onClick={this.signOut}>Logout</a>
+             <a className="mdl-layout__tab" href="/signout">Logout</a>
             </nav>
           </div>
         </header>
 
-          return (
-            
+    return (
+
     <Router>
         <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
         {isAuth}
@@ -109,19 +99,6 @@ export default class App extends React.Component {
                 <a href="/event" class="mdl-layout__tab" onClick={this.tripClick}>New Trip</a>
                 <a href='/wanderSum' class="mdl-layout__tab">WanderSum</a>
               </div>
-              <main className="mdl-layout__content main-layout">
-                <div className="page-content">
-                {/* Your content goes here */}
-                  <Route exact path="/" component={Home} />
-                  <Route path="/login" render={(props) => <Login {...props} login={this.handleLoginSubmit}/>} />
-                  <Route exact path="/register" render={(props) => <Register {...props} login={this.handleLoginSubmit}/>} />
-                  <Route exact path="/events" render = {(props) => <Itinerary {...props} user={this.state.user}/>} />
-                  <Route exact path="/wanderSum" component={WanderSum} />
-                  <Route exact path="/splitExp" component={SplitExp} />
-                  <Route exact path="/friends" render = {(props) => <Friends {...props} user={this.state.user}/>}/>
-                  <Route exact path="/chat" component={ChatComp} />
-                </div>
-              </main>
           </div>
         </header>
         <main className="mdl-layout__content main-layout">

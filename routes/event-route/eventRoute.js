@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const eventController = require("../../controllers/eventController");
+const eventController = require("../event-route/eventRoute.js");
 
 // NOT TESTED YET
 
@@ -16,8 +16,11 @@ const eventController = require("../../controllers/eventController");
 
 // /friends/:username
 
-router.route("/:id/events")
-    .put(eventController.create);
+router.route("/events")
+    .get(eventController.newTrip);
+
+// router.route("/:id/events")
+//     .put(eventController.create);
 
 //List All Events
 // router.route("/events")

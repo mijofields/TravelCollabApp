@@ -1,7 +1,4 @@
-import React, { Component } from 'react';
-
-
-
+import React  from 'react';
 
 export default class AddUserExpense extends React.Component {
 
@@ -30,16 +27,16 @@ export default class AddUserExpense extends React.Component {
 
         return (
 
-            <li class="mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                    <i class="material-icons  mdl-list__item-avatar">person</i>user id: {this.props.friend}</span>
-                <span class="mdl-list__item-secondary-action">
-                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-1">
-                        <input type="checkbox" id="list-switch-1" class="mdl-switch__input" />
+            <li className="mdl-list__item"  >
+                <span className="mdl-list__item-primary-content">
+                    <i className="material-icons  mdl-list__item-avatar">person</i>user id: {this.props.friend}</span>
+                <span className="mdl-list__item-secondary-action">
+                    <label className="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-1">
+                        <input type="checkbox" id="list-switch-1" className="mdl-switch__input" />
                     </label>
                     {/* amount entry */}
-                    <div class="form-group">
-                        <div className="mdl-textfield mdl-js-textfield">
+                    <div className="form-group">
+                        <div className="mdl-textfield mdl-js-textfield"  >
                             <input className="mdl-textfield__input"
                                 type="text"
                                 name="username"

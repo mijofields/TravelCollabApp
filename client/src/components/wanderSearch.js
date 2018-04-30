@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import '../css/wanderSearch.css';
-import GlobePicture from '../images/jumbotron-image.jpg';
+// import GlobePicture from '../images/jumbotron-image.jpg';
 
 export default class WanderSearch extends Component {
   constructor(props) {

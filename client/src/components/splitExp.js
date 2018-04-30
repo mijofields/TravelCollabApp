@@ -1,7 +1,8 @@
 import React from 'react';
 import '../css/splitExp.css';
 import Expense from './expense';
-import AddUserExpense from './AddUserExpense'
+import AddUserExpense from './AddUserExpense';
+import '../css/splitExp.css';
 
 
 
@@ -56,12 +57,12 @@ export default class SpiltExp extends React.Component {
 
     return (
           
-            <main className="demo-main mdl-layout__content centercontent">
+            <main className="demo-main mdl-layout__content centercontent"  >
               <div className="demo-container mdl-grid">
               
                 <div className="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
 
-          <div class="card">
+          <div class="card" >
             <div class="card-body">
               <h5 class="card-title">Add An Expense</h5>
           <form>
@@ -73,8 +74,8 @@ export default class SpiltExp extends React.Component {
               <label for="exampleInputLocation" class="bmd-label-floating">What was the total amount you spent?</label>
               <input type="total" class="form-control" id="exampleInputTotal" />
             </div>
-            <h5 class="center">Who are you splitting it with?</h5>
-            <div class="center">
+            <h5 class="right">Who are you splitting it with?</h5>
+            <div class="right">
               <ul class="demo-list-control mdl-list">
                 {/* addUserExpense component */}
                 {addUserExpense}

@@ -1,8 +1,15 @@
 .expense-grid {
   margin-top: 40px;
   width: 960px;
+  align-content: left;
 }
 
-.card-body {
-  margin-right: -40px;
+.card-body {  
+  text-align: left;
+}
+
+
+.card {
+  max-width: 30%;
+  margin-right: 30px;
 }

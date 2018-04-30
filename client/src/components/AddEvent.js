@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-date-picker';
-import bodyParser from 'body-parser';
+// import bodyParser from 'body-parser';
+import siteLogo from '../images/logo.png';
+import '../css/AddEvent.css'
 
 
 class AddEvent extends Component {
@@ -56,17 +58,31 @@ class AddEvent extends Component {
 
   render() {
     return (
+      <div className="card">
+      <div className="card-body">
+         <div className="mdl-card__media login-card-img">
+           <img src={siteLogo} alt="site-logo" border="0" />
+         </div>
+         <div className="mdl-card__supporting-text">
+           <form>
+             <div className="mdl-textfield mdl-js-textfield">
+
+              
       <div className="datepick">
         <label>From Date:</label>
         <DatePicker
           onChange={this.onChangeStart}
           value={this.state.startdate}
         />
+        <br/>
+        <br/>
         <label>To Date:</label>
         <DatePicker
           onChange={this.onChangeEnd}
           value={this.state.enddate}
         />
+        <br/>
+        <br/>
        <label>Where: </label>
         <input
           type="text"
@@ -78,10 +94,16 @@ class AddEvent extends Component {
         <button onClick={this.handleSubmit}>Submit</button>
      
       </div>
+
+      </div>
+      </form>
+         </div>
+       </div>
+     </div>
     );
   }
 }
 
 
 
-export default AddEvent
+export default AddEvent;

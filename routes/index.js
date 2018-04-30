@@ -2,7 +2,7 @@ const path = require("path");
 const router = require("express").Router();
 const userRoute = require("./user-route/userRoute.js");
 const stripeRoute = require("./stripe-route/stripeRoute.js");
-const eventRoute = require("./event-route/eventRoute");
+// const eventRoute = require("./event-route/eventRoute");
 
 // User routes
 router.use("/", userRoute);
@@ -11,7 +11,7 @@ router.use("/", userRoute);
 router.use("/", stripeRoute);
 
 // Events routes
-router.use("/", eventRoute);
+// router.use( eventRoute);
 
 // If no routes are hit, send the React app
 router.use(function(req, res) {
